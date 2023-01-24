@@ -9,10 +9,8 @@
   <ItemGroup>
     <Folder Include="CQRS\Commands\" />
     <Folder Include="CQRS\Queries\" />
-    <Folder Include="DomainDrivenDesign\" />
-    <Folder Include="UnitOfWork\" />
+    <Folder Include="ResultPattern\Success\" />
     <Folder Include="Routing\" />
-    <Folder Include="ResultPattern\" />
   </ItemGroup>
 
 </Project>
