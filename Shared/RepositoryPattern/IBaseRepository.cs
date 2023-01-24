@@ -1,6 +1,5 @@
-﻿namespace Shared.RepositoryPattern
+﻿namespace Shared.RepositoryPattern;
+
+public interface IBaseRepository
 {
-    public interface IBaseRepository
-    {
-    }
 }
