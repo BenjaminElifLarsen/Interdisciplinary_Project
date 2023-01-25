@@ -1,0 +1,22 @@
+Case:
+	Name: Book Renting
+
+	Problem: There is no system in place that permits a person to look if a specific book exist and if the book does exist, if it have been rented out.
+		At the same time there is, currently, no way to rent out a book or to return it. The emplyees do not have a way to prevent books from being rented.
+		Finally, it is needed to be able to retrieve information on 'the go' via a mobile computer, such that people can know if a book they want to rent is rented out before they get the change to.  
+		
+
+
+
+	Solution: A web api, herafter just API, coupled together with a SQL database, herafter just Database, where the web api is connected to with a cross platform application, herafter just App. 
+		The app will have the ability to search for and retrieve information about a book. A customer will be able to log in to rent the book and return it and have the ability to see what books they have rented over time.
+		The employee needs to be able to see which books are rented out, but not who has rented. Seach for a specific book to see status and who has it rented. The ability to prevent a book from being rented, if it is not rented.
+		The ability to add books to the system will not be done by the employee, but by another system, e.g. a special scanner unit. 
+		
+		The solution will use domain driven design, command query re... 
+
+
+
+
+
+
