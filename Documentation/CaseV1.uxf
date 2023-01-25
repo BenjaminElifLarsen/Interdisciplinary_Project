@@ -1,0 +1,57 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>420</x><y>240</y><w>130</w><h>80</h></coordinates><panel_attributes>/Person/
+--
++ Id : int
++ FirstName : string
++ LastName : string
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>250</x><y>370</y><w>160</w><h>60</h></coordinates><panel_attributes>Customer
+--
+Rented : collection&lt;Book&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>370</y><w>150</w><h>100</h></coordinates><panel_attributes>EmployeUser
+--
++ Payment : float
++ IsAtWork : boolean
+--
++ StarWorking() : void
++ StopWorking() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>370</y><w>180</w><h>70</h></coordinates><panel_attributes>AuthorInformation
+--
+Authored : collection&lt;Book&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>460</x><y>310</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>460</x><y>340</y><w>190</w><h>50</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;170;10;170;30</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>340</y><w>150</w><h>50</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>130;10;10;10;10;30</additional_attributes></element><element><id>UMLClass</id><coordinates><x>800</x><y>250</y><w>250</w><h>180</h></coordinates><panel_attributes>Book
+--
++ Id : int
++ Title : string
++ Authors : collection&lt;AuthorInformation&gt;
++ Genres : collection&lt;Genre&gt;
++ CanBeRented: boolean
+--
++ ChangeTitle(string) : void
++ AddGenre(genre) : void
++ RemoveGenre(genre) : void
++ Rent() : void
++ Return() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>800</x><y>450</y><w>250</w><h>80</h></coordinates><panel_attributes>Genre
+--
++ Id : int
++ Type : string
++ Books : collection&lt;Book&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1090</x><y>250</y><w>160</w><h>90</h></coordinates><panel_attributes>RentedBook
+--
++ CustomerId : int
++ BookId : int
++ RentedAt : DateTime
++ ReturnedAt : DateTime?</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1090</x><y>350</y><w>100</w><h>60</h></coordinates><panel_attributes>AuthorBook
+--
++ AuthorId : int
++ BookId : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1090</x><y>420</y><w>100</w><h>60</h></coordinates><panel_attributes>BookGenre
+--
++ BookId : int
++ GenreId : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>100</x><y>500</y><w>520</w><h>380</h></coordinates><panel_attributes>System Overview
+//Controll over the text of the whole element..
+_umletcode=
+var className = "Test"; 
+
+var publicAttributesDrawConfig = {fg: '#006400'}
+var privateAttributesDrawConfig = {fg: '#8b0000'}
+
+// draw book
+drawArc(10,10,80,80,0,360,true)  //Parameters (x, y, width, height, start, extent, open, drawConfig?)
+drawLine(90, 50, 90, 200)
+drawLine(10, 50, 10, 200)
+drawLine(10, 200, 90, 200)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>340</x><y>550</y><w>100</w><h>30</h></coordinates><panel_attributes>Web Api</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>340</x><y>640</y><w>100</w><h>30</h></coordinates><panel_attributes>App</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>570</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;-&gt;</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>560</y><w>180</w><h>30</h></coordinates><panel_attributes>lt=&lt;-&gt;</panel_attributes><additional_attributes>160;10;10;10</additional_attributes></element></diagram>
