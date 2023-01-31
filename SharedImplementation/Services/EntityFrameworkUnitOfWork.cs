@@ -2,11 +2,11 @@
 using Shared.UnitOfWork;
 
 namespace SharedImplementation.Services;
-public class UnitOfWork<TContext> : IBaseUnitOfWork where TContext : DbContext
+public class EntityFrameworkUnitOfWork<TContext> : IBaseUnitOfWork where TContext : DbContext
 {
     private readonly TContext _context;
 
-    public UnitOfWork(TContext context)
+    public EntityFrameworkUnitOfWork(TContext context)
     {
         _context = context;
     }
