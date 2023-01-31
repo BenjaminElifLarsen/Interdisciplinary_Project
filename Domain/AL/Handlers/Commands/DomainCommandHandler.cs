@@ -1,5 +1,6 @@
 ﻿using Domain.DL.CQRS.Commands.Lifeforms;
 using Domain.DL.CQRS.Commands.Messages;
+using Domain.DL.CQRS.Commands.Users;
 using Domain.DL.Factories;
 using Domain.IPL.Services;
 
@@ -21,6 +22,7 @@ internal class DomainCommandHandler : IDomainCommandHandler
 
     public void Handle(InsertMessage command)
     {
+        _messageFactory.CreateMessage(command);
         throw new NotImplementedException();
     }
 
@@ -30,6 +32,11 @@ internal class DomainCommandHandler : IDomainCommandHandler
     }
 
     public void Handle(LikeMessage command)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Handle(RegistrateUser command)
     {
         throw new NotImplementedException();
     }
