@@ -9,7 +9,8 @@ public class Plantae : Eukaryote
 
     }
 
-    public Plantae(string name) : base(name)
+    public Plantae(string name, double maxHeight) : base(name)
     {
+        _maximumHeight = maxHeight;
     }
 }
