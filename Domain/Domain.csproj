@@ -16,7 +16,6 @@
     <Folder Include="AL\Services\Users\Queries\" />
     <Folder Include="DL\CQRS\Commands\Users\" />
     <Folder Include="DL\Errors\" />
-    <Folder Include="DL\Models\LifeformModels\" />
     <Folder Include="DL\Models\UserModels\" />
     <Folder Include="DL\Validation\" />
     <Folder Include="IPL\Repositories\" />
