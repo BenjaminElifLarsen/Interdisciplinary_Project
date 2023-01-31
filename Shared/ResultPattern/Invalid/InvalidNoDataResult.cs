@@ -8,8 +8,6 @@ public class InvalidNoDataResult : Result
 
     public override string[] Errors => _errors;
 
-    public override T Data => default;
-
     public override ResultType ResultType => ResultType.Invalid;
 
     public InvalidNoDataResult(params string[] errors)
@@ -19,6 +17,6 @@ public class InvalidNoDataResult : Result
 
     public InvalidNoDataResult(IEnumerable<string> errors)
     {
-        _errors = errors;
+        _errors = errors.ToArray();
     }
 }
