@@ -19,7 +19,6 @@
     <Folder Include="AL\Services\Messages\Queries\" />
     <Folder Include="AL\Services\Users\Commands\" />
     <Folder Include="AL\Services\Users\Queries\" />
-    <Folder Include="DL\Errors\" />
     <Folder Include="DL\Validation\Messages\" />
     <Folder Include="DL\Validation\Users\" />
     <Folder Include="DL\Validation\Plants\" />

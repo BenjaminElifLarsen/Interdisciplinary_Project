@@ -2,6 +2,7 @@
 using Domain.DL.Validation.Animals;
 using Shared.SpecificationPattern.Composite.Extensions;
 using SharedImplementation.BinaryFlag;
+using static Domain.DL.Errors.AnimalErrors;
 
 namespace Domain.DL.Validation;
 internal sealed class AnimalValidator
@@ -18,10 +19,10 @@ internal sealed class AnimalValidator
 	public BinaryFlag Validate()
 	{
 		BinaryFlag flag = new();
-		flag += new IsAnimalSpeciesSat().And(new IsAnimalSpeciesNotInUse(_validationData.Species).IsSatisfiedBy(_animal) ? 0 : ;
-		flag += new IsAnimalMaxOffspringSat().IsSatisfiedBy(_animal) ? 0 : ;
-		flag += new IsAnimalMinOffspringSat().IsSatisfiedBy(_animal) ? 0 : ;
-		flag += new IsAnimalOffspringCombinationValid().IsSatisfiedBy(_animal) ? 0 : ;
+		flag += new IsAnimalSpeciesSat().And(new IsAnimalSpeciesNotInUse(_validationData.Species)).IsSatisfiedBy(_animal) ? 0 : SpeciesInvalid;
+		flag += new IsAnimalMaxOffspringSat().IsSatisfiedBy(_animal) ? 0 : MaximumOffspringInvalid;
+		flag += new IsAnimalMinOffspringSat().IsSatisfiedBy(_animal) ? 0 : MinimumOffspringInvalid;
+		flag += new IsAnimalOffspringCombinationValid().IsSatisfiedBy(_animal) ? 0 : OffspringCombinationInvalid;
 		return flag;
 	}
 
