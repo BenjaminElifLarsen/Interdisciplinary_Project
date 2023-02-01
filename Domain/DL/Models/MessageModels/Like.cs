@@ -10,7 +10,7 @@ public record Like : ValueObject
 	private int _messageId;
 	private Message _message;
 
-	private Like()
+	private Like() //use Builder pattern for this class, maybe
 	{
 
 	}

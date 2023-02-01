@@ -5,6 +5,9 @@ public sealed class RegistrateUser : ICommand
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
+    public string Password { get; set; }
+    public string ConfirmPassword { get; set; }
+    public string Username { get; set; }
 
     public RegistrateUser()
     {
@@ -16,9 +19,12 @@ public sealed class RegistrateUser : ICommand
     /// </summary>
     /// <param name="firstName"></param>
     /// <param name="lastName"></param>
-    internal RegistrateUser(string firstName, string lastName)
+    internal RegistrateUser(string firstName, string lastName, string password, string username)
     {
         FirstName = firstName;
         LastName = lastName;
+        Password = password;
+        ConfirmPassword = password;
+        Username = username;
     }
 }

@@ -1,0 +1,17 @@
+Implement Factories
+Implement Services
+Implement Endpoints
+Implement Command Handlers
+
+Implement Password hasher and salter
+
+
+Add Migrations
+Run Migrations
+
+Add middleware for routing
+Add services 
+
+Update seeder to use commands
+
+Test, test, and more test

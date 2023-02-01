@@ -6,6 +6,8 @@ public sealed class User : IAggregateRoot<int>
 {
     private int _id;
     private Name _name;
+    private string _userName;
+    private string _hashedPassword;
 
     private HashSet<Message> _messages;
 
@@ -13,6 +15,9 @@ public sealed class User : IAggregateRoot<int>
     public Name Name { get => _name; private set => _name = value; }
     public string FirstName => _name.FirstName;
     public string LastName => _name.LastName;
+    public string Username { get => _userName; private set => _userName = value; }
+    public string HashedPassword { get => _hashedPassword; private set => _hashedPassword = value; }
+
     public IEnumerable<Message> Messages => _messages;
 
     private User()

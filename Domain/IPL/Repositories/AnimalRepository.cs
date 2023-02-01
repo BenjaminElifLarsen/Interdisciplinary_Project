@@ -1,5 +1,4 @@
 ﻿using Domain.DL.Models.LifeformModels;
-using Domain.DL.Validation.Animals;
 using Domain.IPL.Repositories.Specifications.Animals;
 using Shared.CQRS.Queries;
 using Shared.RepositoryPattern;
@@ -36,6 +35,6 @@ internal sealed class AnimalRepository : IAnimalRepository
 
     public async Task<bool> IsSpeciesInUseAsync(string species)
     {
-        return await _repository.IsUniqueAsync(new IsAnimalSpeciesNotInUse(species));
+        return await _repository.IsUniqueAsync(new IsAnimalSpeciesUnique(species));
     }
 }
