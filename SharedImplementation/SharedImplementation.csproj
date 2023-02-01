@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataContext\" />
     <Folder Include="ApiSetUp\" />
+    <Folder Include="DataContext\" />
   </ItemGroup>
 
   <ItemGroup>
