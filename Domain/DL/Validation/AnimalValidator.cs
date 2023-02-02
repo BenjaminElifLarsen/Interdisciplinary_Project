@@ -28,7 +28,7 @@ internal sealed class AnimalValidator
 
 }
 
-internal sealed class AnimalValidationData
+public sealed class AnimalValidationData
 {
     public IEnumerable<string> Species { get; private set; }
 

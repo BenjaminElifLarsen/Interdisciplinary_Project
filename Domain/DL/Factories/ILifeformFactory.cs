@@ -1,5 +1,6 @@
 ﻿using Domain.DL.CQRS.Commands.Lifeforms;
 using Domain.DL.Models.LifeformModels;
+using Domain.DL.Validation;
 using Shared.ResultPattern.Abstract;
 
 namespace Domain.DL.Factories;

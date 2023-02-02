@@ -7,5 +7,5 @@ public interface IUserRepository
     public void UpdateUser(User entity);
     public void DeactivateUser(User entity);
     public Task<User> GetForOperationAsync(int id);
-    public Task<bool> IsLoginInformationCorrectAsync(string username, string hashedPassword);
+    public Task<bool> IsLoginInformationCorrectAsync(string username, string password);
 }

@@ -25,7 +25,7 @@ public sealed class User : IAggregateRoot<int>
 
     }
 
-    public User(Name name)
+    public User(Name name, string username, string hashedPassword)
     {
         _name = name;        
     }
