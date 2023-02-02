@@ -21,7 +21,7 @@ internal sealed class DomainCommandHandler : IDomainCommandHandler
         _lifeformFactory = lifeformFactory;
     }
 
-    public void Handle(InsertMessage command)
+    public void Handle(PostMessage command)
     { //needd validation data
         var result = _messageFactory.CreateMessage(command);
         throw new NotImplementedException();

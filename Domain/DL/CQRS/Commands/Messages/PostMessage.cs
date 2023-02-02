@@ -1,7 +1,7 @@
 ﻿using Shared.CQRS.Commands;
 
 namespace Domain.DL.CQRS.Commands.Messages;
-public sealed class InsertMessage : ICommand
+public sealed class PostMessage : ICommand
 {
     public int UserId { get; set; }
     public int EukaryoteId { get; set; }
@@ -9,12 +9,12 @@ public sealed class InsertMessage : ICommand
     public long Latitude { get; set; }
     public long Longtitude { get; set; }
 
-    public InsertMessage()
+    public PostMessage()
     {
 
     }
 
-    internal InsertMessage(int userId, int eukaryoteId, DateTime moment, long latitude, long longtitude)
+    internal PostMessage(int userId, int eukaryoteId, DateTime moment, long latitude, long longtitude)
     {
         UserId = userId;
         EukaryoteId = eukaryoteId;

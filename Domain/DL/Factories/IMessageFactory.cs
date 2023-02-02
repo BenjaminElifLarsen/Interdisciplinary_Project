@@ -11,5 +11,5 @@ public interface IMessageFactory
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
-    public Result<Message> CreateMessage(InsertMessage data);
+    public Result<Message> CreateMessage(PostMessage data);
 }

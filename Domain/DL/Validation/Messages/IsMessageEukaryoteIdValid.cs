@@ -2,7 +2,7 @@
 using Shared.SpecificationPattern;
 
 namespace Domain.DL.Validation.Messages;
-internal sealed class IsMessageEukaryoteIdValid : ISpecification<InsertMessage>
+internal sealed class IsMessageEukaryoteIdValid : ISpecification<PostMessage>
 {
     private IEnumerable<int> _ids;
 
@@ -11,7 +11,7 @@ internal sealed class IsMessageEukaryoteIdValid : ISpecification<InsertMessage>
         _ids = ids;
     }
 
-    public bool IsSatisfiedBy(InsertMessage candidate)
+    public bool IsSatisfiedBy(PostMessage candidate)
     {
         return _ids.Any(x => x == candidate.EukaryoteId);
     }

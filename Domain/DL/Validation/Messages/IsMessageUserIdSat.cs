@@ -2,9 +2,9 @@
 using Shared.SpecificationPattern;
 
 namespace Domain.DL.Validation.Messages;
-internal sealed class IsMessageUserIdSat : ISpecification<InsertMessage>
+internal sealed class IsMessageUserIdSat : ISpecification<PostMessage>
 {
-    public bool IsSatisfiedBy(InsertMessage candidate)
+    public bool IsSatisfiedBy(PostMessage candidate)
     {
         return candidate.UserId > 0;
     }
