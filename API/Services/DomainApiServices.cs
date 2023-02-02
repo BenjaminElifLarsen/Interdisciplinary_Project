@@ -11,7 +11,7 @@ using Shared.RepositoryPattern;
 using Shared.Routing;
 using SharedImplementation.RepositoryPattern;
 
-namespace API.Folder;
+namespace API.Services;
 
 public class DomainApiServices
 {
@@ -28,7 +28,7 @@ public class DomainApiServices
     {
         services.AddDbContext<DomainContext>(options => options.UseSqlServer(dbConnection));
     }
-    private static void UnitOfWork(IServiceCollection services) 
+    private static void UnitOfWork(IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }

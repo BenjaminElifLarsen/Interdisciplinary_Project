@@ -7,12 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AL\Services\Lifeforms\Commands\RecognisePlant\" />
-    <Folder Include="AL\Services\Lifeforms\Commands\RecogniseAnimal\" />
-    <Folder Include="AL\Services\Lifeforms\Queries\GetAll\" />
-    <Folder Include="AL\Services\Lifeforms\Queries\GetAllPlants\" />
-    <Folder Include="AL\Services\Lifeforms\Queries\GetAllAnimals\" />
-    <Folder Include="AL\Services\Lifeforms\Queries\" />
     <Folder Include="AL\Services\Messages\Commands\LikeMessage\" />
     <Folder Include="AL\Services\Messages\Commands\UnlikeMessage\" />
     <Folder Include="AL\Services\Messages\Queries\" />
