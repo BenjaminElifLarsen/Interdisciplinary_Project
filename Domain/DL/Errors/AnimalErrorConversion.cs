@@ -2,7 +2,7 @@
 using static Domain.DL.Errors.AnimalErrors;
 
 namespace Domain.DL.Errors;
-internal class AnimalErrorConversion
+internal sealed class AnimalErrorConversion
 {
     public static IEnumerable<string> Convert(BinaryFlag flag)
     {

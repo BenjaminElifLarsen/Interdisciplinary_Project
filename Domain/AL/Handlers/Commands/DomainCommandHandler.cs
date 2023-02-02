@@ -5,13 +5,14 @@ using Domain.DL.Factories;
 using Domain.IPL.Services;
 
 namespace Domain.AL.Handlers.Commands;
-internal class DomainCommandHandler : IDomainCommandHandler
+internal sealed class DomainCommandHandler : IDomainCommandHandler
 {
     //need factories and unit of work
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMessageFactory _messageFactory;
     private readonly IUserFactory _userFactory;
     private readonly ILifeformFactory _lifeformFactory;
+
     public DomainCommandHandler(IUnitOfWork unitOfWork, IMessageFactory messageFactory, IUserFactory userFactory, ILifeformFactory lifeformFactory)
     {
         _unitOfWork = unitOfWork;
@@ -21,8 +22,8 @@ internal class DomainCommandHandler : IDomainCommandHandler
     }
 
     public void Handle(InsertMessage command)
-    {
-        _messageFactory.CreateMessage(command);
+    { //needd validation data
+        var result = _messageFactory.CreateMessage(command);
         throw new NotImplementedException();
     }
 

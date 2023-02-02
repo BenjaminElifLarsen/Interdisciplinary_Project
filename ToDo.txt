@@ -15,3 +15,6 @@ Add services
 Update seeder to use commands
 
 Test, test, and more test
+
+
+Forgot to implement UserValidator

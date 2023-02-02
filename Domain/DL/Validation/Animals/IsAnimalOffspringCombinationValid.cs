@@ -2,7 +2,7 @@
 using Shared.SpecificationPattern;
 
 namespace Domain.DL.Validation.Animals;
-internal class IsAnimalOffspringCombinationValid : ISpecification<RecogniseAnimal>
+internal sealed class IsAnimalOffspringCombinationValid : ISpecification<RecogniseAnimal>
 {
     public bool IsSatisfiedBy(RecogniseAnimal candidate)
     {

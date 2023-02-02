@@ -2,7 +2,7 @@
 using Shared.SpecificationPattern;
 
 namespace Domain.DL.Validation.Messages;
-internal class IsMessageLongtitudeSat : ISpecification<InsertMessage>
+internal sealed class IsMessageLongtitudeSat : ISpecification<InsertMessage>
 {
     public bool IsSatisfiedBy(InsertMessage candidate)
     {

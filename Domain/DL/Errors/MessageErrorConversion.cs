@@ -2,7 +2,7 @@
 using static Domain.DL.Errors.MessageErrors;
 
 namespace Domain.DL.Errors;
-internal class MessageErrorConversion
+internal sealed class MessageErrorConversion
 {
     public static IEnumerable<string> Convert(BinaryFlag flag)
     {

@@ -5,7 +5,7 @@ using SharedImplementation.BinaryFlag;
 using static Domain.DL.Errors.MessageErrors;
 
 namespace Domain.DL.Validation;
-internal class MessageValidator
+internal sealed class MessageValidator
 {
     private readonly InsertMessage _message;
     private readonly MessageValidatorData _validatorData;
@@ -27,7 +27,7 @@ internal class MessageValidator
     }
 }
 
-internal class MessageValidatorData
+internal sealed class MessageValidatorData
 {
     public IEnumerable<int> UserIds { get; set; }
     public IEnumerable<int> EukaryoteIds { get; set; }

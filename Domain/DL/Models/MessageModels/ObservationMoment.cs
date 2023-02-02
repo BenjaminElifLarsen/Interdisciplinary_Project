@@ -1,7 +1,7 @@
 ﻿using Shared.DDD;
 
 namespace Domain.DL.Models.MessageModels;
-public record ObservationTimeAndLocation : ValueObject
+public sealed record ObservationTimeAndLocation : ValueObject
 {
     private readonly DateTime _time;
     private readonly long _latitude;

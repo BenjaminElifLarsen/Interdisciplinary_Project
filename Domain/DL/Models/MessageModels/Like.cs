@@ -2,7 +2,7 @@
 using Shared.DDD;
 
 namespace Domain.DL.Models.MessageModels;
-public record Like : ValueObject
+public sealed record Like : ValueObject
 {
 	private int _userId;
 	private User _user; //proper ddd would not have this navigation route here and user would not know directly of the likes, only liked messages

@@ -2,7 +2,7 @@
 using Shared.SpecificationPattern;
 
 namespace Domain.DL.Validation.Messages;
-internal class IsMessageEukaryoteIdSat : ISpecification<InsertMessage>
+internal sealed class IsMessageEukaryoteIdSat : ISpecification<InsertMessage>
 {
     public bool IsSatisfiedBy(InsertMessage candidate)
     {

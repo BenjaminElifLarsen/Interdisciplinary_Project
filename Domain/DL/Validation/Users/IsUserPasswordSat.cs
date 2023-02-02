@@ -2,7 +2,7 @@
 using Shared.SpecificationPattern;
 
 namespace Domain.DL.Validation.Users;
-internal class IsUserPasswordSat : ISpecification<RegistrateUser>
+internal sealed class IsUserPasswordSat : ISpecification<RegistrateUser>
 {
     public bool IsSatisfiedBy(RegistrateUser candidate)
     {

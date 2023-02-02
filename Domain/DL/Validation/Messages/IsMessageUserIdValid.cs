@@ -2,7 +2,7 @@
 using Shared.SpecificationPattern;
 
 namespace Domain.DL.Validation.Messages;
-internal class IsMessageUserIdValid : ISpecification<InsertMessage>
+internal sealed class IsMessageUserIdValid : ISpecification<InsertMessage>
 {
     private IEnumerable<int> _ids;
 

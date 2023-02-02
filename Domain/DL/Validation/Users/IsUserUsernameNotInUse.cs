@@ -2,7 +2,7 @@
 using Shared.SpecificationPattern;
 
 namespace Domain.DL.Validation.Users;
-internal class IsUserUsernameNotInUse : ISpecification<RegistrateUser>
+internal sealed class IsUserUsernameNotInUse : ISpecification<RegistrateUser>
 {
     private IEnumerable<string> _userNames;
 
