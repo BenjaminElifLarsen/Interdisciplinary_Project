@@ -5,7 +5,7 @@ using Domain.DL.Factories;
 using Domain.IPL.Services;
 
 namespace Domain.AL.Handlers.Commands;
-internal sealed class DomainCommandHandler : IDomainCommandHandler
+public sealed class DomainCommandHandler : IDomainCommandHandler
 {
     //need factories and unit of work
     private readonly IUnitOfWork _unitOfWork;

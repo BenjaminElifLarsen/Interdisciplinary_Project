@@ -2,16 +2,14 @@
 using Domain.DL.Errors;
 using Domain.DL.Models.UserModels;
 using Domain.DL.Validation;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Shared.Encryption;
 using Shared.ResultPattern.Abstract;
 using Shared.ResultPattern.Invalid;
 using Shared.ResultPattern.Success;
 using SharedImplementation.BinaryFlag;
-using System.Security.Cryptography;
 
 namespace Domain.DL.Factories;
-internal class UserFactory : IUserFactory
+public class UserFactory : IUserFactory
 {
     public Result<User> CreateUser(RegistrateUser creationData, UserValidationData validationData)
     {

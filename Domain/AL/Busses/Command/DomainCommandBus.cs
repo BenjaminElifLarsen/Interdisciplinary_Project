@@ -1,8 +1,7 @@
 ﻿using Shared.CQRS.Commands;
-using System.Diagnostics;
 
 namespace Domain.AL.Busses.Command;
-internal class DomainCommandBus : IDomainCommandBus
+public class DomainCommandBus : IDomainCommandBus
 {
     private readonly Dictionary<Type, List<Action<ICommand>>> _routes;
 

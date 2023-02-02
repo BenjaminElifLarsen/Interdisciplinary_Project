@@ -8,12 +8,12 @@ using Shared.ResultPattern.Success;
 using SharedImplementation.BinaryFlag;
 
 namespace Domain.DL.Factories;
-internal class LifeformFactory : ILifeformFactory
+public class LifeformFactory : ILifeformFactory
 {
     private readonly AnimalValidationData _animalValidationData;
     private readonly PlantValidationData _plantValidationData;
 
-    public LifeformFactory(AnimalValidationData animalValidationData = null, PlantValidationData plantValidationData = null)
+    internal LifeformFactory(AnimalValidationData animalValidationData = null, PlantValidationData plantValidationData = null)
     {
         _animalValidationData = animalValidationData;
         _plantValidationData = plantValidationData;

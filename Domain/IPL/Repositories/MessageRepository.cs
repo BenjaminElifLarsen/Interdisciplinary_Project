@@ -4,7 +4,7 @@ using Shared.CQRS.Queries;
 using Shared.RepositoryPattern;
 
 namespace Domain.IPL.Repositories;
-internal class MessageRepository : IMessageRepository
+public class MessageRepository : IMessageRepository
 {
     private readonly IBaseRepository<Message, int> _repository;
 

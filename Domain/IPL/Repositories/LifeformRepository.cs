@@ -2,7 +2,7 @@
 using Shared.RepositoryPattern;
 
 namespace Domain.IPL.Repositories;
-internal class LifeformRepository : ILifeformRepository
+public class LifeformRepository : ILifeformRepository
 {
     private readonly IBaseRepository<Animalia, int> _animalRepository;
     private readonly IBaseRepository<Plantae, int> _plantRepository;

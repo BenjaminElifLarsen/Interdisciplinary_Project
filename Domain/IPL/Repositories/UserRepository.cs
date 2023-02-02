@@ -5,7 +5,7 @@ using Shared.Encryption;
 using Shared.RepositoryPattern;
 
 namespace Domain.IPL.Repositories;
-internal class UserRepository : IUserRepository
+public class UserRepository : IUserRepository
 {
     private readonly IBaseRepository<User, int> _repository;
 

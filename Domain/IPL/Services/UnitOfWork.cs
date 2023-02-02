@@ -3,7 +3,7 @@ using Domain.IPL.Repositories;
 using SharedImplementation.Services;
 
 namespace Domain.IPL.Services;
-internal sealed class UnitOfWork : EntityFrameworkUnitOfWork<DomainContext>, IUnitOfWork
+public sealed class UnitOfWork : EntityFrameworkUnitOfWork<DomainContext>, IUnitOfWork
 {
     private readonly ILifeformRepository _lifeformRepository;
     private readonly IAnimalRepository _animalRepository;

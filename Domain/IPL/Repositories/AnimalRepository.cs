@@ -4,7 +4,7 @@ using Shared.CQRS.Queries;
 using Shared.RepositoryPattern;
 
 namespace Domain.IPL.Repositories;
-internal sealed class AnimalRepository : IAnimalRepository
+public sealed class AnimalRepository : IAnimalRepository
 {
     private readonly IBaseRepository<Animalia, int> _repository;
 

@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AL\Registries\" />
     <Folder Include="AL\Services\Lifeforms\Commands\RecognisePlant\" />
     <Folder Include="AL\Services\Lifeforms\Commands\RecogniseAnimal\" />
     <Folder Include="AL\Services\Lifeforms\Queries\GetAll\" />

@@ -4,7 +4,7 @@ using Shared.CQRS.Queries;
 using Shared.RepositoryPattern;
 
 namespace Domain.IPL.Repositories;
-internal class PlantRepository : IPlantRepository
+public class PlantRepository : IPlantRepository
 {
     private readonly IBaseRepository<Plantae, int> _repository;
 
