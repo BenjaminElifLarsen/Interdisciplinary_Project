@@ -28,9 +28,11 @@ public class BaseRepository<TEntity, TId, TContext> : IBaseRepository<TEntity, T
         return (await _entities.ToArrayAsync()).Where(x => predicate.IsSatisfiedBy(x)).AsQueryable().Select(query.Map()); //if wanting to do the transformation over in the database, would need up modify the predicate to be of TMapping instead of TEntity
     }
 
-    public Task<IEnumerable<TEntity>> AllByPredicateForOperationAsync(ISpecification<TEntity> predicate, params Expression<Func<TEntity, object>>[] includes)
-    {
-        throw new NotImplementedException();
+    public async Task<IEnumerable<TEntity>> AllByPredicateForOperationAsync(ISpecification<TEntity> predicate, params Expression<Func<TEntity, object>>[] includes)
+    {//need to include first
+        var query = _entities.AsQueryable();
+        query = includes.Aggregate(query, (source, include) => source.Include(include));
+        return (await query.ToArrayAsync()).Where(x => predicate.IsSatisfiedBy(x));
     }
 
     public void Create(TEntity entity)

@@ -1,9 +1,9 @@
-Implement Factories
-Implement Services
-Implement Endpoints
-Implement Command Handlers
+Implement User Service
+Implement Message Service
 
-Implement Password hasher and salter
+Implement Endpoints
+
+Implement Password hasher and salter - needs testing
 
 
 Add Migrations
@@ -17,9 +17,4 @@ Update seeder to use commands
 Test, test, and more test
 
 
-Forgot to implement UserValidator
-
-Update command bus
-https://github.com/BenjaminElifLarsen/Common/commit/3cbd7e77ee3f070db8089562be154a357ee0943a
-https://github.com/BenjaminElifLarsen/SagaPratice/commit/5c4e24c656f8ffb830f46349450ab48602ca7cbc#diff-4ce8ac7347c6e62cab5fd2a556ee346c0064f763e1fe9a6da24759b0e33d05d3
-since events are not in use
+	cd .\Domain\; dotnet ef --startup-project ..\API\ migrations add "init" --context PageContext; dotnet ef --startup-project ..\API\ database update --context PageContext; cd..;

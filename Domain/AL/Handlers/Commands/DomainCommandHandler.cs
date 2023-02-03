@@ -74,7 +74,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
     public Result Handle(LikeMessage command)
     {
         var entity = _unitOfWork.MessageRepository.GetForOperationAsync(command.MessageId).Result;
-        if(entity is null)
+        if(entity is null) 
         {
             return new InvalidNoDataResult();
         }

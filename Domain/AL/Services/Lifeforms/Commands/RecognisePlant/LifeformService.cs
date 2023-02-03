@@ -6,6 +6,6 @@ public partial class LifeformService
 {
     public Task<Result> RecognisePlant(RecognisePlant command)
     {
-        throw new NotImplementedException();
+        return Task.Run(() => _commandBus.Dispatch(command));
     }
 }
