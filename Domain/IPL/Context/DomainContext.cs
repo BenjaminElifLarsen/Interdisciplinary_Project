@@ -19,6 +19,9 @@ public sealed class DomainContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<Eukaryote>().UseTpcMappingStrategy();
+        //modelBuilder.Entity<Plantae>().UseTpcMappingStrategy();
+
         // Value objects
         modelBuilder.Entity<Message>()
             .OwnsMany(e => e.Likes, e => { e.ToTable("Message_Likes"); });

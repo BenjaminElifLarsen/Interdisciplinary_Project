@@ -20,7 +20,8 @@ public class DomainRegistry : IRoutingRegistry
     public void SetUpRouting()
     {
         _commandBus.RegisterHandler<PostMessage>(_commandHandler.Handle);
-        _commandBus.RegisterHandler<RecogniseLifeform>(_commandHandler.Handle);
+        _commandBus.RegisterHandler<RecogniseAnimal>(_commandHandler.Handle);
+        _commandBus.RegisterHandler<RecognisePlant>(_commandHandler.Handle);
         _commandBus.RegisterHandler<LikeMessage>(_commandHandler.Handle);
         _commandBus.RegisterHandler<RegistrateUser>(_commandHandler.Handle);
     }

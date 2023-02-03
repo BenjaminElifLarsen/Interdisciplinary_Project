@@ -14,6 +14,6 @@ internal sealed class IsUserUsernameNotInUse : ISpecification<RegistrateUser>
 
     public bool IsSatisfiedBy(RegistrateUser candidate)
     {
-        return candidate.Username is not null && _userNames.Any(x => string.Equals(x.Username, candidate.Username));
+        return candidate.Username is not null && !_userNames.Any(x => string.Equals(x.Username, candidate.Username));
     }
 }

@@ -45,7 +45,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         return new InvalidNoDataResult(result.Errors);
     }
 
-    public Result Handle(RecogniseLifeform command)
+    public Result Handle(RecogniseLifeform command) //is never called, need to handle for the sub versions
     {
         Result<Eukaryote>? result = default;
         if(command is RecogniseAnimal)
@@ -77,7 +77,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         if(entity is null) 
         {
             return new InvalidNoDataResult();
-        }
+        } //should check if the user exist
         entity.AddLike(command.UserId);
         _unitOfWork.MessageRepository.UpdateMessage(entity);
         _unitOfWork.Save();
@@ -96,5 +96,15 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
             return new SuccessNoDataResult();
         }
         return new InvalidNoDataResult(result.Errors);
+    }
+
+    public Result Handle(RecogniseAnimal command)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Result Handle(RecognisePlant command)
+    {
+        throw new NotImplementedException();
     }
 }

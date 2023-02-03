@@ -4,8 +4,8 @@ public sealed record Name
     private string _firstName;
     private string _lastName;
 
-    internal string FirstName { get => _firstName; private set => _firstName = value; }
-    internal string LastName { get => _lastName; private set => _lastName = value; }
+    public string FirstName { get => _firstName; private set => _firstName = value; }
+    public string LastName { get => _lastName; private set => _lastName = value; }
 
     private Name()
     {

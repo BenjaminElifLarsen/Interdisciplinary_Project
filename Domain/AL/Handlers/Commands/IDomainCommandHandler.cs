@@ -6,7 +6,8 @@ using Shared.CQRS.Commands;
 namespace Domain.AL.Handlers.Commands;
 public interface IDomainCommandHandler : 
     ICommandHandler<PostMessage>,
-    ICommandHandler<RecogniseLifeform>,
+    ICommandHandler<RecogniseAnimal>,
+    ICommandHandler<RecognisePlant>,
     ICommandHandler<LikeMessage>,
     ICommandHandler<RegistrateUser>
 {

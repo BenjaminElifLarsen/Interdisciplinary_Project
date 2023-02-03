@@ -66,7 +66,11 @@ public class DomainApiServices
 
     public static void Seed(IServiceProvider provider)
     {
-        throw new NotImplementedException();
+        var serviceProvider = provider.CreateScope().ServiceProvider;
+
+        Seeder.MockSeedData(serviceProvider.GetService<IDomainCommandBus>(),
+            serviceProvider.GetService<IRoutingRegistry>(),
+            serviceProvider.GetService<IUnitOfWork>());
     }
 
 }
