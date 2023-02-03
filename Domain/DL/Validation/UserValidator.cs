@@ -30,7 +30,7 @@ internal sealed class UserValidator
 	}
 }
 
-internal sealed class UserValidationData
+public sealed class UserValidationData
 {
     internal IEnumerable<UserUsername> Usernames { get; private set; }
 

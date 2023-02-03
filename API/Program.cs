@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-DomainApiServices.Add(builder.Services, "");
+DomainApiServices.Add(builder.Services, builder.Configuration.GetConnectionString("database"));
 
 var app = builder.Build();
 
