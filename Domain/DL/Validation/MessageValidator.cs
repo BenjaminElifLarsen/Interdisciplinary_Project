@@ -28,12 +28,12 @@ internal sealed class MessageValidator
     }
 }
 
-internal sealed class MessageValidationData
+public sealed class MessageValidationData
 {
-    public IEnumerable<UserId> UserIds { get; private set; }
-    public IEnumerable<LifeformId> EukaryoteIds { get; private set; }
+    internal IEnumerable<UserId> UserIds { get; private set; }
+    internal IEnumerable<LifeformId> EukaryoteIds { get; private set; }
 
-    public MessageValidationData(IEnumerable<UserId> userIds, IEnumerable<LifeformId> eukaryoteIds)
+    internal MessageValidationData(IEnumerable<UserId> userIds, IEnumerable<LifeformId> eukaryoteIds)
     {
         UserIds = userIds;
         EukaryoteIds = eukaryoteIds;

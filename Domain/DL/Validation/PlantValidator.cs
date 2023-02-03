@@ -29,7 +29,7 @@ internal sealed class PlantValidator
 
 
 
-internal sealed class PlantValidationData
+public sealed class PlantValidationData
 {
     internal IEnumerable<PlantSpecies> Species { get; set; }
 

@@ -17,4 +17,4 @@ Update seeder to use commands
 Test, test, and more test
 
 
-	cd .\Domain\; dotnet ef --startup-project ..\API\ migrations add "init" --context PageContext; dotnet ef --startup-project ..\API\ database update --context PageContext; cd..;
+cd .\Domain\; dotnet ef --startup-project ..\API\ migrations add "init" --context PageContext; dotnet ef --startup-project ..\API\ database update --context DomainContext; cd..;
