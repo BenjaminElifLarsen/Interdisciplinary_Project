@@ -1,6 +1,8 @@
-﻿namespace Shared.CQRS.Commands;
+﻿using Shared.ResultPattern.Abstract;
+
+namespace Shared.CQRS.Commands;
 public interface ICommandBus
 {
-    public void RegisterHandler<T>(Action<T> handler) where T : ICommand;
-    public void Dispatch<T>(T command) where T : ICommand;
+    public void RegisterHandler<T>(Func<T,Result> handler) where T : ICommand;
+    public Result Dispatch<T>(T command) where T : ICommand;
 }

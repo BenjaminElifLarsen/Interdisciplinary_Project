@@ -1,5 +1,7 @@
-﻿namespace Shared.CQRS.Commands;
+﻿using Shared.ResultPattern.Abstract;
+
+namespace Shared.CQRS.Commands;
 public interface ICommandHandler<T> where T : ICommand
 {
-    void Handle(T command);
+    Result Handle(T command);
 }

@@ -1,6 +1,7 @@
 ﻿using Domain.DL.Models.UserModels;
 using Domain.IPL.Repositories.Queries.Users;
 using Domain.IPL.Repositories.Specifications.Users;
+using Shared.CQRS.Queries;
 using Shared.Encryption;
 using Shared.RepositoryPattern;
 
@@ -17,6 +18,11 @@ public class UserRepository : IUserRepository
     public void AddUser(User entity)
     {
         _repository.Create(entity);
+    }
+
+    public async Task<IEnumerable<TMapping>> AllAsync<TMapping>(BaseQuery<User, TMapping> query) where TMapping : BaseReadModel
+    {
+        return await _repository.AllAsync(query);
     }
 
     public void DeactivateUser(User entity)

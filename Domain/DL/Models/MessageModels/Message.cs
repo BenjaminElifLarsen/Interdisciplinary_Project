@@ -39,7 +39,7 @@ public sealed class Message : IAggregateRoot<int>
 
     internal void AddLike(int userId)
     {
-        if (!_likes.Any(x => x.GotSpecificUserID(userId)))
+        if (!_likes.Any(x => x.GotSpecificUserID(userId)) && userId != _userId)
             _likes.Add(new(userId, _id));
 
     }

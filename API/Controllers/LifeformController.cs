@@ -16,15 +16,17 @@ public class LifeformController : ControllerBase
 
     [AllowAnonymous]
     [HttpPost(nameof(AllPlants))]
-    public Task<IActionResult> AllPlants()
+    public async Task<IActionResult> AllPlants()
     {
+        var result = await _lifeformService.GetAllPlants();
         throw new NotImplementedException();
     }
 
     [AllowAnonymous]
     [HttpPost(nameof(AllAnimals))]
-    public Task<IActionResult> AllAnimals()
+    public async Task<IActionResult> AllAnimals()
     {
+        var result = await _lifeformService.GetAllAnimals();
         throw new NotImplementedException();
     }
 

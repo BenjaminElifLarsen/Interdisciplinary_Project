@@ -1,5 +1,6 @@
 ﻿using Domain.DL.CQRS.Commands.Lifeforms;
 using Domain.DL.Validation.Plants;
+using Domain.DL.Validation.ReadModels;
 using Shared.SpecificationPattern.Composite.Extensions;
 using SharedImplementation.BinaryFlag;
 using static Domain.DL.Errors.PlantErrors;
@@ -30,9 +31,9 @@ internal sealed class PlantValidator
 
 internal sealed class PlantValidationData
 {
-    public IEnumerable<string> Species { get; set; }
+    internal IEnumerable<PlantSpecies> Species { get; set; }
 
-	public PlantValidationData(IEnumerable<string> species)
+	internal PlantValidationData(IEnumerable<PlantSpecies> species)
 	{
 		Species = species;
 	}

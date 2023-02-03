@@ -1,5 +1,6 @@
 ﻿using Domain.DL.CQRS.Commands.Lifeforms;
 using Domain.DL.Validation.Animals;
+using Domain.DL.Validation.ReadModels;
 using Shared.SpecificationPattern.Composite.Extensions;
 using SharedImplementation.BinaryFlag;
 using static Domain.DL.Errors.AnimalErrors;
@@ -28,11 +29,11 @@ internal sealed class AnimalValidator
 
 }
 
-public sealed class AnimalValidationData
+internal sealed class AnimalValidationData
 {
-    public IEnumerable<string> Species { get; private set; }
+    internal IEnumerable<AnimalSpecies> Species { get; private set; }
 
-	public AnimalValidationData(IEnumerable<string> species)
+	internal AnimalValidationData(IEnumerable<AnimalSpecies> species)
 	{
 		Species = species;
 	}

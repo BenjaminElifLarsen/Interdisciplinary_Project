@@ -1,28 +1,28 @@
 ﻿using Shared.CQRS.Commands;
+using Shared.ResultPattern.Abstract;
 
 namespace Domain.AL.Busses.Command;
 public class DomainCommandBus : IDomainCommandBus
 {
-    private readonly Dictionary<Type, List<Action<ICommand>>> _routes;
+    private readonly Dictionary<Type, List<Func<ICommand,Result>>> _routes;
 
     public DomainCommandBus()
     {
         _routes = new();
     }
 
-    public void Dispatch<T>(T command) where T : ICommand
+    public Result Dispatch<T>(T command) where T : ICommand
     {
-        if (!_routes.TryGetValue(command.GetType(), out List<Action<ICommand>> handlers))
-            return;
+        if (!_routes.TryGetValue(command.GetType(), out List<Func<ICommand,Result>> handlers))
+            return null;
         if (handlers.Count > 1)
             throw new Exception("To many command handlers.");
-        handlers[0](command);
-        return;
+        return handlers[0](command);
     }
 
-    public void RegisterHandler<T>(Action<T> handler) where T : ICommand
+    public void RegisterHandler<T>(Func<T,Result> handler) where T : ICommand
     {
-        List<Action<ICommand>> handlers;
+        List<Func<ICommand, Result>> handlers;
 
         if (!_routes.TryGetValue(typeof(T), out handlers))
         {

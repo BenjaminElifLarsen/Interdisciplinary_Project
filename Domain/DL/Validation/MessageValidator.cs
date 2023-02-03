@@ -1,5 +1,6 @@
 ﻿using Domain.DL.CQRS.Commands.Messages;
 using Domain.DL.Validation.Messages;
+using Domain.DL.Validation.ReadModels;
 using Shared.SpecificationPattern.Composite.Extensions;
 using SharedImplementation.BinaryFlag;
 using static Domain.DL.Errors.MessageErrors;
@@ -29,10 +30,10 @@ internal sealed class MessageValidator
 
 internal sealed class MessageValidationData
 {
-    public IEnumerable<int> UserIds { get; private set; }
-    public IEnumerable<int> EukaryoteIds { get; private set; }
+    public IEnumerable<UserId> UserIds { get; private set; }
+    public IEnumerable<LifeformId> EukaryoteIds { get; private set; }
 
-    public MessageValidationData(IEnumerable<int> userIds, IEnumerable<int> eukaryoteIds)
+    public MessageValidationData(IEnumerable<UserId> userIds, IEnumerable<LifeformId> eukaryoteIds)
     {
         UserIds = userIds;
         EukaryoteIds = eukaryoteIds;

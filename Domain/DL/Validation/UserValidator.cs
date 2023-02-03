@@ -1,4 +1,5 @@
 ﻿using Domain.DL.CQRS.Commands.Users;
+using Domain.DL.Validation.ReadModels;
 using Domain.DL.Validation.Users;
 using Shared.SpecificationPattern.Composite.Extensions;
 using SharedImplementation.BinaryFlag;
@@ -29,11 +30,11 @@ internal sealed class UserValidator
 	}
 }
 
-public sealed class UserValidationData
+internal sealed class UserValidationData
 {
-    public IEnumerable<string> Usernames { get; private set; }
+    internal IEnumerable<UserUsername> Usernames { get; private set; }
 
-	public UserValidationData(IEnumerable<string> usernames)
+	internal UserValidationData(IEnumerable<UserUsername> usernames)
 	{
 		Usernames = usernames;
 	}

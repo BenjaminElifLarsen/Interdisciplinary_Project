@@ -6,5 +6,7 @@ using Shared.ResultPattern.Abstract;
 namespace Domain.DL.Factories;
 public interface ILifeformFactory
 {
+    public void SetValidationData(AnimalValidationData validationData);
+    public void SetValidationData(PlantValidationData validationData);
     public Result<Eukaryote> CreateLifeform(RecogniseLifeform creationData);
 }

@@ -10,15 +10,18 @@ using SharedImplementation.BinaryFlag;
 namespace Domain.DL.Factories;
 public class LifeformFactory : ILifeformFactory
 {
-    private readonly AnimalValidationData _animalValidationData;
-    private readonly PlantValidationData _plantValidationData;
+    private AnimalValidationData _animalValidationData;
+    private PlantValidationData _plantValidationData;
 
-    internal LifeformFactory(AnimalValidationData animalValidationData = null, PlantValidationData plantValidationData = null)
-    {
-        _animalValidationData = animalValidationData;
-        _plantValidationData = plantValidationData;
+    //internal LifeformFactory(AnimalValidationData animalValidationData = null, PlantValidationData plantValidationData = null)
+    //{
+    //    _animalValidationData = animalValidationData;
+    //    _plantValidationData = plantValidationData;
 
-    }
+    //}
+
+    public void SetValidationData(AnimalValidationData validationData) => _animalValidationData = validationData;
+    public void SetValidationData(PlantValidationData validationData) => _plantValidationData = validationData;
 
     public Result<Eukaryote> CreateLifeform(RecogniseLifeform creationData)
     {
