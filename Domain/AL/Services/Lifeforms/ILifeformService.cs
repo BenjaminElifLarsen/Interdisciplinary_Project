@@ -13,6 +13,6 @@ public interface ILifeformService
 
     public Task<Result<IEnumerable<PlantListItem>>> GetAllPlants();
     public Task<Result<IEnumerable<AnimalListItem>>> GetAllAnimals();
-    public Task<Result<IEnumerable<PlantDetails>>> GetPlant(int id);
-    public Task<Result<IEnumerable<AnimalDetails>>> GetAnimal(int id);
+    public Task<Result<PlantDetails>> GetPlant(int id);
+    public Task<Result<AnimalDetails>> GetAnimal(int id);
 }

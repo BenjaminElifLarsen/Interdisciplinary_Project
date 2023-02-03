@@ -3,6 +3,7 @@ public class Plantae : Eukaryote
 {
     private double _maximumHeight;
 
+    public double MaximumHeight { get => _maximumHeight; private set => _maximumHeight = value; }
 
     private Plantae()
     {
