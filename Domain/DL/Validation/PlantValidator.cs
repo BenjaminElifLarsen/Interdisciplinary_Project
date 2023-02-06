@@ -63,6 +63,6 @@ public sealed class PlantChangeValidationData
 
 	internal PlantChangeValidationData(IEnumerable<LifeformSpecies> species)
 	{
-
+		Species = species;
 	}
 }
