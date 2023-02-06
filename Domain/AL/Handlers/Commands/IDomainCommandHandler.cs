@@ -9,6 +9,7 @@ public interface IDomainCommandHandler :
     ICommandHandler<RecogniseAnimal>,
     ICommandHandler<RecognisePlant>,
     ICommandHandler<LikeMessage>,
-    ICommandHandler<RegistrateUser>
+    ICommandHandler<RegistrateUser>,
+    ICommandHandler<UnreogniseLifeform>
 {
 }

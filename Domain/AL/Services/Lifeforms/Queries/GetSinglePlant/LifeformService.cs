@@ -6,7 +6,7 @@ using Shared.ResultPattern.Success;
 namespace Domain.AL.Services.Lifeforms;
 public partial class LifeformService
 {
-    public async Task<Result<PlantDetails>> GetPlant(int id)
+    public async Task<Result<PlantDetails>> GetPlantAsync(int id)
     {
         var details = await _unitOfWork.PlantRepository.GetSingleAsync(id, new PlantDetailsQuery());
         if (details is null) return new NotFoundResult<PlantDetails>("Not found.");

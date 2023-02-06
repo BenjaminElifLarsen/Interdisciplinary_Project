@@ -131,4 +131,16 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         }
         return new InvalidNoDataResult(result.Errors);
     }
+
+    public Result Handle(UnreogniseLifeform command)
+    {
+        Eukaryote lifeform = _unitOfWork.PlantRepository.GetForOperationAsync(command.Id).Result as Eukaryote ?? _unitOfWork.AnimalRepository.GetForOperationAsync(command.Id).Result as Eukaryote;
+        if(lifeform is null)
+        {
+            return new SuccessNoDataResult();
+        }
+        _unitOfWork.LifeformRepository.RemoveLifeform(lifeform);
+        _unitOfWork.Save();
+        return new SuccessNoDataResult();
+    }
 }

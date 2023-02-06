@@ -3,7 +3,6 @@ using Domain.AL.Services.Lifeforms;
 using Domain.DL.CQRS.Commands.Lifeforms;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shared.ResultPattern.Abstract;
 
 namespace API.Controllers;
 [Route("[controller]")]
@@ -11,6 +10,9 @@ namespace API.Controllers;
 public class LifeformController : ControllerBase
 {
     private readonly ILifeformService _lifeformService;
+    private const string Animal = nameof(Animal);
+    private const string Plant = nameof(Plant);
+    private const string Unrecognise = nameof(Unrecognise);
 
     public LifeformController(ILifeformService lifeformService)
     {
@@ -21,7 +23,7 @@ public class LifeformController : ControllerBase
     [HttpPost(nameof(AllPlants))]
     public async Task<IActionResult> AllPlants()
     {
-        var result = await _lifeformService.GetAllPlants();
+        var result = await _lifeformService.AllPlantsAsync();
         return this.FromResult(result);
     }
 
@@ -29,7 +31,7 @@ public class LifeformController : ControllerBase
     [HttpPost(nameof(AllAnimals))]
     public async Task<IActionResult> AllAnimals()
     {
-        var result = await _lifeformService.GetAllAnimals();
+        var result = await _lifeformService.AllAnimalsAsync();
         return this.FromResult(result);
     }
 
@@ -37,7 +39,7 @@ public class LifeformController : ControllerBase
     [HttpGet(nameof(GetPlant))]
     public async Task<IActionResult> GetPlant(int id)
     {
-        var result = await _lifeformService.GetPlant(id);
+        var result = await _lifeformService.GetPlantAsync(id);
         return this.FromResult(result);
     }
 
@@ -45,15 +47,30 @@ public class LifeformController : ControllerBase
     [HttpGet(nameof(GetAnimal))]
     public async Task<IActionResult> GetAnimal(int id)
     {
-        var result = await _lifeformService.GetAnimal(id);
+        var result = await _lifeformService.GetAnimalAsync(id);
         return this.FromResult(result);
     }
 
     [AllowAnonymous]
-    [HttpPost("Animal")]
+    [HttpPost(Animal)]
     public async Task<IActionResult> PostAnimal([FromBody] RecogniseAnimal request)
     {
-        var result = await _lifeformService.RecogniseAnimal(request);
+        var result = await _lifeformService.RecogniseAnimalAsync(request);
         return this.FromResult(result);
+    }
+
+    [AllowAnonymous]
+    [HttpPost(Plant)]
+    public async Task<IActionResult> PostPlant([FromBody] RecognisePlant request)
+    {
+        var result = await _lifeformService.RecognisePlantAsync(request);
+        return this.FromResult(result);
+    }
+
+    [AllowAnonymous]
+    [HttpPost(Unrecognise)]
+    public async Task<IActionResult> UnrecogniseLifeform([FromBody] UnreogniseLifeform request)
+    {
+        return this.FromResult(await _lifeformService.UnrecogniseAsync(request));
     }
 }

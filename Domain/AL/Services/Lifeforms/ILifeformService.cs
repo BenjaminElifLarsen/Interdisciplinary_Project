@@ -8,11 +8,12 @@ using Shared.ResultPattern.Abstract;
 namespace Domain.AL.Services.Lifeforms;
 public interface ILifeformService
 {
-    public Task<Result> RecogniseAnimal(RecogniseAnimal command);
-    public Task<Result> RecognisePlant(RecognisePlant command);
+    public Task<Result> RecogniseAnimalAsync(RecogniseAnimal command);
+    public Task<Result> RecognisePlantAsync(RecognisePlant command);
+    public Task<Result> UnrecogniseAsync(UnreogniseLifeform command);
 
-    public Task<Result<IEnumerable<PlantListItem>>> GetAllPlants();
-    public Task<Result<IEnumerable<AnimalListItem>>> GetAllAnimals();
-    public Task<Result<PlantDetails>> GetPlant(int id);
-    public Task<Result<AnimalDetails>> GetAnimal(int id);
+    public Task<Result<IEnumerable<PlantListItem>>> AllPlantsAsync();
+    public Task<Result<IEnumerable<AnimalListItem>>> AllAnimalsAsync();
+    public Task<Result<PlantDetails>> GetPlantAsync(int id);
+    public Task<Result<AnimalDetails>> GetAnimalAsync(int id);
 }
