@@ -29,6 +29,7 @@ public class BaseRepository<TEntity, TId, TContext> : IBaseRepository<TEntity, T
         return test.Where(x => predicate.IsSatisfiedBy(x)).AsQueryable().Select(query.Map()); //if wanting to do the transformation over in the database, would need up modify the predicate to be of TMapping instead of TEntity
     }
 
+        //need to rememember that this project will not use the full ddd, so will need to be able to get relation data objects too
     public async Task<IEnumerable<TEntity>> AllByPredicateForOperationAsync(ISpecification<TEntity> predicate, params Expression<Func<TEntity, object>>[] includes)
     {//need to include first
         var query = _entities.AsQueryable();
@@ -43,26 +44,26 @@ public class BaseRepository<TEntity, TId, TContext> : IBaseRepository<TEntity, T
 
     public void Delete(TEntity entity)
     {
-        //need to rememember that this project will not use the full ddd, so will need to be able to get relation data objects too
+        _entities.Remove(entity);
     } 
 
-    public Task<TMapping> FindByPredicateAsync<TMapping>(ISpecification<TEntity> predicate, BaseQuery<TEntity, TMapping> query) where TMapping : BaseReadModel
+    public async Task<TMapping> FindByPredicateAsync<TMapping>(ISpecification<TEntity> predicate, BaseQuery<TEntity, TMapping> query) where TMapping : BaseReadModel
     {
-        throw new NotImplementedException();
+        return (await _entities.ToArrayAsync()).Where(x => predicate.IsSatisfiedBy(x)).AsQueryable().Select(query.Map()).SingleOrDefault();
     }
 
-    public Task<TEntity> FindByPredicateForOperationAsync(ISpecification<TEntity> predicate, params Expression<Func<TEntity, object>>[] includes)
+    public async Task<TEntity> FindByPredicateForOperationAsync(ISpecification<TEntity> predicate, params Expression<Func<TEntity, object>>[] includes)
     {
-        throw new NotImplementedException();
+        return (await _entities.ToArrayAsync()).Where(x => predicate.IsSatisfiedBy(x)).SingleOrDefault();
     }
 
-    public Task<bool> IsUniqueAsync(ISpecification<TEntity> predicate)
+    public async Task<bool> IsUniqueAsync(ISpecification<TEntity> predicate)
     {
-        throw new NotImplementedException();
+        return (await _entities.ToArrayAsync()).Any(x => predicate.IsSatisfiedBy(x));
     }
 
     public void Update(TEntity entity)
     {
-        throw new NotImplementedException();
+        _entities.Update(entity);
     }
 }

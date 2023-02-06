@@ -1,6 +1,9 @@
-﻿using Domain.AL.Services.Lifeforms;
+﻿using API.Controllers.Extensions;
+using Domain.AL.Services.Lifeforms;
+using Domain.DL.CQRS.Commands.Lifeforms;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.ResultPattern.Abstract;
 
 namespace API.Controllers;
 [Route("[controller]")]
@@ -19,7 +22,7 @@ public class LifeformController : ControllerBase
     public async Task<IActionResult> AllPlants()
     {
         var result = await _lifeformService.GetAllPlants();
-        return Ok(result.Data);
+        return this.FromResult(result);
     }
 
     [AllowAnonymous]
@@ -27,20 +30,30 @@ public class LifeformController : ControllerBase
     public async Task<IActionResult> AllAnimals()
     {
         var result = await _lifeformService.GetAllAnimals();
-        throw new NotImplementedException();
+        return this.FromResult(result);
     }
 
     [AllowAnonymous]
     [HttpGet(nameof(GetPlant))]
-    public Task<IActionResult> GetPlant(int id)
+    public async Task<IActionResult> GetPlant(int id)
     {
-        throw new NotImplementedException();
+        var result = await _lifeformService.GetPlant(id);
+        return this.FromResult(result);
     }
 
     [AllowAnonymous]
     [HttpGet(nameof(GetAnimal))]
-    public Task<IActionResult> GetAnimal(int id)
+    public async Task<IActionResult> GetAnimal(int id)
     {
-        throw new NotImplementedException();
+        var result = await _lifeformService.GetAnimal(id);
+        return this.FromResult(result);
+    }
+
+    [AllowAnonymous]
+    [HttpPost("Animal")]
+    public async Task<IActionResult> PostAnimal([FromBody] RecogniseAnimal request)
+    {
+        var result = await _lifeformService.RecogniseAnimal(request);
+        return this.FromResult(result);
     }
 }

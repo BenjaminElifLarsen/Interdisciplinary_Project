@@ -4,8 +4,8 @@ using Shared.ResultPattern.Abstract;
 namespace Domain.AL.Services.Lifeforms;
 public partial class LifeformService
 {
-    public Task<Result> RecognisePlant(RecognisePlant command)
+    public async Task<Result> RecognisePlant(RecognisePlant command)
     {
-        return Task.Run(() => _commandBus.Dispatch(command));
+        return await Task.Run(() => _commandBus.Dispatch(command));
     }
 }

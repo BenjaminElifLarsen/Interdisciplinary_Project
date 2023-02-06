@@ -1,5 +1,6 @@
 ﻿using Shared.CQRS.Commands;
 using Shared.ResultPattern.Abstract;
+using Shared.ResultPattern.Invalid;
 
 namespace Domain.AL.Busses.Command;
 public class DomainCommandBus : IDomainCommandBus
@@ -14,9 +15,9 @@ public class DomainCommandBus : IDomainCommandBus
     public Result Dispatch<T>(T command) where T : ICommand
     {
         if (!_routes.TryGetValue(command.GetType(), out List<Func<ICommand,Result>> handlers))
-            return null;
+            return new InvalidNoDataResult("No handler");
         if (handlers.Count > 1)
-            throw new Exception("To many command handlers.");
+            return new InvalidNoDataResult("To many command handlers.");
         return handlers[0](command);
     }
 
