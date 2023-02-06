@@ -1,4 +1,5 @@
-﻿using Shared.DDD;
+﻿using Domain.DL.Models.MessageModels;
+using Shared.DDD;
 
 namespace Domain.DL.Models.LifeformModels;
 public abstract class Eukaryote : IAggregateRoot<int>
@@ -6,9 +7,14 @@ public abstract class Eukaryote : IAggregateRoot<int>
     private int _id;
     private string _speciesName; //value object with species and language, e.g. Danish or Latin
     private ulong _observationAmount;
+
+    private HashSet<Message> _messages;
+
     public int Id { get => _id; private set => _id = value; }
     public string Species { get => _speciesName; private set => _speciesName = value; }
     public ulong TotalObservationTimes { get => _observationAmount; private set => _observationAmount = value; }
+    public IEnumerable<Message> Messages => _messages;
+
     protected Eukaryote()
     { //for Entityframework core
 

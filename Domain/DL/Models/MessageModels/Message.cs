@@ -23,7 +23,7 @@ public sealed class Message : IAggregateRoot<int>
     public Eukaryote Eukaryote { get => _eukaryote; private set => _eukaryote = value; } 
     public User User { get => _user; private set => _user = value; }
     public IEnumerable<Like> Likes => _likes;
-    internal ObservationTimeAndLocation Data { get => _data; private set => _data = value; }
+    public ObservationTimeAndLocation Data { get => _data; private set => _data = value; }
 
     private Message()
     { //for entity framework core

@@ -3,13 +3,13 @@
 namespace Domain.DL.Models.MessageModels;
 public sealed record ObservationTimeAndLocation : ValueObject
 {
-    private readonly DateTime _time;
-    private readonly long _latitude;
-    private readonly long _longitude;
+    private DateTime _time;
+    private long _latitude;
+    private long _longitude;
 
-    internal DateTime Time => _time;
-    internal long Latitude => _latitude;
-    internal long Longitude => _longitude;
+    public DateTime Time { get => _time; private set => _time = value; }
+    public long Latitude { get => _latitude; private set => _latitude = value; }
+    public long Longitude { get => _longitude; private set => _longitude = value; }
 
     private ObservationTimeAndLocation()
     {

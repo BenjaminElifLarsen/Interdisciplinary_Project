@@ -131,12 +131,13 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(UnreogniseLifeform command)
     {
-        Eukaryote lifeform = _unitOfWork.PlantRepository.GetForOperationAsync(command.Id).Result as Eukaryote ?? _unitOfWork.AnimalRepository.GetForOperationAsync(command.Id).Result;
-        if(lifeform is null)
+        Eukaryote entity = _unitOfWork.PlantRepository.GetForOperationAsync(command.Id).Result as Eukaryote ?? _unitOfWork.AnimalRepository.GetForOperationAsync(command.Id).Result;
+        if(entity is null)
         {
             return new SuccessNoDataResult();
         }
-        _unitOfWork.LifeformRepository.RemoveLifeform(lifeform);
+        //if Eukaryote message count is not zero it should be unable to remove it.
+        _unitOfWork.LifeformRepository.RemoveLifeform(entity);
         _unitOfWork.Save();
         return new SuccessNoDataResult();
     }

@@ -66,7 +66,7 @@ namespace Domain.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Messages", (string)null);
                 });
 
             modelBuilder.Entity("Domain.DL.Models.UserModels.User", b =>
@@ -87,7 +87,7 @@ namespace Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Domain.DL.Models.LifeformModels.Animalia", b =>
@@ -103,7 +103,7 @@ namespace Domain.Migrations
                     b.Property<byte>("MinimumOffspringsPerMating")
                         .HasColumnType("tinyint");
 
-                    b.ToTable("Animalia");
+                    b.ToTable("Animalia", (string)null);
                 });
 
             modelBuilder.Entity("Domain.DL.Models.LifeformModels.Plantae", b =>
@@ -113,7 +113,7 @@ namespace Domain.Migrations
                     b.Property<double>("MaximumHeight")
                         .HasColumnType("float");
 
-                    b.ToTable("Plantae");
+                    b.ToTable("Plantae", (string)null);
                 });
 
             modelBuilder.Entity("Domain.DL.Models.MessageModels.Message", b =>
@@ -130,7 +130,20 @@ namespace Domain.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsMany("Domain.DL.Models.MessageModels.Like", "Likes", b1 =>
+                    b.OwnsOne("Domain.DL.Models.MessageModels.Message.Data#Domain.DL.Models.MessageModels.ObservationTimeAndLocation", "Data", b1 =>
+                        {
+                            b1.Property<int>("MessageId")
+                                .HasColumnType("int");
+
+                            b1.HasKey("MessageId");
+
+                            b1.ToTable("Messages", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("MessageId");
+                        });
+
+                    b.OwnsMany("Domain.DL.Models.MessageModels.Message.Likes#Domain.DL.Models.MessageModels.Like", "Likes", b1 =>
                         {
                             b1.Property<int>("MessageId")
                                 .HasColumnType("int");
@@ -149,19 +162,6 @@ namespace Domain.Migrations
                                 .HasForeignKey("MessageId");
                         });
 
-                    b.OwnsOne("Domain.DL.Models.MessageModels.ObservationTimeAndLocation", "Data", b1 =>
-                        {
-                            b1.Property<int>("MessageId")
-                                .HasColumnType("int");
-
-                            b1.HasKey("MessageId");
-
-                            b1.ToTable("Messages");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MessageId");
-                        });
-
                     b.Navigation("Data")
                         .IsRequired();
 
@@ -174,7 +174,7 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.DL.Models.UserModels.User", b =>
                 {
-                    b.OwnsOne("Domain.DL.Models.UserModels.Name", "Name", b1 =>
+                    b.OwnsOne("Domain.DL.Models.UserModels.User.Name#Domain.DL.Models.UserModels.Name", "Name", b1 =>
                         {
                             b1.Property<int>("UserId")
                                 .HasColumnType("int");
@@ -189,7 +189,7 @@ namespace Domain.Migrations
 
                             b1.HasKey("UserId");
 
-                            b1.ToTable("Users");
+                            b1.ToTable("Users", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");

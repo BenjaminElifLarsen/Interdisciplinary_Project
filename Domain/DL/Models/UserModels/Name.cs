@@ -1,5 +1,7 @@
-﻿namespace Domain.DL.Models.UserModels;
-public sealed record Name
+﻿using Shared.DDD;
+
+namespace Domain.DL.Models.UserModels;
+public sealed record Name : ValueObject
 {
     private string _firstName;
     private string _lastName;

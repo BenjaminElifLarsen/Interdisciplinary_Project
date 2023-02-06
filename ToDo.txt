@@ -7,6 +7,9 @@ Implement Password hasher and salter - needs testing
 
 Implement relationship between User and Message, Message and Eukaryote 
 
+Message does not know of its observation data
+
+
 Test, test, and more test
 
 
