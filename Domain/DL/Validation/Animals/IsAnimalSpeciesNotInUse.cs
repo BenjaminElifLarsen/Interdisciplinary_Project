@@ -7,9 +7,9 @@ namespace Domain.DL.Validation.Animals;
 //named the way it is as I like to have the true return mean the object is valid. 
 internal sealed class IsAnimalSpeciesNotInUse : ISpecification<RecogniseAnimal>
 {
-    private readonly IEnumerable<AnimalSpecies> _species;
+    private readonly IEnumerable<LifeformSpecies> _species;
 
-	public IsAnimalSpeciesNotInUse(IEnumerable<AnimalSpecies> species)
+	public IsAnimalSpeciesNotInUse(IEnumerable<LifeformSpecies> species)
 	{
 		_species = species;
 	}

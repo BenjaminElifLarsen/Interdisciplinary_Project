@@ -13,9 +13,9 @@ internal class PlantSpecies : BaseReadModel
 	}
 }
 
-internal class PlantSpeciesQuery : BaseQuery<Plantae, PlantSpecies>
+internal class PlantSpeciesQuery : BaseQuery<Plantae, LifeformSpecies>
 {
-    public override Expression<Func<Plantae, PlantSpecies>> Map()
+    public override Expression<Func<Plantae, LifeformSpecies>> Map()
     {
         return e => new(e.Species);
     }

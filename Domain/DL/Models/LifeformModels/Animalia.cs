@@ -20,4 +20,19 @@ public sealed class Animalia : Eukaryote
 		_minimumOffspringsPerMating = minOffspringAmount;
 		_isBird = isBird;
 	}
+
+	internal void ChangeBirdStatus()
+	{
+		_isBird = !_isBird;
+	}
+
+	internal void AlterMaximumOffspringPerMating(byte maximumOffspringAmount)
+	{
+		_maximumOffspringsPerMating = maximumOffspringAmount;
+	}
+
+	internal void AlterMinimumOffspringPerMating(byte minimumOffspringAmount)
+	{
+		_minimumOffspringsPerMating = minimumOffspringAmount;
+	}
 }

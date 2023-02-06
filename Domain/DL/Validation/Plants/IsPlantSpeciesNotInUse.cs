@@ -5,9 +5,9 @@ using Shared.SpecificationPattern;
 namespace Domain.DL.Validation.Plants;
 internal sealed class IsPlantSpeciesNotInUse : ISpecification<RecognisePlant>
 {
-    private readonly IEnumerable<PlantSpecies> _species;
+    private readonly IEnumerable<LifeformSpecies> _species;
 
-    public IsPlantSpeciesNotInUse(IEnumerable<PlantSpecies> species)
+    public IsPlantSpeciesNotInUse(IEnumerable<LifeformSpecies> species)
     {
         _species = species;
     }

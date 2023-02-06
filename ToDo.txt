@@ -7,17 +7,7 @@ Implement Password hasher and salter - needs testing
 
 Implement relationship between User and Message, Message and Eukaryote 
 
-Add Migrations
-Run Migrations
-
-Add middleware for routing
-Add services 
-
-Update seeder to use commands
-
 Test, test, and more test
-
-Migrations indicate that Animal and Plant has not been split
 
 
 cd .\Domain\; dotnet ef --startup-project ..\API\ migrations add "init" --context DomainContext; dotnet ef --startup-project ..\API\ database update --context DomainContext; cd..;

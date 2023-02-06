@@ -134,7 +134,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(UnreogniseLifeform command)
     {
-        Eukaryote lifeform = _unitOfWork.PlantRepository.GetForOperationAsync(command.Id).Result as Eukaryote ?? _unitOfWork.AnimalRepository.GetForOperationAsync(command.Id).Result as Eukaryote;
+        Eukaryote lifeform = _unitOfWork.PlantRepository.GetForOperationAsync(command.Id).Result as Eukaryote ?? _unitOfWork.AnimalRepository.GetForOperationAsync(command.Id).Result;
         if(lifeform is null)
         {
             return new SuccessNoDataResult();
@@ -142,5 +142,15 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         _unitOfWork.LifeformRepository.RemoveLifeform(lifeform);
         _unitOfWork.Save();
         return new SuccessNoDataResult();
+    }
+
+    public Result Handle(ChangeAnimalInformation command)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Result Handle(ChangePlantInformation command)
+    {
+        throw new NotImplementedException();
     }
 }

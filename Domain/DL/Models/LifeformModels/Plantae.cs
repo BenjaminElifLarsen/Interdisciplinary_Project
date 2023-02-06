@@ -14,4 +14,9 @@ public class Plantae : Eukaryote
     {
         _maximumHeight = maxHeight;
     }
+
+    internal void NewMaximumHeight(double maximumHeight)
+    {
+        _maximumHeight = maximumHeight;
+    }
 }

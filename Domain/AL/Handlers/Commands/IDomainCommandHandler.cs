@@ -10,6 +10,8 @@ public interface IDomainCommandHandler :
     ICommandHandler<RecognisePlant>,
     ICommandHandler<LikeMessage>,
     ICommandHandler<RegistrateUser>,
-    ICommandHandler<UnreogniseLifeform>
+    ICommandHandler<UnreogniseLifeform>,
+    ICommandHandler<ChangeAnimalInformation>,
+    ICommandHandler<ChangePlantInformation>
 {
 }

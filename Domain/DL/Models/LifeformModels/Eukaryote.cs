@@ -25,4 +25,8 @@ public abstract class Eukaryote : IAggregateRoot<int>
         _observationAmount++;
     }
 
+    internal void ChangeSpecies(string species)
+    {
+        _speciesName = species;
+    }
 }
