@@ -30,13 +30,13 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
     }
 
     public Result Handle(PostMessage command)
-    { 
+    {
         var userIds = _unitOfWork.UserRepository.AllAsync(new UserIdQuery()).Result;
         var animalIds = _unitOfWork.AnimalRepository.AllAsync(new AnimalIdQuery()).Result;
         var plantIds = _unitOfWork.PlantRepository.AllAsync(new PlantIdQuery()).Result;
         MessageValidationData validationData = new(userIds, animalIds.Concat(plantIds));
         var result = _messageFactory.CreateMessage(command, validationData);
-        if(result is SuccessResult<Message>)
+        if (result is SuccessResult<Message>)
         {
             _unitOfWork.MessageRepository.AddMessage(result.Data);
             _unitOfWork.Save();
@@ -48,7 +48,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
     public Result Handle(RecogniseLifeform command) //is never called, need to handle for the sub versions
     {
         Result<Eukaryote>? result = default;
-        if(command is RecogniseAnimal)
+        if (command is RecogniseAnimal)
         {
             var animalSpecies = _unitOfWork.AnimalRepository.AllAsync(new AnimnalSpeciesQuery()).Result;
             AnimalValidationData validationData = new(animalSpecies);
@@ -62,7 +62,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
             _lifeformFactory.SetValidationData(validationData);
             result = _lifeformFactory.CreateLifeform(command);
         }
-        if(result is SuccessResult<Eukaryote>)
+        if (result is SuccessResult<Eukaryote>)
         {
             _unitOfWork.LifeformRepository.AddLifeform(result.Data);
             _unitOfWork.Save();
@@ -74,7 +74,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
     public Result Handle(LikeMessage command)
     {
         var entity = _unitOfWork.MessageRepository.GetForOperationAsync(command.MessageId).Result;
-        if(entity is null) 
+        if (entity is null)
         {
             return new InvalidNoDataResult();
         } //should check if the user exist
@@ -89,7 +89,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         var usernames = _unitOfWork.UserRepository.AllAsync(new UserUsernameQuery()).Result;
         UserValidationData validationData = new(usernames);
         var result = _userFactory.CreateUser(command, validationData);
-        if(result is SuccessResult<User>)
+        if (result is SuccessResult<User>)
         {
             _unitOfWork.UserRepository.AddUser(result.Data);
             _unitOfWork.Save();
@@ -100,11 +100,35 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(RecogniseAnimal command)
     {
-        throw new NotImplementedException();
+        Result<Eukaryote>? result = default;
+        var animalSpecies = _unitOfWork.AnimalRepository.AllAsync(new AnimnalSpeciesQuery()).Result;
+        AnimalValidationData validationData = new(animalSpecies);
+        _lifeformFactory.SetValidationData(validationData);
+        result = _lifeformFactory.CreateLifeform(command);
+
+        if (result is SuccessResult<Eukaryote>)
+        {
+            _unitOfWork.LifeformRepository.AddLifeform(result.Data);
+            _unitOfWork.Save();
+            return new SuccessNoDataResult();
+        }
+        return new InvalidNoDataResult(result.Errors);
     }
 
     public Result Handle(RecognisePlant command)
     {
-        throw new NotImplementedException();
+        Result<Eukaryote>? result = default;
+        var plantSpecies = _unitOfWork.PlantRepository.AllAsync(new PlantSpeciesQuery()).Result;
+        PlantValidationData validationData = new(plantSpecies);
+        _lifeformFactory.SetValidationData(validationData);
+        result = _lifeformFactory.CreateLifeform(command);
+
+        if (result is SuccessResult<Eukaryote>)
+        {
+            _unitOfWork.LifeformRepository.AddLifeform(result.Data);
+            _unitOfWork.Save();
+            return new SuccessNoDataResult();
+        }
+        return new InvalidNoDataResult(result.Errors);
     }
 }

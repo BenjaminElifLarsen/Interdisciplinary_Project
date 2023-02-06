@@ -19,7 +19,7 @@ public class LifeformController : ControllerBase
     public async Task<IActionResult> AllPlants()
     {
         var result = await _lifeformService.GetAllPlants();
-        throw new NotImplementedException();
+        return Ok(result.Data);
     }
 
     [AllowAnonymous]

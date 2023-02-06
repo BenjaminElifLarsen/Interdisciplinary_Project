@@ -1,6 +1,7 @@
 ﻿using Domain.AL.Busses.Command;
 using Domain.AL.Handlers.Commands;
 using Domain.AL.Registries;
+using Domain.AL.Services.Lifeforms;
 using Domain.DL.Factories;
 using Domain.DL.Models.LifeformModels;
 using Domain.DL.Models.MessageModels;
@@ -24,6 +25,12 @@ public class DomainApiServices
         Factories(services);
         Repositories(services);
         Handlers(services);
+        Services(services);
+    }
+
+    private static void Services(IServiceCollection services)
+    {
+        services.AddScoped<ILifeformService, LifeformService>();
     }
 
     private static void Context(IServiceCollection services, string dbConnection)
