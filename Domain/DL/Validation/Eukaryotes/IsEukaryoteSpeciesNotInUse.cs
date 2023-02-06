@@ -13,6 +13,6 @@ internal class IsEukaryoteSpeciesNotInUse : ISpecification<ChangeLifeformInforma
 
     public bool IsSatisfiedBy(ChangeLifeformInformation candidate)
     {
-		return candidate.Species is null || !_species.Any(x => Equals(x, candidate.Species.Species));
+		return candidate.Species is null || (!string.IsNullOrWhiteSpace(candidate.Species.Species) && !_species.Any(x => Equals(x.Species, candidate.Species.Species)));
     }
 }

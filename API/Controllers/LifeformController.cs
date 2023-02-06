@@ -73,4 +73,19 @@ public class LifeformController : ControllerBase
     {
         return this.FromResult(await _lifeformService.UnrecogniseAsync(request));
     }
+
+    [AllowAnonymous]
+    [HttpPut(Animal)]
+    public async Task<IActionResult> UpdateAnimal([FromBody] ChangeAnimalInformation request)
+    {
+        return this.FromResult(await _lifeformService.UpdateAnimalAsync(request));
+    }
+
+
+    [AllowAnonymous]
+    [HttpPut(Plant)]
+    public async Task<IActionResult> UpdatePlant([FromBody] ChangePlantInformation request)
+    {
+        return this.FromResult(await _lifeformService.UpdatePlantAsync(request));
+    }
 }

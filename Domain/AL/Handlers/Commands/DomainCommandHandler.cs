@@ -1,6 +1,7 @@
 ﻿using Domain.DL.CQRS.Commands.Lifeforms;
 using Domain.DL.CQRS.Commands.Messages;
 using Domain.DL.CQRS.Commands.Users;
+using Domain.DL.Errors;
 using Domain.DL.Factories;
 using Domain.DL.Models.LifeformModels;
 using Domain.DL.Models.MessageModels;
@@ -50,7 +51,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         Result<Eukaryote>? result = default;
         if (command is RecogniseAnimal)
         {
-            var animalSpecies = _unitOfWork.AnimalRepository.AllAsync(new AnimnalSpeciesQuery()).Result;
+            var animalSpecies = _unitOfWork.AnimalRepository.AllAsync(new AnimalSpeciesQuery()).Result;
             AnimalValidationData validationData = new(animalSpecies);
             _lifeformFactory.SetValidationData(validationData);
             result = _lifeformFactory.CreateLifeform(command);
@@ -100,12 +101,10 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(RecogniseAnimal command)
     {
-        Result<Eukaryote>? result = default;
-        var animalSpecies = _unitOfWork.AnimalRepository.AllAsync(new AnimnalSpeciesQuery()).Result;
+        var animalSpecies = _unitOfWork.AnimalRepository.AllAsync(new AnimalSpeciesQuery()).Result;
         AnimalValidationData validationData = new(animalSpecies);
         _lifeformFactory.SetValidationData(validationData);
-        result = _lifeformFactory.CreateLifeform(command);
-
+        Result<Eukaryote> result = _lifeformFactory.CreateLifeform(command);
         if (result is SuccessResult<Eukaryote>)
         {
             _unitOfWork.LifeformRepository.AddLifeform(result.Data);
@@ -117,12 +116,10 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(RecognisePlant command)
     {
-        Result<Eukaryote>? result = default;
         var plantSpecies = _unitOfWork.PlantRepository.AllAsync(new PlantSpeciesQuery()).Result;
         PlantValidationData validationData = new(plantSpecies);
         _lifeformFactory.SetValidationData(validationData);
-        result = _lifeformFactory.CreateLifeform(command);
-
+        Result<Eukaryote> result = _lifeformFactory.CreateLifeform(command);
         if (result is SuccessResult<Eukaryote>)
         {
             _unitOfWork.LifeformRepository.AddLifeform(result.Data);
@@ -146,11 +143,40 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(ChangeAnimalInformation command)
     {
-        throw new NotImplementedException();
+        var entity = _unitOfWork.AnimalRepository.GetForOperationAsync(command.Id).Result;
+        if (entity is null) return new InvalidNoDataResult("Not found.");
+        var species = _unitOfWork.AnimalRepository.AllAsync(new AnimalSpeciesQuery()).Result;
+        var entityInformation = _unitOfWork.AnimalRepository.GetSingleAsync(command.Id, new AnimalOffspringInformationQuery()).Result;
+        AnimalChangeValidationData data = new(species, entityInformation);
+        var flag = new AnimalChangeValidator(command, data).Validate();
+        if (!flag)
+        {
+            return new InvalidNoDataResult(AnimalErrorConversion.Convert(flag));
+        }
+        if (command.IsBird is not null) entity.ChangeBirdStatus(command.IsBird.IsBird);
+        if (command.Species is not null) entity.ChangeSpecies(command.Species.Species);
+        if (command.MaximumOffspring is not null) entity.AlterMaximumOffspringPerMating(command.MaximumOffspring.MaximumOffspring);
+        if (command.MinimumOffspring is not null) entity.AlterMinimumOffspringPerMating(command.MinimumOffspring.MinimumOffspring);
+        _unitOfWork.LifeformRepository.UpdateLifeform(entity);
+        _unitOfWork.Save();
+        return new SuccessNoDataResult();
     }
 
     public Result Handle(ChangePlantInformation command)
     {
-        throw new NotImplementedException();
+        var entity = _unitOfWork.PlantRepository.GetForOperationAsync(command.Id).Result;
+        if (entity is null) return new InvalidNoDataResult("Not found.");
+        var species = _unitOfWork.PlantRepository.AllAsync(new PlantSpeciesQuery()).Result;
+        PlantChangeValidationData data = new(species);
+        var flag = new PlantChangeValidator(command, data).Validate();
+        if (!flag)
+        {
+            return new InvalidNoDataResult(PlantErrorConversion.Convert(flag));
+        }
+        if (command.Species is not null) entity.ChangeSpecies(command.Species.Species);
+        if (command.MaximumHeight is not null) entity.NewMaximumHeight(command.MaximumHeight.MaximumHeight);
+        _unitOfWork.LifeformRepository.UpdateLifeform(entity);
+        _unitOfWork.Save();
+        return new SuccessNoDataResult();
     }
 }

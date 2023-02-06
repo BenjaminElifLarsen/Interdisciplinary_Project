@@ -14,8 +14,6 @@ internal sealed class IsAnimalSpeciesNotInUse : ISpecification<RecogniseAnimal>
 		_species = species;
 	}
 
-
-
     public bool IsSatisfiedBy(RecogniseAnimal candidate)
     {
         return candidate.Species is not null && !_species.Any(x => string.Equals(x.Species, candidate.Species));

@@ -30,11 +30,11 @@ internal sealed class AnimalValidator
 
 }
 
-internal sealed class AnimalCHangeValidator
+internal sealed class AnimalChangeValidator
 {
 	private readonly ChangeAnimalInformation _animal;
-	private readonly AnimalChangevalidationData _validationData;
-	public AnimalCHangeValidator(ChangeAnimalInformation animal, AnimalChangevalidationData validationData)
+	private readonly AnimalChangeValidationData _validationData;
+	public AnimalChangeValidator(ChangeAnimalInformation animal, AnimalChangeValidationData validationData)
 	{
 		_animal = animal;
 		_validationData = validationData;
@@ -61,12 +61,12 @@ public sealed class AnimalValidationData
 	}
 }
 
-public sealed class AnimalChangevalidationData
+public sealed class AnimalChangeValidationData
 {
 	internal IEnumerable<LifeformSpecies> Species { get; private set; }
 	internal AnimalOffspringInformation CurrentInformation { get; private set; }
 
-	internal AnimalChangevalidationData(IEnumerable<LifeformSpecies> species, AnimalOffspringInformation currentInformation)
+	internal AnimalChangeValidationData(IEnumerable<LifeformSpecies> species, AnimalOffspringInformation currentInformation)
 	{
 		Species = species;
 		CurrentInformation = currentInformation;

@@ -4,6 +4,7 @@ namespace Domain.DL.CQRS.Commands.Lifeforms;
 
 public class ChangeLifeformInformation : ICommand //remember to validate these commands first before updating
 {
+    public int Id { get; set; }
     public ChangeSpecies? Species { get; set; }
 }
 

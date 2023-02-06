@@ -11,6 +11,8 @@ public interface ILifeformService
     public Task<Result> RecogniseAnimalAsync(RecogniseAnimal command);
     public Task<Result> RecognisePlantAsync(RecognisePlant command);
     public Task<Result> UnrecogniseAsync(UnreogniseLifeform command);
+    public Task<Result> UpdateAnimalAsync(ChangeAnimalInformation command);
+    public Task<Result> UpdatePlantAsync(ChangePlantInformation command);
 
     public Task<Result<IEnumerable<PlantListItem>>> AllPlantsAsync();
     public Task<Result<IEnumerable<AnimalListItem>>> AllAnimalsAsync();

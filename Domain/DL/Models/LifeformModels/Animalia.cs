@@ -21,9 +21,9 @@ public sealed class Animalia : Eukaryote
 		_isBird = isBird;
 	}
 
-	internal void ChangeBirdStatus()
+	internal void ChangeBirdStatus(bool isBird)
 	{
-		_isBird = !_isBird;
+		_isBird = isBird;
 	}
 
 	internal void AlterMaximumOffspringPerMating(byte maximumOffspringAmount)
