@@ -30,6 +30,8 @@ public sealed class DomainContext : DbContext
 
         modelBuilder.Entity<User>()
             .OwnsOne(e => e.Name);
+        modelBuilder.Entity<User>()
+            .OwnsMany(e => e.Likes, e => { e.ToTable("User_Likes"); });
 
         // Indexes
     }

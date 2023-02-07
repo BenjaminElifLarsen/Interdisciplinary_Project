@@ -10,6 +10,7 @@ public sealed class User : IAggregateRoot<int>
     private string _hashedPassword;
 
     private HashSet<Message> _messages;
+    private HashSet<Like> _likes;
 
     public int Id { get => _id; private set => _id = value; }
     public Name Name { get => _name; private set => _name = value; }
@@ -19,6 +20,7 @@ public sealed class User : IAggregateRoot<int>
     public string HashedPassword { get => _hashedPassword; private set => _hashedPassword = value; }
 
     public IEnumerable<Message> Messages => _messages;
+    public IEnumerable<Like> Likes => _likes;
 
     private User()
     {

@@ -11,3 +11,5 @@ Test, test, and more test
 
 
 cd .\Domain\; dotnet ef --startup-project ..\API\ migrations add "init" --context DomainContext; dotnet ef --startup-project ..\API\ database update --context DomainContext; cd..;
+cd .\Domain\; dotnet ef --startup-project ..\API\ migrations add "init" --context DomainContext; cd..;
+cd .\Domain\; dotnet ef --startup-project ..\API\ database update --context DomainContext; cd..;
