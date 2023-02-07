@@ -12,7 +12,7 @@
     <Folder Include="AL\Services\Messages\Queries\" />
     <Folder Include="AL\Services\Users\Commands\" />
     <Folder Include="AL\Services\Users\Queries\" />
-    <Folder Include="Migrations\" />
+    <Folder Include="IPL\Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

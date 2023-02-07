@@ -5,6 +5,7 @@ using Domain.DL.Errors;
 using Domain.DL.Factories;
 using Domain.DL.Models.LifeformModels;
 using Domain.DL.Models.MessageModels;
+using Domain.DL.Models.MessageModels.ValueObjects;
 using Domain.DL.Models.UserModels;
 using Domain.DL.Validation;
 using Domain.DL.Validation.ReadModels;
@@ -12,6 +13,8 @@ using Domain.IPL.Services;
 using Shared.ResultPattern.Abstract;
 using Shared.ResultPattern.Invalid;
 using Shared.ResultPattern.Success;
+using Eukaryote = Domain.DL.Models.LifeformModels.Eukaryote;
+using User = Domain.DL.Models.UserModels.User;
 
 namespace Domain.AL.Handlers.Commands;
 public sealed class DomainCommandHandler : IDomainCommandHandler

@@ -9,7 +9,34 @@ Implement relationship between User and Message, Message and Eukaryote
 
 Test, test, and more test
 
+removes the direct navigations between the subfolders in Models
+make them more similar to ddd (these down here will be value objects)
+	LifeformModels.Message
+	MessageModels.Eukaryote
+	UserModels.Message
+this will mean some big changes to some handlers 
+	let the handlers create need commands (in proper system this would be handled by a process manager)
+	e.g. a message creation will add its MessageModel.Eukaryote and send a command
+		to a handler that will create a LifeformModels.Message
+because of problems with ambiguous references consider multiple contexts
 
-cd .\Domain\; dotnet ef --startup-project ..\API\ migrations add "init" --context DomainContext; dotnet ef --startup-project ..\API\ database update --context DomainContext; cd..;
-cd .\Domain\; dotnet ef --startup-project ..\API\ migrations add "init" --context DomainContext; cd..;
-cd .\Domain\; dotnet ef --startup-project ..\API\ database update --context DomainContext; cd..;
+For the report mention the problems with value objects and other than the owner model referencing them
+mention that because of the eukaryote tpc mapping that no navigation is mapped between Message and Eukaryote and the solution to fix this (see above system)
+explain that in a proper ddd these 'lesser'-versions would have their own repositories and not be value objects (and why for this)
+
+
+
+
+---- ---- ----
+
+cd .\Domain\; 
+	dotnet ef --startup-project ..\API\ migrations add "init" --context LifeformContext  --output-dir IPL/Migrations/Lifeform; 
+	dotnet ef --startup-project ..\API\ migrations add "init" --context UserContext  --output-dir IPL/Migrations/User; 
+	dotnet ef --startup-project ..\API\ migrations add "init" --context MessageContext  --output-dir IPL/Migrations/Message; cd ..;
+
+cd .\Domain\; 
+	dotnet ef --startup-project ..\API\ database update --context LifeformContext; 
+	dotnet ef --startup-project ..\API\ database update --context UserContext; 
+	dotnet ef --startup-project ..\API\ database update --context MessageContext; cd ..;
+
+

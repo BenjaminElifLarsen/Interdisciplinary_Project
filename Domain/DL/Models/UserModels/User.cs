@@ -1,4 +1,4 @@
-﻿using Domain.DL.Models.MessageModels;
+﻿using Domain.DL.Models.UserModels.ValueObjects;
 using Shared.DDD;
 
 namespace Domain.DL.Models.UserModels;

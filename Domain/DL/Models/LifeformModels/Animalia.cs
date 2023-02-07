@@ -1,11 +1,16 @@
-﻿namespace Domain.DL.Models.LifeformModels;
+﻿using Domain.DL.Models.LifeformModels.ValueObjects;
+
+namespace Domain.DL.Models.LifeformModels;
 public sealed class Animalia : Eukaryote
 {
 	private byte _maximumOffspringsPerMating;
 	private byte _minimumOffspringsPerMating; //consider better names as it is the amount of children the animal can get at ones
 	private bool _isBird;
 
-	public byte MaximumOffspringsPerMating { get => _maximumOffspringsPerMating; private set => _maximumOffspringsPerMating = value; }
+    private HashSet<AnimalMessage> _messages;
+    public IEnumerable<AnimalMessage> Messages => _messages;
+
+    public byte MaximumOffspringsPerMating { get => _maximumOffspringsPerMating; private set => _maximumOffspringsPerMating = value; }
 	public byte MinimumOffspringsPerMating { get => _minimumOffspringsPerMating; private set => _minimumOffspringsPerMating = value; }
 	public bool IsBird { get => _isBird; private set => _isBird = value;  }
 

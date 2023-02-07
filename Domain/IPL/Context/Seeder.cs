@@ -18,8 +18,8 @@ public static class Seeder
 
         if(!users.Any())
         {
-            commandBus.Dispatch(new RegistrateUser("Triss", "Larsen", "Test123!", "Tester1"));
-            commandBus.Dispatch(new RegistrateUser("Bente", "Larsen", "Test123!", "Tester2"));
+            var result = commandBus.Dispatch(new RegistrateUser("Triss", "Larsen", "Test123!", "Tester1"));
+            var reuslt2 = commandBus.Dispatch(new RegistrateUser("Bente", "Larsen", "Test123!", "Tester2"));
         }
         if(!plantSpecies.Any())
         {

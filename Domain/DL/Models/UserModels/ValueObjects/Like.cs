@@ -1,6 +1,6 @@
 ﻿using Shared.DDD;
 
-namespace Domain.DL.Models.UserModels;
+namespace Domain.DL.Models.UserModels.ValueObjects;
 public sealed record Like : ValueObject
 {
     private User _user;

@@ -1,6 +1,6 @@
 ﻿using Shared.DDD;
 
-namespace Domain.DL.Models.UserModels;
+namespace Domain.DL.Models.UserModels.ValueObjects;
 public sealed record Name : ValueObject
 {
     private string _firstName;
@@ -11,7 +11,7 @@ public sealed record Name : ValueObject
 
     private Name()
     {
-            
+
     }
 
     public Name(string firstName, string lastName)

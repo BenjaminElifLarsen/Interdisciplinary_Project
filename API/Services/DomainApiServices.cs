@@ -13,7 +13,6 @@ using Microsoft.EntityFrameworkCore;
 using Shared.RepositoryPattern;
 using Shared.Routing;
 using SharedImplementation.RepositoryPattern;
-
 namespace API.Services;
 
 public class DomainApiServices
@@ -35,7 +34,9 @@ public class DomainApiServices
 
     private static void Context(IServiceCollection services, string dbConnection)
     {
-        services.AddDbContext<DomainContext>(options => options.UseSqlServer(dbConnection));
+        services.AddDbContext<LifeformContext>(options => options.UseSqlServer(dbConnection));
+        services.AddDbContext<MessageContext>(options => options.UseSqlServer(dbConnection));
+        services.AddDbContext<UserContext>(options => options.UseSqlServer(dbConnection));
     }
     private static void UnitOfWork(IServiceCollection services)
     {
@@ -51,11 +52,11 @@ public class DomainApiServices
 
     private static void Repositories(IServiceCollection services)
     {
-        services.AddScoped<IBaseRepository<Eukaryote, int>, BaseRepository<Eukaryote, int, DomainContext>>();
-        services.AddScoped<IBaseRepository<User, int>, BaseRepository<User, int, DomainContext>>();
-        services.AddScoped<IBaseRepository<Message, int>, BaseRepository<Message, int, DomainContext>>();
-        services.AddScoped<IBaseRepository<Animalia, int>, BaseRepository<Animalia, int, DomainContext>>();
-        services.AddScoped<IBaseRepository<Plantae, int>, BaseRepository<Plantae, int, DomainContext>>();
+        services.AddScoped<IBaseRepository<Eukaryote, int>, BaseRepository<Eukaryote, int, LifeformContext>>();
+        services.AddScoped<IBaseRepository<User, int>, BaseRepository<User, int, UserContext>>();
+        services.AddScoped<IBaseRepository<Message, int>, BaseRepository<Message, int, MessageContext>>();
+        services.AddScoped<IBaseRepository<Animalia, int>, BaseRepository<Animalia, int, LifeformContext>>();
+        services.AddScoped<IBaseRepository<Plantae, int>, BaseRepository<Plantae, int, LifeformContext>>();
 
         services.AddScoped<ILifeformRepository, LifeformRepository>();
         services.AddScoped<IUserRepository, UserRepository>();

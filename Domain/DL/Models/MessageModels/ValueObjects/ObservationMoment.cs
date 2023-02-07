@@ -1,6 +1,6 @@
 ﻿using Shared.DDD;
 
-namespace Domain.DL.Models.MessageModels;
+namespace Domain.DL.Models.MessageModels.ValueObjects;
 public sealed record ObservationTimeAndLocation : ValueObject
 {
     private DateTime _time;
