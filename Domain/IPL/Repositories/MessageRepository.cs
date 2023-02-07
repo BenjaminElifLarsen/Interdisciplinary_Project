@@ -23,6 +23,11 @@ public class MessageRepository : IMessageRepository
         return await _repository.AllAsync(query);
     }
 
+    public async Task<IEnumerable<TMapping>> AllFromUser<TMapping>(int id, BaseQuery<Message, TMapping> query) where TMapping : BaseReadModel
+    {
+        return await _repository.AllByPredicateAsync(new ByUserId(id), query);
+    }
+
     public void DeleteMessage(Message entity)
     {
         _repository.Delete(entity);

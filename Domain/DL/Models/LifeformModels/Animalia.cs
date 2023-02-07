@@ -13,8 +13,9 @@ public sealed class Animalia : Eukaryote
     public byte MaximumOffspringsPerMating { get => _maximumOffspringsPerMating; private set => _maximumOffspringsPerMating = value; }
 	public byte MinimumOffspringsPerMating { get => _minimumOffspringsPerMating; private set => _minimumOffspringsPerMating = value; }
 	public bool IsBird { get => _isBird; private set => _isBird = value;  }
+    public override bool BeenObservered => _messages.Any();
 
-	private Animalia()
+    private Animalia()
 	{
 
 	}

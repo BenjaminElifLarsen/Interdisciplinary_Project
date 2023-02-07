@@ -16,6 +16,12 @@ public class MessageController : ControllerBase
 		_messageService = messageService;
 	}
 
+	[HttpGet("Message/Own")]
+	public async Task<IActionResult> GetOwnMessages([FromQuery] int id)
+	{
+		return this.FromResult(await _messageService.OwnMessagesAsync(id));
+	}
+
 	[AllowAnonymous]
 	[HttpPost("Message")]
 	public async Task<IActionResult> PostMessage([FromBody] PostMessage request)

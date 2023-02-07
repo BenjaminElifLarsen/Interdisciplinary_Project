@@ -10,6 +10,7 @@ public class Plantae : Eukaryote
 
 
     public double MaximumHeight { get => _maximumHeight; private set => _maximumHeight = value; }
+    public override bool BeenObservered => _messages.Any();
 
     private Plantae()
     {

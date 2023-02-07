@@ -7,12 +7,10 @@ public partial class LifeformService : ILifeformService
 {
 	private readonly IDomainCommandBus _commandBus;
 	private readonly IUnitOfWork _unitOfWork;
-	private readonly ILifeformFactory _lifeformFactory;
 
-	public LifeformService(IUnitOfWork unitOfWork, ILifeformFactory lifeformFactory, IDomainCommandBus commandBus)
+	public LifeformService(IUnitOfWork unitOfWork, IDomainCommandBus commandBus)
 	{
 		_unitOfWork = unitOfWork;
-		_lifeformFactory = lifeformFactory;
 		_commandBus = commandBus;
 	}
 

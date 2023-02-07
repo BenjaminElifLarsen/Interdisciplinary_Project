@@ -10,4 +10,5 @@ public interface IMessageRepository
     public Task<IEnumerable<TMapping>> AllAsync<TMapping>(BaseQuery<Message, TMapping> query) where TMapping : BaseReadModel;
     public Task<Message> GetForOperationAsync(int id);
     public Task<TMapping> GetSingleAsync<TMapping>(int id, BaseQuery<Message, TMapping> query) where TMapping : BaseReadModel;
+    public Task<IEnumerable<TMapping>> AllFromUser<TMapping>(int id, BaseQuery<Message, TMapping> query) where TMapping : BaseReadModel;
 }

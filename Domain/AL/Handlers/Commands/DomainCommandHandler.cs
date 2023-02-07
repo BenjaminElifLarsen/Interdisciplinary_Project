@@ -58,39 +58,13 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         return new InvalidNoDataResult(result.Errors);
     }
 
-    public Result Handle(RecogniseLifeform command) //is never called, need to handle for the sub versions
-    {
-        Result<Eukaryote>? result = default;
-        if (command is RecogniseAnimal)
-        {
-            var animalSpecies = _unitOfWork.AnimalRepository.AllAsync(new AnimalSpeciesQuery()).Result;
-            AnimalValidationData validationData = new(animalSpecies);
-            _lifeformFactory.SetValidationData(validationData);
-            result = _lifeformFactory.CreateLifeform(command);
-        }
-        else
-        {
-            var plantSpecies = _unitOfWork.PlantRepository.AllAsync(new PlantSpeciesQuery()).Result;
-            PlantValidationData validationData = new(plantSpecies);
-            _lifeformFactory.SetValidationData(validationData);
-            result = _lifeformFactory.CreateLifeform(command);
-        }
-        if (result is SuccessResult<Eukaryote>)
-        {
-            _unitOfWork.LifeformRepository.AddLifeform(result.Data);
-            _unitOfWork.Save();
-            return new SuccessNoDataResult();
-        }
-        return new InvalidNoDataResult(result.Errors);
-    }
-
     public Result Handle(LikeMessage command)
     {
         var entityMessage = _unitOfWork.MessageRepository.GetForOperationAsync(command.MessageId).Result;
         if (entityMessage is null)
         {
             return new InvalidNoDataResult("Message not found.");
-        } //need to add to the message and to the user who made the like
+        }
         var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(command.UserId).Result;
         if(entityUser is null)
         {
@@ -156,6 +130,10 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
             return new SuccessNoDataResult();
         }
         //if Eukaryote message count is not zero it should be unable to remove it.
+        if (entity.BeenObservered)
+        {
+            return new InvalidNoDataResult("Cannot remove as it has been observered.");
+        }
         _unitOfWork.LifeformRepository.RemoveLifeform(entity);
         _unitOfWork.Save();
         return new SuccessNoDataResult();
