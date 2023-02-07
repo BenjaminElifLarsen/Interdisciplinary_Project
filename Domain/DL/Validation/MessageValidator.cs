@@ -24,6 +24,7 @@ internal sealed class MessageValidator
         flag += new IsMessageEukaryoteIdSat().And(new IsMessageEukaryoteIdValid(_validationData.EukaryoteIds)).IsSatisfiedBy(_message) ? 0 : EukaryoteIdInvalid;
         flag += new IsMessageMomentSat().IsSatisfiedBy(_message) ? 0 : TimeStampInvalid;
         flag += new IsMessageLatitudeSat().And(new IsMessageLongtitudeSat()).IsSatisfiedBy(_message) ? 0 : LocationInvalid;
+        flag += new IsMessageTitleSat().IsSatisfiedBy(_message) ? 0 : TitleInvalid;
         return flag;
     }
 }

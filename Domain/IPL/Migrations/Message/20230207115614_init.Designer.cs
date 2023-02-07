@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.IPL.Migrations.Message
 {
     [DbContext(typeof(MessageContext))]
-    [Migration("20230207084343_init")]
+    [Migration("20230207115614_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -32,6 +32,14 @@ namespace Domain.IPL.Migrations.Message
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

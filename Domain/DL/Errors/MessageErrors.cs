@@ -5,4 +5,5 @@ internal enum MessageErrors
     EukaryoteIdInvalid = 0b10,
     TimeStampInvalid = 0b100,
     LocationInvalid = 0b1000,
+    TitleInvalid = 0b10000,
 }

@@ -16,25 +16,22 @@ public class MessageController : ControllerBase
 		_messageService = messageService;
 	}
 
-	[HttpGet("Message/Own")]
-	public async Task<IActionResult> GetOwnMessages([FromQuery] int id)
-	{
-		return this.FromResult(await _messageService.OwnMessagesAsync(id));
-	}
+	[AllowAnonymous]
+	[HttpGet]
+	public async Task<IActionResult> GetAllMessages() => this.FromResult(await _messageService.AllMessagesAsync());
+
+	[HttpGet("Own")]
+	public async Task<IActionResult> GetOwnMessages([FromQuery] int id) => this.FromResult(await _messageService.OwnMessagesAsync(id));
 
 	[AllowAnonymous]
-	[HttpPost("Message")]
-	public async Task<IActionResult> PostMessage([FromBody] PostMessage request)
-	{
-		var result = await _messageService.PostMessageAsync(request);
-		return this.FromResult(result);
-	}
+	[HttpPost("Details")]
+	public async Task<IActionResult> GetDetails([FromQuery] int id) => this.FromResult(await _messageService.MessageDetailsAsync(id));
 
 	[AllowAnonymous]
-	[HttpPost("Message/Like")]
-	public async Task<IActionResult> LikeMessage([FromBody] LikeMessage request)
-	{
-		var result = await _messageService.LikeMessageAsync(request);
-		return this.FromResult(result);
-	}
+	[HttpPost()]
+	public async Task<IActionResult> PostMessage([FromBody] PostMessage request) => this.FromResult(await _messageService.PostMessageAsync(request));
+
+	[AllowAnonymous]
+	[HttpPost("Like")]
+	public async Task<IActionResult> LikeMessage([FromBody] LikeMessage request) => this.FromResult(await _messageService.LikeMessageAsync(request));
 }

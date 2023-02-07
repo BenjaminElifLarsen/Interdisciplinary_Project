@@ -23,6 +23,10 @@ internal sealed class MessageErrorConversion
         {
             errors.Add("The location is invalid.");
         }
+        if(flag == TitleInvalid)
+        {
+            errors.Add("The title is invalid.");
+        }
         return errors;
     }
 }

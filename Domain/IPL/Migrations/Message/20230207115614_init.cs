@@ -17,6 +17,8 @@ namespace Domain.IPL.Migrations.Message
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EukaryoteEukaryoteEukaryoteId = table.Column<int>(name: "Eukaryote_EukaryoteEukaryoteId", type: "int", nullable: false),
                     UserUserUserId = table.Column<int>(name: "User_UserUserId", type: "int", nullable: false),
                     DataTime = table.Column<DateTime>(name: "Data_Time", type: "datetime2", nullable: false),

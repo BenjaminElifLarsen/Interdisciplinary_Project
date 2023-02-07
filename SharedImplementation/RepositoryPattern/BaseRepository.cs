@@ -28,7 +28,6 @@ public class BaseRepository<TEntity, TId, TContext> : IBaseRepository<TEntity, T
         return (await _entities.ToArrayAsync()).Where(x => predicate.IsSatisfiedBy(x)).AsQueryable().Select(query.Map()); //if wanting to do the transformation over in the database, would need up modify the predicate to be of TMapping instead of TEntity
     }
 
-        //need to rememember that this project will not use the full ddd, so will need to be able to get relation data objects too
     public async Task<IEnumerable<TEntity>> AllByPredicateForOperationAsync(ISpecification<TEntity> predicate, params Expression<Func<TEntity, object>>[] includes)
     {//need to include first
         var query = _entities.AsQueryable();

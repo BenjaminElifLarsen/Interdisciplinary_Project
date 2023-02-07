@@ -15,7 +15,7 @@ public class MessageFactory : IMessageFactory
         BinaryFlag flag = new MessageValidator(data, validationData).Validate();
         if (flag)
         {
-            Message entity = new(data.UserId, data.EukaryoteId, new(data.Moment, data.Latitude, data.Longtitude));
+            Message entity = new(data.Title, data.Text, data.UserId, data.EukaryoteId, new(data.Moment, data.Latitude, data.Longtitude));
             return new SuccessResult<Message>(entity);
         }
         return new InvalidResult<Message>(MessageErrorConversion.Convert(flag));
