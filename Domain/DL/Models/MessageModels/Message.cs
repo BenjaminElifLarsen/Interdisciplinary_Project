@@ -34,6 +34,8 @@ public sealed class Message : IAggregateRoot<int>
         _user = new(userId);
         _data = data;
         _eukaryote = new(eukaryoteId);
+        _title = title;
+        _text = text;
     }
 
     internal void AddLike(int userId)

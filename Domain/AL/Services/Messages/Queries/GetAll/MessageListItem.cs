@@ -23,6 +23,6 @@ internal sealed class MessageListQuery : BaseQuery<Message, MessageListItem>
 {
     public override Expression<Func<Message, MessageListItem>> Map()
     {
-        return e => new(e.Id, e.Eukaryote.EukaryoteEukaryoteId, e.Title, e.Title.Substring(0,40));
+        return e => new(e.Id, e.Eukaryote.EukaryoteEukaryoteId, e.Title, e.Text.Substring(0,40)); //need to handle the cases where text is not 40 long
     }
 }
