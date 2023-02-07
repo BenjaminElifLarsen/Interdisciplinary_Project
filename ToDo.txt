@@ -9,7 +9,7 @@ Implement relationship between User and Message, Message and Eukaryote
 
 Test, test, and more test
 
-removes the direct navigations between the subfolders in Models
+remove the direct navigations between the subfolders in Models
 make them more similar to ddd (these down here will be value objects)
 	LifeformModels.Message
 	MessageModels.Eukaryote
@@ -21,7 +21,8 @@ this will mean some big changes to some handlers
 because of problems with ambiguous references consider multiple contexts
 
 For the report mention the problems with value objects and other than the owner model referencing them
-mention that because of the eukaryote tpc mapping that no navigation is mapped between Message and Eukaryote and the solution to fix this (see above system)
+mention that because of the eukaryote tpc mapping that no navigation is mapped between Message and Eukaryote and the solution to fix this (see above system). 
+	if moving the field and property over to the specialed models and map with OwnsMany() it would only generate a table for the last one in the context model builder
 explain that in a proper ddd these 'lesser'-versions would have their own repositories and not be value objects (and why for this)
 
 

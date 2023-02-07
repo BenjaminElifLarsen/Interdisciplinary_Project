@@ -24,6 +24,9 @@ public abstract class Eukaryote : IAggregateRoot<int>
         _speciesName = name;
     }
 
+    internal abstract void AddMessage(int messageId);
+    internal abstract void RemoveMessage(int messageId);
+
     public void BeenObservered(int messageId)
     {
         //_messages.Add(new(messageId));

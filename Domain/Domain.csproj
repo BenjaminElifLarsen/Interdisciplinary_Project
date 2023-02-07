@@ -7,9 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AL\Services\Messages\Commands\LikeMessage\" />
-    <Folder Include="AL\Services\Messages\Commands\UnlikeMessage\" />
-    <Folder Include="AL\Services\Messages\Queries\" />
     <Folder Include="AL\Services\Users\Commands\" />
     <Folder Include="AL\Services\Users\Queries\" />
     <Folder Include="IPL\Migrations\" />

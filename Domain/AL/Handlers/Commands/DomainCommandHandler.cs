@@ -44,6 +44,15 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         {
             _unitOfWork.MessageRepository.AddMessage(result.Data);
             _unitOfWork.Save();
+
+            var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(command.UserId).Result;
+            var entityEukaryote = _unitOfWork.PlantRepository.GetForOperationAsync(command.EukaryoteId).Result as Eukaryote ?? _unitOfWork.AnimalRepository.GetForOperationAsync(command.EukaryoteId).Result;
+
+            entityUser.AddMessage(result.Data.Id);
+            entityEukaryote.AddMessage(result.Data.Id);
+            _unitOfWork.UserRepository.UpdateUser(entityUser);
+            _unitOfWork.LifeformRepository.UpdateLifeform(entityEukaryote);
+            _unitOfWork.Save();
             return new SuccessNoDataResult();
         }
         return new InvalidNoDataResult(result.Errors);
@@ -77,13 +86,20 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(LikeMessage command)
     {
-        var entity = _unitOfWork.MessageRepository.GetForOperationAsync(command.MessageId).Result;
-        if (entity is null)
+        var entityMessage = _unitOfWork.MessageRepository.GetForOperationAsync(command.MessageId).Result;
+        if (entityMessage is null)
         {
-            return new InvalidNoDataResult();
-        } //should check if the user exist
-        entity.AddLike(command.UserId);
-        _unitOfWork.MessageRepository.UpdateMessage(entity);
+            return new InvalidNoDataResult("Message not found.");
+        } //need to add to the message and to the user who made the like
+        var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(command.UserId).Result;
+        if(entityUser is null)
+        {
+            return new InvalidNoDataResult("User not founbd.");
+        }
+        entityMessage.AddLike(command.UserId);
+        entityUser.AddLike(command.MessageId);
+        _unitOfWork.MessageRepository.UpdateMessage(entityMessage);
+        _unitOfWork.UserRepository.UpdateUser(entityUser);
         _unitOfWork.Save();
         return new SuccessNoDataResult();
     }

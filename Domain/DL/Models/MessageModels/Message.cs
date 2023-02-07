@@ -34,15 +34,9 @@ public sealed class Message : IAggregateRoot<int>
 
     internal void AddLike(int userId)
     {
-        //if (!_likes.Any(x => x.GotSpecificUserID(userId)) && userId != _userId)
-        //    _likes.Add(new(userId, _id));
-
+        if(userId != _user.UserUserId)
+            _likes.Add(new(userId, _id));
     }
 
-    internal void RemoveLike(int userId)
-    {
-        var foundLike = _likes.SingleOrDefault(x => x.GotSpecificUserID(userId));
-        if (foundLike is not null)
-            _likes.Remove(foundLike);
-    }
+    internal void RemoveLike(int userId) => _likes.Remove(new(userId, _id));
 }

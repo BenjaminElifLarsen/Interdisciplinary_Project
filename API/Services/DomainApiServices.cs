@@ -2,6 +2,7 @@
 using Domain.AL.Handlers.Commands;
 using Domain.AL.Registries;
 using Domain.AL.Services.Lifeforms;
+using Domain.AL.Services.Messages;
 using Domain.DL.Factories;
 using Domain.DL.Models.LifeformModels;
 using Domain.DL.Models.MessageModels;
@@ -30,6 +31,7 @@ public class DomainApiServices
     private static void Services(IServiceCollection services)
     {
         services.AddScoped<ILifeformService, LifeformService>();
+        services.AddScoped<IMessageService, MessageService>();
     }
 
     private static void Context(IServiceCollection services, string dbConnection)

@@ -26,6 +26,16 @@ public sealed class Animalia : Eukaryote
 		_isBird = isBird;
 	}
 
+	internal override void AddMessage(int messageId)
+	{
+		_messages.Add(new(messageId));
+	}
+
+	internal override void RemoveMessage(int messageId)
+	{
+		_messages.Remove(new(messageId));
+	}
+
 	internal void ChangeBirdStatus(bool isBird)
 	{
 		_isBird = isBird;

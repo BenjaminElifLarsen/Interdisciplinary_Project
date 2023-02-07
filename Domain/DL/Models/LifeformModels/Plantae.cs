@@ -21,6 +21,16 @@ public class Plantae : Eukaryote
         _maximumHeight = maxHeight;
     }
 
+    internal override void AddMessage(int messageId)
+    {
+        _messages.Add(new(messageId));
+    }
+
+    internal override void RemoveMessage(int messageId)
+    {
+        _messages.Remove(new(messageId));
+    }
+
     internal void NewMaximumHeight(double maximumHeight)
     {
         _maximumHeight = maximumHeight;
