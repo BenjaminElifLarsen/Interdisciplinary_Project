@@ -12,6 +12,7 @@ public interface IDomainCommandHandler :
     ICommandHandler<RegistrateUser>,
     ICommandHandler<UnreogniseLifeform>,
     ICommandHandler<ChangeAnimalInformation>,
-    ICommandHandler<ChangePlantInformation>
+    ICommandHandler<ChangePlantInformation>,
+    ICommandHandler<HideMessage>
 {
 }

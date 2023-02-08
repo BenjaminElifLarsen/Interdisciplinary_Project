@@ -27,5 +27,6 @@ public class DomainRegistry : IRoutingRegistry
         _commandBus.RegisterHandler<UnreogniseLifeform>(_commandHandler.Handle);
         _commandBus.RegisterHandler<ChangeAnimalInformation>(_commandHandler.Handle);
         _commandBus.RegisterHandler<ChangePlantInformation>(_commandHandler.Handle);
+        _commandBus.RegisterHandler<HideMessage>(_commandHandler.Handle);
     }
 }

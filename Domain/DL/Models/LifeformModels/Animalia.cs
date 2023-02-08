@@ -34,7 +34,7 @@ public sealed class Animalia : Eukaryote
 
 	internal override void RemoveMessage(int messageId)
 	{
-		_messages.Remove(new(messageId));
+		_messages.Remove(_messages.SingleOrDefault(x => x.MessageMessageId == messageId));
 	}
 
 	internal void ChangeBirdStatus(bool isBird)

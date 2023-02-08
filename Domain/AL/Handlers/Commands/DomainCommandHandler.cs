@@ -177,4 +177,30 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         _unitOfWork.Save();
         return new SuccessNoDataResult();
     }
+
+    public Result Handle(HideMessage command)
+    {
+        var entity = _unitOfWork.MessageRepository.GetForOperationAsync(command.MessageId).Result;
+        if(entity is not null)
+        {
+            _unitOfWork.MessageRepository.DeleteMessage(entity);
+
+            var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(entity.User.UserUserId).Result;
+            entityUser.RemoveMessage(command.MessageId);
+            _unitOfWork.UserRepository.UpdateUser(entityUser);
+            var entityLifeform = _unitOfWork.AnimalRepository.GetForOperationAsync(entity.Eukaryote.EukaryoteEukaryoteId).Result as Eukaryote ?? _unitOfWork.PlantRepository.GetForOperationAsync(entity.Eukaryote.EukaryoteEukaryoteId).Result;
+            entityLifeform.RemoveMessage(command.MessageId);
+            _unitOfWork.LifeformRepository.UpdateLifeform(entityLifeform);
+
+            var entityUsers = _unitOfWork.UserRepository.GetUsersThatHaveLikedAMessageForOperation(command.MessageId).Result.ToArray();
+            for(int i = 0; i < entityUsers.Count(); i++) //in proper ddd the message would know of all its likes, so user ids would have been known, thus meaning it would not be required to check all users
+            {
+                entityUsers[i].RemoveLike(command.MessageId);
+                _unitOfWork.UserRepository.UpdateUser(entityUsers[i]);
+            }
+
+            _unitOfWork.Save();
+        }
+        return new SuccessNoDataResult();
+    }
 }

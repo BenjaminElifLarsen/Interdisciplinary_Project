@@ -43,8 +43,8 @@ public sealed class User : IAggregateRoot<int>
 
     public void RemoveLike(int messageId)
     {
-        if(!_messages.Any(x => x.MessageMessageId == messageId))
-            _likes.Remove(new(_id, messageId));
+        if (!_messages.Any(x => x.MessageMessageId == messageId))
+            _likes.Remove(_likes.SingleOrDefault(x => x.MessageId == messageId));
     }
 
     public void AddMessage(int messageId)
@@ -54,6 +54,6 @@ public sealed class User : IAggregateRoot<int>
 
     public void RemoveMessage(int messageId)
     {
-        _messages.Remove(new(messageId));
+        _messages.Remove(_messages.SingleOrDefault(x => x.MessageMessageId == messageId));
     }
 }

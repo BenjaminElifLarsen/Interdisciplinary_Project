@@ -34,4 +34,7 @@ public class MessageController : ControllerBase
 	[AllowAnonymous]
 	[HttpPost("Like")]
 	public async Task<IActionResult> LikeMessage([FromBody] LikeMessage request) => this.FromResult(await _messageService.LikeMessageAsync(request));
+
+	[HttpPost("Remove")]
+	public async Task<IActionResult> HideMessage([FromBody] HideMessage request) => this.FromResult(await _messageService.HideMessageAsync(request));
 }

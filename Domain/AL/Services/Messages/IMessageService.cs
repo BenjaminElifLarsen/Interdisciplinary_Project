@@ -9,6 +9,7 @@ public interface IMessageService
 {
     public Task<Result> PostMessageAsync(PostMessage command);
     public Task<Result> LikeMessageAsync(LikeMessage command);
+    public Task<Result> HideMessageAsync(HideMessage command);
 
     public Task<Result<IEnumerable<OwnMessageListItem>>> OwnMessagesAsync(int userId);
     public Task<Result<IEnumerable<MessageListItem>>> AllMessagesAsync();

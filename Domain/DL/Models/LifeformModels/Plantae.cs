@@ -29,7 +29,7 @@ public class Plantae : Eukaryote
 
     internal override void RemoveMessage(int messageId)
     {
-        _messages.Remove(new(messageId));
+        _messages.Remove(_messages.SingleOrDefault(x => x.MessageMessageId == messageId));
     }
 
     internal void NewMaximumHeight(double maximumHeight)

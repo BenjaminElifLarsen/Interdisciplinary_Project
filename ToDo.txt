@@ -1,5 +1,6 @@
 Implement User Service
 Implement Message Service
+	-- need update (consider what to do with updates regarding likes [what should happen to likes when an update happens])
 
 Implement Endpoints
 
