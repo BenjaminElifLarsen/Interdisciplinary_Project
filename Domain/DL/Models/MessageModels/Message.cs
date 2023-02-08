@@ -49,9 +49,11 @@ public sealed class Message : IAggregateRoot<int> //could add soft delete to thi
 
     internal string GetShortenText(int maxLength)
     {
+        if (maxLength <= 0)
+            return "";
         var shouldShorten = _text.Length > maxLength;
         StringBuilder sb = new();
-        sb.Append(!shouldShorten ? _text : _text.Substring(0, maxLength));
+        sb.Append(!shouldShorten ? _text : _text[..maxLength]);
         if(shouldShorten)
             sb.Append("...");
         return sb.ToString();
