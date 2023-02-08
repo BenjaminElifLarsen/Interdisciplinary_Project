@@ -1,5 +1,6 @@
 ﻿using Domain.DL.Models.MessageModels.ValueObjects;
 using Shared.DDD;
+using System.Text;
 
 namespace Domain.DL.Models.MessageModels;
 public sealed class Message : IAggregateRoot<int> //could add soft delete to this model, just let the save check if a model is getting deleted, if it is set it to unmodfieid and then modify the soft delete value to true
@@ -45,4 +46,14 @@ public sealed class Message : IAggregateRoot<int> //could add soft delete to thi
     }
 
     internal void RemoveLike(int userId) => _likes.Remove(new(userId, _id));
+
+    internal string GetShortenText(int maxLength)
+    {
+        var shouldShorten = _text.Length > maxLength;
+        StringBuilder sb = new();
+        sb.Append(!shouldShorten ? _text : _text.Substring(0, maxLength));
+        if(shouldShorten)
+            sb.Append("...");
+        return sb.ToString();
+    }
 }
