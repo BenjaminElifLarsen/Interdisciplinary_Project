@@ -24,7 +24,7 @@ public class MessageController : ControllerBase
 	public async Task<IActionResult> GetOwnMessages([FromQuery] int id) => this.FromResult(await _messageService.OwnMessagesAsync(id));
 
 	[AllowAnonymous]
-	[HttpPost("Details")]
+	[HttpGet("Details")]
 	public async Task<IActionResult> GetDetails([FromQuery] int id) => this.FromResult(await _messageService.MessageDetailsAsync(id));
 
 	[AllowAnonymous]
