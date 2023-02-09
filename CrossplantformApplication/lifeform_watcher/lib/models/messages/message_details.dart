@@ -24,7 +24,8 @@ class MessageDetails {
         likes: json['likes'],
         user: json['user'],
         lifeformId: json['lifeformId'],
-        latitude: json['latitude'] + 0.0,
+        latitude: json['latitude'] +
+            0.0, //solves bug caused by latitude and longtitude in very few cases they are ints
         longtitude: json['longtitude'] + 0.0,
         title: json['title'],
         text: json['text'],

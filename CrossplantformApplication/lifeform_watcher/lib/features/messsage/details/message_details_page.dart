@@ -30,12 +30,11 @@ class MessageDetailsPage extends StatelessWidget {
               }
             },
           ),
-          Text(id.toString()),
           ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text("click me")),
+              child: Text("Message Overview")),
         ]),
       ),
     );
@@ -45,8 +44,18 @@ class MessageDetailsPage extends StatelessWidget {
 class Details extends StatelessWidget {
   const Details({super.key, required this.message});
   final MessageDetails message;
+
   @override
   Widget build(BuildContext context) {
-    return Text(message.text);
+    double long = message.longtitude;
+    double lati = message.latitude;
+    return Column(
+      children: [
+        Text(message.title),
+        Text(message.text),
+        Text(message.time.toString()),
+        Text("Latitude: $lati, longtitude: $long"),
+      ],
+    );
   }
 }
