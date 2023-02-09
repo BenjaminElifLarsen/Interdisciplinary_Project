@@ -65,8 +65,10 @@ class DisplayMessageListItem extends StatelessWidget {
         Text(msg.text),
         ElevatedButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MessageDetails()));
+              Navigator.push(
+                  context, //seems like the widget is placed under MyApp instead under MyApp.MaterialApp.MyhomePage.LayoutBuilder.Scafforld.Row.Extended
+                  MaterialPageRoute(
+                      builder: (context) => MessageDetails(id: msg.id)));
             },
             child: Text("Indlæs")),
       ],
