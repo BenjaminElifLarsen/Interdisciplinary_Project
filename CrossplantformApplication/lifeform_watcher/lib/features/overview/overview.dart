@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lifeform_watcher/features/messsage/details/message_details.dart';
+import 'package:lifeform_watcher/features/messsage/details/message_details_page.dart';
 import 'package:lifeform_watcher/models/messages/message_list_item.dart';
 
 import '../../services/message_service.dart';
@@ -68,7 +68,7 @@ class DisplayMessageListItem extends StatelessWidget {
               Navigator.push(
                   context, //seems like the widget is placed under MyApp instead under MyApp.MaterialApp.MyhomePage.LayoutBuilder.Scafforld.Row.Extended
                   MaterialPageRoute(
-                      builder: (context) => MessageDetails(id: msg.id)));
+                      builder: (context) => MessageDetailsPage(id: msg.id)));
             },
             child: Text("Indlæs")),
       ],
