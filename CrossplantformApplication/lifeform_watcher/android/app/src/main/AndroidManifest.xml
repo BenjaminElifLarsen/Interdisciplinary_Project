@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lifeform_watcher">
+    package="com.example.lifeform_watcher"> 
+   <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="lifeform_watcher"
         android:name="${applicationName}"

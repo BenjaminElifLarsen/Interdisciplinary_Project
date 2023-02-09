@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lifeform_watcher/overview/overview.dart';
+import 'package:lifeform_watcher/features/overview/overview.dart';
 
 void main() {
   runApp(const MyApp());
