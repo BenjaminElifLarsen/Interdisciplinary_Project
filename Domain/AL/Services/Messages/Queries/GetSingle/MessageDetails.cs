@@ -19,7 +19,7 @@ public sealed class MessageDetails : BaseReadModel
         Likes = likes;
         User = user;
         LifeformId = lifeformId;
-        Latitude = latitide;
+        Latitude = latitude;
         Longitude = longitude;
         Time = time;
         Title = title;
