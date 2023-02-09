@@ -6,8 +6,8 @@ public sealed class PostMessage : ICommand
     public int UserId { get; set; }
     public int EukaryoteId { get; set; }
     public DateTime Moment { get; set; }
-    public long Latitude { get; set; }
-    public long Longtitude { get; set; }
+    public double Latitude { get; set; }
+    public double Longtitude { get; set; }
     public string Title { get; set; }
     public string Text { get; set; }
 
@@ -16,7 +16,7 @@ public sealed class PostMessage : ICommand
 
     }
 
-    internal PostMessage(int userId, int eukaryoteId, DateTime moment, long latitude, long longtitude, string title, string text)
+    internal PostMessage(int userId, int eukaryoteId, DateTime moment, double latitude, double longtitude, string title, string text)
     {
         UserId = userId;
         EukaryoteId = eukaryoteId;

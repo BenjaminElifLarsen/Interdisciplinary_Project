@@ -15,8 +15,8 @@ public sealed class Message : IAggregateRoot<int> //could add soft delete to thi
     private HashSet<Like> _likes;
 
     public int Id { get => _id; private set => _id = value; }
-    public long Latitude { get => _data.Latitude; }
-    public long Longtitude { get => _data.Longitude;}
+    public double Latitude { get => _data.Latitude; }
+    public double Longtitude { get => _data.Longitude;}
     public DateTime ObservationMoment { get => _data.Time; }
     public string Text { get => _text; private set => _text = value; }
     public string Title { get => _title; private set => _title = value; }
