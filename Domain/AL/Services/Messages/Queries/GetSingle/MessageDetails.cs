@@ -9,18 +9,18 @@ public sealed class MessageDetails : BaseReadModel
     public int User { get; private set; }
     public int LifeformId { get; private set; }
     public double Latitude { get; private set; }
-    public double Longitude { get; private set;}
+    public double Longtitude { get; private set;}
     public string Title { get; private set; }
     public string Text { get; private set; }
     public DateTime Time { get; private set; }
 
-    public MessageDetails(int likes, int user, int lifeformId, double latitude, double longitude, DateTime time, string title, string text)
+    public MessageDetails(int likes, int user, int lifeformId, double latitude, double longtitude, DateTime time, string title, string text)
     {
         Likes = likes;
         User = user;
         LifeformId = lifeformId;
         Latitude = latitude;
-        Longitude = longitude;
+        Longtitude = longtitude;
         Time = time;
         Title = title;
         Text = text;
