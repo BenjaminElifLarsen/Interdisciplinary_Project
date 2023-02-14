@@ -11,7 +11,7 @@ class OverviewPage extends StatelessWidget {
     //print("test");
     //print(data);
     return Center(
-      child: Column(
+      child: ListView(
         children: [
           FutureBuilder<List<MessageListItem>>(
             future: fetchMessages(),

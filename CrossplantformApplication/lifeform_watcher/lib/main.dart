@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lifeform_watcher/features/observation/observation.dart';
 import 'package:lifeform_watcher/features/overview/overview.dart';
+import 'package:lifeform_watcher/models/messages/request/message_post.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.pink,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Lifeform Observation Platform'),
     );
   }
 }
@@ -50,6 +52,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var selectedIndex = 0;
+  Future<bool>? futureTest;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = OverviewPage();
         break;
       case 1:
-        page = Placeholder();
+        page = ObservationPage();
         break;
       default:
         throw UnimplementedError("$selectedIndex");
