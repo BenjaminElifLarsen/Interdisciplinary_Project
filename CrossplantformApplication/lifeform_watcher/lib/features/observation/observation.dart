@@ -16,6 +16,14 @@ class _ObservationPageState extends State<ObservationPage> {
   LocationPermission? permission;
   Position? position;
   MessagePost? request;
+  late ThemeData theme;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String title = "";
+  String text = "";
+  double latitude = 0;
+  double longtitude = 0;
+  int lifeformId = 0;
 
   @override
   void initState() {
@@ -25,33 +33,108 @@ class _ObservationPageState extends State<ObservationPage> {
 
   @override
   Widget build(BuildContext context) {
+    theme = Theme.of(context);
     return Center(
       child: Column(
         children: [
           Text("Observation"),
+          MessageForm(),
           (futureObservation == null) ? messagePost() : buildFutureBuilder(),
           (servicestatus == false)
               ? getLocationFromUser()
               : getLocationFromGPS(),
+          if (request != null)
+            displayMessageData(request!) //move this out of the button
         ],
       ),
     );
   }
 
-  Text getLocationFromUser() => Text("GPS ikke slået til.");
+  Form MessageForm() {
+    // https://api.flutter.dev/flutter/widgets/Form-class.html
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextFormField(
+            onSaved: (value) {
+              title = value!;
+            },
+            decoration: const InputDecoration(
+              hintText: "Enter Title",
+            ),
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter valid title';
+              }
 
-  Text getLocationFromGPS() => Text("GPS er slået til");
+              return null;
+            },
+          ),
+          TextFormField(
+            onSaved: (value) {
+              text = value!;
+            },
+            decoration: const InputDecoration(
+              hintText: "Enter Text",
+            ),
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter valid text';
+              }
+
+              return null;
+            },
+          ),
+          TextFormField(
+            onSaved: (value) {
+              lifeformId = int.parse(value!);
+            },
+            decoration: const InputDecoration(
+              hintText: "Enter LifeformId",
+            ),
+            validator: (String? value) {
+              var valCasted = int.tryParse(value!);
+              if (value == null || value.isEmpty || valCasted == null) {
+                //figure out how to try parse to double
+                return 'Please enter valid text';
+              }
+
+              return null;
+            },
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                setState(() {});
+              }
+            },
+            child: Text("Test"),
+          )
+        ],
+      ),
+    );
+  }
+
+  Text getLocationFromUser() => Text(
+      "GPS ikke slået til."); //have a form to enter longtitude and latitude
+
+  Text getLocationFromGPS() {
+    return Text("GPS er slået til");
+  }
 
   ElevatedButton messagePost() {
     request = MessagePost(
         //display message
         userId: 1,
-        eukaryoteId: 1,
+        eukaryoteId: lifeformId,
         moment: DateTime.now(),
-        latitude: 25.1,
-        longtitude: 10.1,
-        title: "From App",
-        text: "This is a test message, please ignore");
+        latitude: latitude,
+        longtitude: longtitude,
+        title: title,
+        text: text);
     return ElevatedButton(
         onPressed: () {
           setState(() {
@@ -61,8 +144,6 @@ class _ObservationPageState extends State<ObservationPage> {
         child: Column(
           children: [
             Icon(Icons.message),
-            if (request != null)
-              displayMessageData(request!) //write like the msg feed
           ],
         ));
   }
@@ -70,7 +151,7 @@ class _ObservationPageState extends State<ObservationPage> {
   Row displayMessageData(MessagePost messagePost) {
     print("Test");
     return Row(
-      children: [Text(messagePost.title), Text(messagePost.text)],
+      children: [displayText(messagePost.title), displayText(messagePost.text)],
     );
   }
 
@@ -80,14 +161,20 @@ class _ObservationPageState extends State<ObservationPage> {
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
-            return Text("Error");
+            return displayText("Errored");
           } else if (snapshot.hasData) {
-            return Text("Posted");
+            return displayText("Posted");
           } else {
             return const CircularProgressIndicator();
           }
         });
   }
+
+  Card displayText(String text) => Card(
+          child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Text(text),
+      ));
 
   checkGps() async {
     servicestatus = await Geolocator.isLocationServiceEnabled();
@@ -102,15 +189,13 @@ class _ObservationPageState extends State<ObservationPage> {
         if (permission == LocationPermission.denied) {
         } else if (permission == LocationPermission.deniedForever) {
         } else {
+          getPosition();
           haspermission = true;
-          //var position = await Geolocator.getCurrentPosition(
-          //desiredAccuracy: LocationAccuracy.high);
-          //trying to get without permission and the program crashes
-          //instead of getting location, set a bool
           //https://www.fluttercampus.com/guide/212/get-gps-location/
         }
       } else {
         haspermission = true;
+        getPosition();
       }
     }
     setState(() {});
@@ -120,7 +205,9 @@ class _ObservationPageState extends State<ObservationPage> {
     if (haspermission) {
       position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.bestForNavigation);
-      setState(() {});
+      latitude = position!.latitude;
+      longtitude = position!.longitude;
+      print(position);
     }
   }
 }
