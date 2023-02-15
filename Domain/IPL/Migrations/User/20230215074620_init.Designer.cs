@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.IPL.Migrations.User
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20230207115605_init")]
+    [Migration("20230215074620_init")]
     partial class init
     {
         /// <inheritdoc />

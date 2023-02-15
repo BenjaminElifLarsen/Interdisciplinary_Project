@@ -20,10 +20,10 @@ namespace Domain.IPL.Migrations.Message
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EukaryoteEukaryoteEukaryoteId = table.Column<int>(name: "Eukaryote_EukaryoteEukaryoteId", type: "int", nullable: false),
-                    UserUserUserId = table.Column<int>(name: "User_UserUserId", type: "int", nullable: false),
+                    AuthorAuthorUserId = table.Column<int>(name: "Author_AuthorUserId", type: "int", nullable: false),
                     DataTime = table.Column<DateTime>(name: "Data_Time", type: "datetime2", nullable: false),
-                    DataLatitude = table.Column<long>(name: "Data_Latitude", type: "bigint", nullable: false),
-                    DataLongitude = table.Column<long>(name: "Data_Longitude", type: "bigint", nullable: false)
+                    DataLatitude = table.Column<double>(name: "Data_Latitude", type: "float", nullable: false),
+                    DataLongitude = table.Column<double>(name: "Data_Longitude", type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

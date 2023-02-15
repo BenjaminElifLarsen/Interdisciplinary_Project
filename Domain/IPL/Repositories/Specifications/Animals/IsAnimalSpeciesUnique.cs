@@ -8,11 +8,11 @@ internal class IsAnimalSpeciesUnique : ISpecification<Animalia>
 
     public IsAnimalSpeciesUnique(string species)
     {
-        _species = species;
+        _species = species.ToLower();
     }
 
     public bool IsSatisfiedBy(Animalia candidate)
     {
-        return !string.Equals(candidate.Species, _species);
+        return !string.Equals(candidate.Species.ToLower(), _species);
     }
 }

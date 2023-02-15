@@ -8,11 +8,11 @@ internal class IsPlantSpeciesUnique : ISpecification<Plantae> //could use the ba
 
     public IsPlantSpeciesUnique(string species)
     {
-        _species = species;
+        _species = species.ToLower();
     }
 
     public bool IsSatisfiedBy(Plantae candidate)
     {
-        return !string.Equals(candidate.Species, _species);
+        return !string.Equals(candidate.Species.ToLower(), _species);
     }
 }

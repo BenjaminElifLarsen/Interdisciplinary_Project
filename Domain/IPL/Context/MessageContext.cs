@@ -20,7 +20,7 @@ public sealed class MessageContext : DbContext
         modelBuilder.Entity<Message>()
             .OwnsOne(e => e.Data);
         modelBuilder.Entity<Message>()
-            .OwnsOne(e => e.User);
+            .OwnsOne(e => e.Author);
         modelBuilder.Entity<Message>()
             .OwnsOne(e => e.Eukaryote);
         // Indexes

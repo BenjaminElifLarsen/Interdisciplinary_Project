@@ -13,6 +13,6 @@ internal class ByUserId : ISpecification<Message>
 
     public bool IsSatisfiedBy(Message candidate)
     {
-        return candidate.User.UserUserId == _userId;
+        return candidate.Author.AuthorUserId == _userId;
     }
 }

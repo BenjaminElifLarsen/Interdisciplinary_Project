@@ -45,6 +45,22 @@ namespace Domain.IPL.Migrations.Message
 
             modelBuilder.Entity("Domain.DL.Models.MessageModels.Message", b =>
                 {
+                    b.OwnsOne("Domain.DL.Models.MessageModels.ValueObjects.Author", "Author", b1 =>
+                        {
+                            b1.Property<int>("MessageId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("AuthorUserId")
+                                .HasColumnType("int");
+
+                            b1.HasKey("MessageId");
+
+                            b1.ToTable("Messages");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MessageId");
+                        });
+
                     b.OwnsOne("Domain.DL.Models.MessageModels.ValueObjects.Eukaryote", "Eukaryote", b1 =>
                         {
                             b1.Property<int>("MessageId")
@@ -107,21 +123,8 @@ namespace Domain.IPL.Migrations.Message
                                 .HasForeignKey("MessageId");
                         });
 
-                    b.OwnsOne("Domain.DL.Models.MessageModels.ValueObjects.User", "User", b1 =>
-                        {
-                            b1.Property<int>("MessageId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("UserUserId")
-                                .HasColumnType("int");
-
-                            b1.HasKey("MessageId");
-
-                            b1.ToTable("Messages");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MessageId");
-                        });
+                    b.Navigation("Author")
+                        .IsRequired();
 
                     b.Navigation("Data")
                         .IsRequired();
@@ -130,9 +133,6 @@ namespace Domain.IPL.Migrations.Message
                         .IsRequired();
 
                     b.Navigation("Likes");
-
-                    b.Navigation("User")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

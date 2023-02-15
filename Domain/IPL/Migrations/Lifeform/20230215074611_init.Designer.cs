@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.IPL.Migrations.Lifeform
 {
     [DbContext(typeof(LifeformContext))]
-    [Migration("20230207115556_init")]
+    [Migration("20230215074611_init")]
     partial class init
     {
         /// <inheritdoc />

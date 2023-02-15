@@ -34,6 +34,10 @@ public sealed class RecogniseAnimal : RecogniseLifeform
         IsItABird = isBird;
     }
 
+    public static RecogniseAnimal CreateTestObject(byte maxOffspring, byte minOffspring, bool isBird, string species)
+    {
+        return new(maxOffspring, minOffspring, isBird, species);
+    }
 }
 
 public sealed class RecognisePlant : RecogniseLifeform
@@ -48,5 +52,10 @@ public sealed class RecognisePlant : RecogniseLifeform
     internal RecognisePlant(double possibleMaximumHeight, string species) : base(species)
     {
         PossibleMaximumHeight = possibleMaximumHeight;
+    }
+
+    public static RecognisePlant CreateTestObject(double possibleMaximumHeight, string species)
+    {
+        return new(possibleMaximumHeight, species);
     }
 }

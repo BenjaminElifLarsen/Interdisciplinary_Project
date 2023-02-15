@@ -27,8 +27,6 @@ mention that because of the eukaryote tpc mapping that no navigation is mapped b
 explain that in a proper ddd these 'lesser'-versions would have their own repositories and not be value objects (and why for this)
 
 
-
-
 ---- ---- ----
 
 cd .\Domain\; 

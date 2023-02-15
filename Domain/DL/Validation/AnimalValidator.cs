@@ -59,6 +59,11 @@ public sealed class AnimalValidationData
 	{
 		Species = species;
 	}
+
+	public static AnimalValidationData CreateTestObject(IEnumerable<string> species)
+	{
+		return new(species.Select(x => new LifeformSpecies(x)));
+	}
 }
 
 public sealed class AnimalChangeValidationData

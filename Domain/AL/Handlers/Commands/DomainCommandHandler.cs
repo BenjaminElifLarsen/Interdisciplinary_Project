@@ -185,7 +185,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         {
             _unitOfWork.MessageRepository.DeleteMessage(entity);
 
-            var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(entity.User.UserUserId).Result;
+            var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(entity.Author.AuthorUserId).Result;
             entityUser.RemoveMessage(command.MessageId);
             _unitOfWork.UserRepository.UpdateUser(entityUser);
             var entityLifeform = _unitOfWork.AnimalRepository.GetForOperationAsync(entity.Eukaryote.EukaryoteEukaryoteId).Result as Eukaryote ?? _unitOfWork.PlantRepository.GetForOperationAsync(entity.Eukaryote.EukaryoteEukaryoteId).Result;

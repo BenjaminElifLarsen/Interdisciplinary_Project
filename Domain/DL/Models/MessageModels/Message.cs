@@ -8,7 +8,7 @@ public sealed class Message : IAggregateRoot<int> //could add soft delete to thi
     private int _id;
     private Eukaryote _eukaryote;
     private ObservationTimeAndLocation _data;
-    private User _user;
+    private Author _author;
     private string _text;
     private string _title;
 
@@ -21,7 +21,7 @@ public sealed class Message : IAggregateRoot<int> //could add soft delete to thi
     public string Text { get => _text; private set => _text = value; }
     public string Title { get => _title; private set => _title = value; }
     public Eukaryote Eukaryote { get => _eukaryote; private set => _eukaryote = value; } 
-    public User User { get => _user; private set => _user = value; }
+    public Author Author { get => _author; private set => _author = value; }
     public IEnumerable<Like> Likes => _likes;
     public ObservationTimeAndLocation Data { get => _data; private set => _data = value; }
 
@@ -30,9 +30,9 @@ public sealed class Message : IAggregateRoot<int> //could add soft delete to thi
 
     }
 
-    public Message(string title, string text, int userId, int eukaryoteId, ObservationTimeAndLocation data)
+    public Message(string title, string text, int authorId, int eukaryoteId, ObservationTimeAndLocation data)
     {
-        _user = new(userId);
+        _author = new(authorId);
         _data = data;
         _eukaryote = new(eukaryoteId);
         _title = title;
@@ -41,7 +41,7 @@ public sealed class Message : IAggregateRoot<int> //could add soft delete to thi
 
     internal void AddLike(int userId)
     {
-        if(userId != _user.UserUserId)
+        if(userId != _author.AuthorUserId)
             _likes.Add(new(userId, _id));
     }
 
