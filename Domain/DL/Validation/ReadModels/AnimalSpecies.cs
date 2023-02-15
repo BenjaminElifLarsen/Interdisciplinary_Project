@@ -3,7 +3,7 @@ using Shared.CQRS.Queries;
 using System.Linq.Expressions;
 
 namespace Domain.DL.Validation.ReadModels;
-internal class AnimalSpecies : BaseReadModel
+public class AnimalSpecies : BaseReadModel
 {
     public string Species { get; set; }
 
@@ -13,7 +13,7 @@ internal class AnimalSpecies : BaseReadModel
 	}
 }
 
-internal class AnimalSpeciesQuery : BaseQuery<Animalia, LifeformSpecies>
+public class AnimalSpeciesQuery : BaseQuery<Animalia, LifeformSpecies>
 {
     public override Expression<Func<Animalia, LifeformSpecies>> Map()
     {

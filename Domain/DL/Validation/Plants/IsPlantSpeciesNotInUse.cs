@@ -14,6 +14,6 @@ internal sealed class IsPlantSpeciesNotInUse : ISpecification<RecognisePlant>
 
     public bool IsSatisfiedBy(RecognisePlant candidate)
     {
-        return candidate.Species is not null && !_species.Any(x => string.Equals(x.Species, candidate.Species));
+        return candidate.Species is not null && !_species.Any(x => string.Equals(x.Species.ToLower(), candidate.Species.ToLower()));
     }
 }

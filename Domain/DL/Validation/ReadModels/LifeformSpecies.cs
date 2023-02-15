@@ -1,9 +1,7 @@
-﻿using Domain.DL.Models.LifeformModels;
-using Shared.CQRS.Queries;
-using System.Linq.Expressions;
+﻿using Shared.CQRS.Queries;
 
 namespace Domain.DL.Validation.ReadModels;
-internal class LifeformSpecies : BaseReadModel
+public class LifeformSpecies : BaseReadModel
 {
     public string Species { get; set; }
 
