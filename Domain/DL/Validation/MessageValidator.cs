@@ -39,4 +39,9 @@ public sealed class MessageValidationData
         UserIds = userIds;
         EukaryoteIds = eukaryoteIds;
     }
+
+    public static MessageValidationData CreateTestObject(IEnumerable<int> userIds, IEnumerable<int> eukaryoteIds)
+    {
+        return new(userIds.Select(x => new UserId(x)),eukaryoteIds.Select(x => new LifeformId(x)));
+    }
 }
