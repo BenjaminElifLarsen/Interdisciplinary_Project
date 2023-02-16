@@ -13,8 +13,8 @@ Future<List<MessageListItem>> fetchMessages() async {
 }
 
 Future<MessageDetails> fetchMessage(int id) async {
-  final response = await http.get((Uri.parse(
-      "https://localhost:7107/Message/Details?id=$id"))); //catch the cases the body is empty
+  final response = await http.get(Uri.parse(
+      "https://localhost:7107/Message/Details?id=$id")); //catch the cases the body is empty
   print(response);
   return _parseMessageDetails(response.body);
 }

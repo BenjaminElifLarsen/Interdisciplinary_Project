@@ -20,7 +20,7 @@ public class LifeformController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost(nameof(AllPlants))]
+    [HttpGet(nameof(AllPlants))]
     public async Task<IActionResult> AllPlants()
     {
         var result = await _lifeformService.AllPlantsAsync();
@@ -28,7 +28,7 @@ public class LifeformController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost(nameof(AllAnimals))]
+    [HttpGet(nameof(AllAnimals))]
     public async Task<IActionResult> AllAnimals()
     {
         var result = await _lifeformService.AllAnimalsAsync();

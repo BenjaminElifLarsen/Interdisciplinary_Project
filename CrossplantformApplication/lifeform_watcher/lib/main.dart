@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifeform_watcher/features/lifeforms/lifeform_feed_page.dart';
 import 'package:lifeform_watcher/features/observation/observation.dart';
 import 'package:lifeform_watcher/features/overview/overview.dart';
 import 'package:lifeform_watcher/models/messages/request/message_post.dart';
@@ -70,6 +71,15 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         page = ObservationPage();
         break;
+      case 2:
+        page = LifeformFeedPage();
+        break;
+      case 3:
+        page = Placeholder();
+        break;
+      case 4:
+        page = Placeholder();
+        break;
       default:
         throw UnimplementedError("$selectedIndex");
     }
@@ -91,6 +101,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(
                     icon: Icon(Icons.add_alarm),
                     label: Text("Lav Observation"),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.add_business),
+                    label: Text("Livsform feed"),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.post_add),
+                    label: Text("Opret Dyr"),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.post_add),
+                    label: Text("Opret Plante"),
                   ),
                 ],
                 selectedIndex: selectedIndex,
