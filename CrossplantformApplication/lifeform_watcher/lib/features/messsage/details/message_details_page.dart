@@ -2,12 +2,22 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lifeform_watcher/models/messages/message_details.dart';
+import 'package:lifeform_watcher/models/messages/request/message_like.dart';
 import 'package:lifeform_watcher/services/message_service.dart';
 
-class MessageDetailsPage extends StatelessWidget {
-  const MessageDetailsPage({super.key, required this.id});
+class MessageDetailsPage extends StatefulWidget {
+  MessageDetailsPage({super.key, required this.id});
 
   final id;
+
+  @override
+  State<MessageDetailsPage> createState() => _MessageDetailsPageState();
+}
+
+class _MessageDetailsPageState extends State<MessageDetailsPage> {
+  Future<bool>? futureLike;
+  MessageLike? request;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +25,7 @@ class MessageDetailsPage extends StatelessWidget {
       body: Center(
         child: Column(children: [
           FutureBuilder<MessageDetails>(
-            future: fetchMessage(id),
+            future: fetchMessage(widget.id),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return const Center(
@@ -35,9 +45,37 @@ class MessageDetailsPage extends StatelessWidget {
                 Navigator.pop(context);
               },
               child: Text("Message Overview")),
+          (futureLike == null) ? likePost() : buildFutureBuilder(),
         ]),
       ),
     );
+  }
+
+  ElevatedButton likePost() {
+    request = MessageLike(userId: 2, messageId: widget.id);
+    return ElevatedButton(
+        onPressed: () {
+          print('like');
+          setState(() {
+            futureLike = postLike(request!);
+          });
+        },
+        child: Icon(Icons.post_add));
+  }
+
+  FutureBuilder<bool> buildFutureBuilder() {
+    return FutureBuilder<bool>(
+        future: futureLike,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            print(snapshot.error);
+            return Text("Errored");
+          } else if (snapshot.hasData) {
+            return Text("Posted");
+          } else {
+            return const CircularProgressIndicator();
+          }
+        });
   }
 }
 

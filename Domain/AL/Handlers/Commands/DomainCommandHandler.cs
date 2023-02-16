@@ -68,7 +68,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(command.UserId).Result;
         if(entityUser is null)
         {
-            return new InvalidNoDataResult("User not founbd.");
+            return new InvalidNoDataResult("User not found.");
         }
         entityMessage.AddLike(command.UserId);
         entityUser.AddLike(command.MessageId);

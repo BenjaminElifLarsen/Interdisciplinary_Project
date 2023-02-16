@@ -41,7 +41,7 @@ public sealed class Message : IAggregateRoot<int> //could add soft delete to thi
 
     internal void AddLike(int userId)
     {
-        if(userId != _author.AuthorUserId)
+        if(userId != _author.AuthorUserId && !_likes.Any(x => x.UserId == userId))
             _likes.Add(new(userId, _id));
     }
 

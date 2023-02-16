@@ -95,12 +95,15 @@ class _ObservationPageState extends State<ObservationPage> {
               hintText: "Enter LifeformId",
             ),
             validator: (String? value) {
-              var valCasted = int.tryParse(value!);
-              if (value == null || value.isEmpty || valCasted == null) {
+              if (value == null || value.isEmpty) {
                 //figure out how to try parse to double
-                return 'Please enter valid text';
+                return 'Please enter a valid number';
               }
 
+              var valCasted = int.tryParse(value!);
+              if (valCasted == null) {
+                return 'Please enter a valid number';
+              }
               return null;
             },
           ),

@@ -22,7 +22,7 @@ class MessageDetails {
   factory MessageDetails.fromJson(Map<String, dynamic> json) {
     return MessageDetails(
         likes: json['likes'],
-        user: json['user'],
+        user: json['author'],
         lifeformId: json['lifeformId'],
         latitude: json['latitude'] +
             0.0, //solves bug caused by latitude and longtitude in very few cases they are ints

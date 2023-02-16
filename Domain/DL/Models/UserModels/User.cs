@@ -37,7 +37,7 @@ public sealed class User : IAggregateRoot<int>
 
     public void AddLike(int messageId)
     {
-        if (!_messages.Any(x => x.MessageMessageId == messageId))
+        if (!_messages.Any(x => x.MessageMessageId == messageId) && !_likes.Any(x => x.MessageId == messageId))
             _likes.Add(new(_id, messageId));
     }
 

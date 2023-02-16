@@ -32,7 +32,7 @@ public class PostMessage
     }
 
     [Fact]
-    public void FailedOnLifeformPostTest()
+    public void FailedOnLifeformPostTest() //tests the message like and user like at some point, just directly using the objects, so not through the handlers
     {
         IMessageFactory factory = new MessageFactory();
         var request = Domain.DL.CQRS.Commands.Messages.PostMessage.CreateTestObject(1, 1, DateTime.Now, 12.1, 12.2, "Title", "Text");
