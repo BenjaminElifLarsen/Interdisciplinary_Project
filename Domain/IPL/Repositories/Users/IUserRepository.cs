@@ -10,5 +10,4 @@ public interface IUserRepository
     public Task<User> GetForOperationAsync(int id);
     public Task<bool> IsLoginInformationCorrectAsync(string username, string password);
     public Task<IEnumerable<TMapping>> AllAsync<TMapping>(BaseQuery<User, TMapping> query) where TMapping : BaseReadModel;
-    public Task<IEnumerable<User>> GetUsersThatHaveLikedAMessageForOperation(int messageId);
 }

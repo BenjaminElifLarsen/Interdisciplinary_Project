@@ -31,6 +31,6 @@ internal sealed class MessageDetailsQuery : BaseQuery<Message, MessageDetails>
 {
     public override Expression<Func<Message, MessageDetails>> Map()
     {
-        return e => new(e.Likes.Count(), e.Author.Id, e.Eukaryote.Id, e.Latitude, e.Longtitude, e.ObservationMoment, e.Title, e.Text);
+        return e => new(e.Likes.Count(), e.AuthorId, e.EukaryoteId, e.Latitude, e.Longtitude, e.ObservationMoment, e.Title, e.Text);
     }
 }

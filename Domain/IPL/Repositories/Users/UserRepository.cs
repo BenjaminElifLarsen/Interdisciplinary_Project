@@ -35,10 +35,6 @@ public class UserRepository : IUserRepository
         return await _repository.FindByPredicateForOperationAsync(new ByUserId(id));
     }
 
-    public async Task<IEnumerable<User>> GetUsersThatHaveLikedAMessageForOperation(int messageId)
-    { // will need a specification for this, return true if user.Likes contain a specific messageId
-        return await _repository.AllByPredicateForOperationAsync(new ByLikedMessageId(messageId));
-    }
 
     public async Task<bool> IsLoginInformationCorrectAsync(string username, string password)
     {

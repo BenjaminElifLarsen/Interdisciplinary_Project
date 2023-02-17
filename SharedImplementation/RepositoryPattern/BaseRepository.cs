@@ -52,7 +52,9 @@ public class BaseRepository<TEntity, TId, TContext> : IBaseRepository<TEntity, T
 
     public async Task<TEntity> FindByPredicateForOperationAsync(ISpecification<TEntity> predicate, params Expression<Func<TEntity, object>>[] includes)
     {
-        return (await _entities.ToArrayAsync()).Where(x => predicate.IsSatisfiedBy(x)).SingleOrDefault();
+        var query = _entities.AsQueryable();
+        query = includes.Aggregate(query, (source, include) => source.Include(include));
+        return (await query.ToArrayAsync()).Where(x => predicate.IsSatisfiedBy(x)).SingleOrDefault();
     }
 
     public async Task<bool> IsUniqueAsync(ISpecification<TEntity> predicate)

@@ -1,5 +1,4 @@
-﻿
-using Domain.AL.Services.Messages.Queries.GetSingle;
+﻿using Domain.AL.Services.Messages.Queries.GetSingle;
 using Shared.ResultPattern.Abstract;
 using Shared.ResultPattern.NotFound;
 using Shared.ResultPattern.Success;

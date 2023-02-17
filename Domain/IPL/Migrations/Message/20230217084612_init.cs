@@ -15,8 +15,7 @@ namespace Domain.IPL.Migrations.Message
                 name: "Authors",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -29,7 +28,6 @@ namespace Domain.IPL.Migrations.Message
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {

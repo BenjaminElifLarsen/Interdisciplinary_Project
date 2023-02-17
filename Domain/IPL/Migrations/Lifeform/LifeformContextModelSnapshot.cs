@@ -68,60 +68,6 @@ namespace Domain.IPL.Migrations.Lifeform
 
                     b.ToTable("Plantae");
                 });
-
-            modelBuilder.Entity("Domain.DL.Models.LifeformModels.Animalia", b =>
-                {
-                    b.OwnsMany("Domain.DL.Models.LifeformModels.ValueObjects.AnimalMessage", "Messages", b1 =>
-                        {
-                            b1.Property<int>("AnimaliaId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int");
-
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
-
-                            b1.Property<int>("MessageMessageId")
-                                .HasColumnType("int");
-
-                            b1.HasKey("AnimaliaId", "Id");
-
-                            b1.ToTable("Animalia_Messages", (string)null);
-
-                            b1.WithOwner()
-                                .HasForeignKey("AnimaliaId");
-                        });
-
-                    b.Navigation("Messages");
-                });
-
-            modelBuilder.Entity("Domain.DL.Models.LifeformModels.Plantae", b =>
-                {
-                    b.OwnsMany("Domain.DL.Models.LifeformModels.ValueObjects.PlantMessage", "Messages", b1 =>
-                        {
-                            b1.Property<int>("PlantaeId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int");
-
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
-
-                            b1.Property<int>("MessageMessageId")
-                                .HasColumnType("int");
-
-                            b1.HasKey("PlantaeId", "Id");
-
-                            b1.ToTable("Plantae_Messages", (string)null);
-
-                            b1.WithOwner()
-                                .HasForeignKey("PlantaeId");
-                        });
-
-                    b.Navigation("Messages");
-                });
 #pragma warning restore 612, 618
         }
     }

@@ -10,6 +10,7 @@ public sealed record Lifeform : IAggregateRoot<int>
     public int Id { get => _id; private set => _id = value; }
     public IEnumerable<Message> Messages => _messages;
 
+
     private Lifeform()
     {
 
@@ -20,4 +21,15 @@ public sealed record Lifeform : IAggregateRoot<int>
         _id = id;
         _messages = new();
     }
+
+    internal void AddMessage(Message message)
+    {
+        _messages.Add(message);
+    }
+
+    internal void RemoveMessage(Message message)
+    {
+        _messages.Remove(message);
+    }
+
 }

@@ -3,10 +3,7 @@ using Domain.DL.CQRS.Commands.Messages;
 using Domain.DL.CQRS.Commands.Users;
 using Domain.DL.Errors;
 using Domain.DL.Factories;
-using Domain.DL.Models.LifeformModels;
 using Domain.DL.Models.MessageModels;
-using Domain.DL.Models.MessageModels.ValueObjects;
-using Domain.DL.Models.UserModels;
 using Domain.DL.Validation;
 using Domain.DL.Validation.ReadModels;
 using Domain.IPL.Services;
@@ -35,7 +32,6 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(PostMessage command)
     {
-        throw new NotImplementedException();
         var userIds = _unitOfWork.UserRepository.AllAsync(new UserIdQuery()).Result;
         var animalIds = _unitOfWork.AnimalRepository.AllAsync(new AnimalIdQuery()).Result;
         var plantIds = _unitOfWork.PlantRepository.AllAsync(new PlantIdQuery()).Result;
@@ -44,15 +40,15 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         if (result is SuccessResult<Message>)
         {
             _unitOfWork.MessageRepository.AddMessage(result.Data);
-            _unitOfWork.Save();
+            //_unitOfWork.Save();
 
-            var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(command.UserId).Result;
-            var entityEukaryote = _unitOfWork.PlantRepository.GetForOperationAsync(command.EukaryoteId).Result as Eukaryote ?? _unitOfWork.AnimalRepository.GetForOperationAsync(command.EukaryoteId).Result;
+            var entityUser = _unitOfWork.MessageAuthorRepository.GetForOperationAsync(command.UserId).Result;
+            var entityEukaryote = _unitOfWork.MessageLifeformRepository.GetForOperationAsync(command.EukaryoteId).Result ;
 
-            //entityUser.AddMessage(result.Data.Id);
-            entityEukaryote.AddMessage(result.Data.Id);
-            _unitOfWork.UserRepository.UpdateUser(entityUser);
-            _unitOfWork.LifeformRepository.UpdateLifeform(entityEukaryote);
+            entityUser.AddMessage(result.Data);
+            entityEukaryote.AddMessage(result.Data);
+            _unitOfWork.MessageAuthorRepository.Update(entityUser);
+            _unitOfWork.MessageLifeformRepository.Update(entityEukaryote);
             _unitOfWork.Save();
             return new SuccessNoDataResult();
         }
@@ -61,21 +57,20 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(LikeMessage command)
     {
-        throw new NotImplementedException();
         var entityMessage = _unitOfWork.MessageRepository.GetForOperationAsync(command.MessageId).Result;
         if (entityMessage is null)
         {
             return new InvalidNoDataResult("Message not found.");
         }
-        var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(command.UserId).Result;
+        var entityUser = _unitOfWork.MessageAuthorRepository.GetForOperationAsync(command.UserId).Result;
         if(entityUser is null)
         {
             return new InvalidNoDataResult("User not found.");
         }
         entityMessage.AddLike(command.UserId);
-        //entityUser.AddLike(command.MessageId);
+        entityUser.AddLike(command.MessageId);
         _unitOfWork.MessageRepository.UpdateMessage(entityMessage);
-        _unitOfWork.UserRepository.UpdateUser(entityUser);
+        _unitOfWork.MessageAuthorRepository.Update(entityUser);
         _unitOfWork.Save();
         return new SuccessNoDataResult();
     }
@@ -88,6 +83,8 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         if (result is SuccessResult<User>)
         {
             _unitOfWork.UserRepository.AddUser(result.Data);
+            _unitOfWork.Save();
+            _unitOfWork.MessageAuthorRepository.Add(new(result.Data.Id, result.Data.Username));
             _unitOfWork.Save();
             return new SuccessNoDataResult();
         }
@@ -104,6 +101,8 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         {
             _unitOfWork.LifeformRepository.AddLifeform(result.Data);
             _unitOfWork.Save();
+            _unitOfWork.MessageLifeformRepository.Add(new(result.Data.Id));
+            _unitOfWork.Save();
             return new SuccessNoDataResult();
         }
         return new InvalidNoDataResult(result.Errors);
@@ -119,6 +118,8 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         {
             _unitOfWork.LifeformRepository.AddLifeform(result.Data);
             _unitOfWork.Save();
+            _unitOfWork.MessageLifeformRepository.Add(new(result.Data.Id));
+            _unitOfWork.Save();
             return new SuccessNoDataResult();
         }
         return new InvalidNoDataResult(result.Errors);
@@ -132,11 +133,13 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
             return new SuccessNoDataResult();
         }
         //if Eukaryote message count is not zero it should be unable to remove it.
-        if (entity.BeenObservered)
+        var lifeformEntity = _unitOfWork.MessageLifeformRepository.GetForOperationAsync(command.Id).Result;
+        if (lifeformEntity.Messages.Any())
         {
-            return new InvalidNoDataResult("Cannot remove as it has been observered.");
+            return new InvalidNoDataResult("Cannot remove lifeform with observation");
         }
         _unitOfWork.LifeformRepository.RemoveLifeform(entity);
+        _unitOfWork.MessageLifeformRepository.Delete(lifeformEntity);
         _unitOfWork.Save();
         return new SuccessNoDataResult();
     }
@@ -182,24 +185,23 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(HideMessage command)
     {
-        throw new NotImplementedException();
         var entity = _unitOfWork.MessageRepository.GetForOperationAsync(command.MessageId).Result;
         if(entity is not null)
         {
             _unitOfWork.MessageRepository.DeleteMessage(entity);
 
-            var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(entity.Author.Id).Result;
-            //entityUser.RemoveMessage(command.MessageId);
-            _unitOfWork.UserRepository.UpdateUser(entityUser);
-            var entityLifeform = _unitOfWork.AnimalRepository.GetForOperationAsync(entity.Eukaryote.Id).Result as Eukaryote ?? _unitOfWork.PlantRepository.GetForOperationAsync(entity.Eukaryote.Id).Result;
-            entityLifeform.RemoveMessage(command.MessageId);
-            _unitOfWork.LifeformRepository.UpdateLifeform(entityLifeform);
+            var entityUser = _unitOfWork.MessageAuthorRepository.GetForOperationAsync(entity.Author.Id).Result;
+            entityUser.RemoveMessage(entity);
+            _unitOfWork.MessageAuthorRepository.Update(entityUser);
+            var entityLifeform = _unitOfWork.MessageLifeformRepository.GetForOperationAsync(entity.Eukaryote.Id).Result;
+            entityLifeform.RemoveMessage(entity);
+            _unitOfWork.MessageLifeformRepository.Update(entityLifeform);
 
-            var entityUsers = _unitOfWork.UserRepository.GetUsersThatHaveLikedAMessageForOperation(command.MessageId).Result.ToArray();
+            var entityUsers = _unitOfWork.MessageAuthorRepository.GetUsersThatHaveLikedAMessageForOperation(command.MessageId).Result.ToArray();
             for(int i = 0; i < entityUsers.Count(); i++) //in proper ddd the message would know of all its likes, so user ids would have been known, thus meaning it would not be required to check all users
             {
-                //entityUsers[i].RemoveLike(command.MessageId);
-                _unitOfWork.UserRepository.UpdateUser(entityUsers[i]);
+                entityUsers[i].RemoveLike(command.MessageId);
+                _unitOfWork.MessageAuthorRepository.Update(entityUsers[i]);
             }
 
             _unitOfWork.Save();

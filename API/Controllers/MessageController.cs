@@ -37,4 +37,8 @@ public class MessageController : ControllerBase
 
 	[HttpPost("Remove")]
 	public async Task<IActionResult> HideMessage([FromBody] HideMessage request) => this.FromResult(await _messageService.HideMessageAsync(request));
+
+	[AllowAnonymous]
+	[HttpGet("Author/MessageDetails")]
+	public async Task<IActionResult> AuthorMessageDetails([FromQuery] int id) => this.FromResult(await _messageService.AuthorForMessageAsync(id));
 }

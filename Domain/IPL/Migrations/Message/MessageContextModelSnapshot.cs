@@ -25,10 +25,7 @@ namespace Domain.IPL.Migrations.Message
             modelBuilder.Entity("Domain.DL.Models.MessageModels.Author", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -39,13 +36,10 @@ namespace Domain.IPL.Migrations.Message
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("Domain.DL.Models.MessageModels.Eukaryote", b =>
+            modelBuilder.Entity("Domain.DL.Models.MessageModels.Lifeform", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.HasKey("Id");
 
@@ -121,7 +115,7 @@ namespace Domain.IPL.Migrations.Message
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.DL.Models.MessageModels.Eukaryote", "Eukaryote")
+                    b.HasOne("Domain.DL.Models.MessageModels.Lifeform", "Eukaryote")
                         .WithMany("Messages")
                         .HasForeignKey("EukaryoteId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -186,7 +180,7 @@ namespace Domain.IPL.Migrations.Message
                     b.Navigation("Messages");
                 });
 
-            modelBuilder.Entity("Domain.DL.Models.MessageModels.Eukaryote", b =>
+            modelBuilder.Entity("Domain.DL.Models.MessageModels.Lifeform", b =>
                 {
                     b.Navigation("Messages");
                 });

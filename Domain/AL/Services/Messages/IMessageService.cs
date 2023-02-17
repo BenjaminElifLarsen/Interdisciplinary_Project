@@ -1,4 +1,5 @@
 ﻿using Domain.AL.Services.Messages.Queries.GetAll;
+using Domain.AL.Services.Messages.Queries.GetAuthorDetails;
 using Domain.AL.Services.Messages.Queries.GetOwn;
 using Domain.AL.Services.Messages.Queries.GetSingle;
 using Domain.DL.CQRS.Commands.Messages;
@@ -14,4 +15,5 @@ public interface IMessageService
     public Task<Result<IEnumerable<OwnMessageListItem>>> OwnMessagesAsync(int userId);
     public Task<Result<IEnumerable<MessageListItem>>> AllMessagesAsync();
     public Task<Result<MessageDetails>> MessageDetailsAsync(int id);
+    public Task<Result<AutherDetailsForMessage>> AuthorForMessageAsync(int id);
 }

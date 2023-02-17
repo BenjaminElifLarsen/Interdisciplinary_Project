@@ -18,10 +18,6 @@ public sealed class LifeformContext : DbContext
         //modelBuilder.Entity<Plantae>().UseTpcMappingStrategy();
 
         // Value objects
-        modelBuilder.Entity<Plantae>()
-            .OwnsMany(e => e.Messages, e => { e.ToTable("Plantae_Messages"); });
-        modelBuilder.Entity<Animalia>()
-            .OwnsMany(e => e.Messages, e => { e.ToTable("Animalia_Messages"); });
 
         // Indexes
     }
