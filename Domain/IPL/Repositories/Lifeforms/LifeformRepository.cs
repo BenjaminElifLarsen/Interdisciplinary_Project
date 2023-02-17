@@ -1,7 +1,7 @@
 ﻿using Domain.DL.Models.LifeformModels;
 using Shared.RepositoryPattern;
 
-namespace Domain.IPL.Repositories;
+namespace Domain.IPL.Repositories.Lifeforms;
 public class LifeformRepository : ILifeformRepository
 {
     private readonly IBaseRepository<Animalia, int> _animalRepository;
@@ -15,11 +15,11 @@ public class LifeformRepository : ILifeformRepository
 
     public void AddLifeform(Eukaryote entity)
     {
-        if(entity is Animalia)
+        if (entity is Animalia)
         {
             _animalRepository.Create(entity as Animalia);
         }
-        else if (entity is Plantae) 
+        else if (entity is Plantae)
         {
             _plantRepository.Create(entity as Plantae);
         }

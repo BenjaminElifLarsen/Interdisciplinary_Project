@@ -2,7 +2,7 @@
 using Shared.SpecificationPattern;
 
 namespace Domain.IPL.Repositories.Specifications.Messasges;
-internal class ByUserId : ISpecification<Message>
+internal class ByUserId : ISpecification<Message>, ISpecification<Author>
 {
     private readonly int _userId;
 
@@ -13,6 +13,11 @@ internal class ByUserId : ISpecification<Message>
 
     public bool IsSatisfiedBy(Message candidate)
     {
-        return candidate.Author.AuthorUserId == _userId;
+        return candidate.Author.Id == _userId;
+    }
+
+    public bool IsSatisfiedBy(Author candidate)
+    {
+        return candidate.Id == _userId;
     }
 }

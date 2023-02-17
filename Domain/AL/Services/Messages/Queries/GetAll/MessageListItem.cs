@@ -23,6 +23,6 @@ internal sealed class MessageListQuery : BaseQuery<Message, MessageListItem>
 {
     public override Expression<Func<Message, MessageListItem>> Map()
     {
-        return e => new(e.Id, e.Eukaryote.EukaryoteEukaryoteId, e.Title, e.GetShortenText(40));
+        return e => new(e.Id, e.Eukaryote.Id, e.Title, e.GetShortenText(40));
     } 
 }

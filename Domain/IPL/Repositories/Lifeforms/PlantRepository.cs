@@ -3,7 +3,7 @@ using Domain.IPL.Repositories.Specifications.Plants;
 using Shared.CQRS.Queries;
 using Shared.RepositoryPattern;
 
-namespace Domain.IPL.Repositories;
+namespace Domain.IPL.Repositories.Lifeforms;
 public class PlantRepository : IPlantRepository
 {
     private readonly IBaseRepository<Plantae, int> _repository;

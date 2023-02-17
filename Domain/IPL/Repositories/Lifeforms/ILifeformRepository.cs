@@ -1,6 +1,6 @@
 ﻿using Domain.DL.Models.LifeformModels;
 
-namespace Domain.IPL.Repositories;
+namespace Domain.IPL.Repositories.Lifeforms;
 /// <summary>
 /// Used to add, remove, and update animals and plants
 /// </summary>

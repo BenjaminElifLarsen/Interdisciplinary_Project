@@ -9,20 +9,13 @@ public sealed class User : IAggregateRoot<int>
     private string _userName;
     private string _hashedPassword;
 
-    private HashSet<Message> _messages;
-    private HashSet<Like> _likes;
-
     public int Id { get => _id; private set => _id = value; }
     public Name Name { get => _name; private set => _name = value; }
     public string FirstName => _name.FirstName;
     public string LastName => _name.LastName;
     public string Username { get => _userName; private set => _userName = value; }
     public string HashedPassword { get => _hashedPassword; private set => _hashedPassword = value; }
-    /// <summary>
-    /// Own messages.
-    /// </summary>
-    public IEnumerable<Message> Messages => _messages;
-    public IEnumerable<Like> Likes => _likes;
+
 
     private User()
     {
@@ -34,30 +27,7 @@ public sealed class User : IAggregateRoot<int>
         _name = name;
         _userName = username;
         _hashedPassword = hashedPassword;
-        _messages = new();
-        _likes = new();
     }
     //In a proper domain driven design there would be methods for adding and removing messages as there would be no direct relationship between the two models, they would only know of the ids of each other, nothing more.
 
-    public void AddLike(int messageId)
-    {
-        if (!_messages.Any(x => x.MessageMessageId == messageId) && !_likes.Any(x => x.MessageId == messageId))
-            _likes.Add(new(_id, messageId));
-    }
-
-    public void RemoveLike(int messageId)
-    {
-        if (!_messages.Any(x => x.MessageMessageId == messageId))
-            _likes.Remove(_likes.SingleOrDefault(x => x.MessageId == messageId));
-    }
-
-    public void AddMessage(int messageId)
-    {
-        _messages.Add(new(messageId));
-    }
-
-    public void RemoveMessage(int messageId)
-    {
-        _messages.Remove(_messages.SingleOrDefault(x => x.MessageMessageId == messageId));
-    }
 }

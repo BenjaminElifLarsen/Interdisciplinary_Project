@@ -5,7 +5,7 @@ using Shared.CQRS.Queries;
 using Shared.Encryption;
 using Shared.RepositoryPattern;
 
-namespace Domain.IPL.Repositories;
+namespace Domain.IPL.Repositories.Users;
 public class UserRepository : IUserRepository
 {
     private readonly IBaseRepository<User, int> _repository;
@@ -42,7 +42,7 @@ public class UserRepository : IUserRepository
 
     public async Task<bool> IsLoginInformationCorrectAsync(string username, string password)
     {
-        var user = await _repository.FindByPredicateAsync(new ByUserUsername(username), new UserHashedPasswordQuery()); 
+        var user = await _repository.FindByPredicateAsync(new ByUserUsername(username), new UserHashedPasswordQuery());
         if (user is null) return false;
         char[] salt = user.HashedPassword[..44].Select(s => s).ToArray(); // Need more than the 32 byte in the salt since it is stored in base64
         string hashedPassword = PasswordEncryption.HashAndSalt(password, Convert.FromBase64String(new string(salt)));

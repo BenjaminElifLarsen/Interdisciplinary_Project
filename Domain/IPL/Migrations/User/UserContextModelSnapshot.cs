@@ -44,52 +44,6 @@ namespace Domain.IPL.Migrations.User
 
             modelBuilder.Entity("Domain.DL.Models.UserModels.User", b =>
                 {
-                    b.OwnsMany("Domain.DL.Models.UserModels.ValueObjects.Like", "Likes", b1 =>
-                        {
-                            b1.Property<int>("UserId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int");
-
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
-
-                            b1.Property<int>("MessageId")
-                                .HasColumnType("int");
-
-                            b1.HasKey("UserId", "Id");
-
-                            b1.ToTable("User_Likes", (string)null);
-
-                            b1.WithOwner("User")
-                                .HasForeignKey("UserId");
-
-                            b1.Navigation("User");
-                        });
-
-                    b.OwnsMany("Domain.DL.Models.UserModels.ValueObjects.Message", "Messages", b1 =>
-                        {
-                            b1.Property<int>("UserId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int");
-
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
-
-                            b1.Property<int>("MessageMessageId")
-                                .HasColumnType("int");
-
-                            b1.HasKey("UserId", "Id");
-
-                            b1.ToTable("User_Messages", (string)null);
-
-                            b1.WithOwner()
-                                .HasForeignKey("UserId");
-                        });
-
                     b.OwnsOne("Domain.DL.Models.UserModels.ValueObjects.Name", "Name", b1 =>
                         {
                             b1.Property<int>("UserId")
@@ -110,10 +64,6 @@ namespace Domain.IPL.Migrations.User
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
                         });
-
-                    b.Navigation("Likes");
-
-                    b.Navigation("Messages");
 
                     b.Navigation("Name")
                         .IsRequired();

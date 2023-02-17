@@ -9,6 +9,8 @@ public sealed class MessageContext : DbContext
     }
 
     internal DbSet<Message> Messages { get; set; }
+    internal DbSet<Author> Authors { get; set; }
+    internal DbSet<Lifeform> Eukaryotes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -20,9 +22,9 @@ public sealed class MessageContext : DbContext
         modelBuilder.Entity<Message>()
             .OwnsOne(e => e.Data);
         modelBuilder.Entity<Message>()
-            .OwnsOne(e => e.Author);
-        modelBuilder.Entity<Message>()
-            .OwnsOne(e => e.Eukaryote);
+            .OwnsMany(e => e.Likes);
+        modelBuilder.Entity<Author>()
+            .OwnsMany(e => e.Likes);
         // Indexes
     }
 }

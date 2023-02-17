@@ -1,0 +1,23 @@
+﻿using Shared.DDD;
+
+namespace Domain.DL.Models.MessageModels;
+public sealed record Lifeform : IAggregateRoot<int>
+{ //should be an aggregate root in a real ddd system
+    private int _id;
+
+    private HashSet<Message> _messages;
+
+    public int Id { get => _id; private set => _id = value; }
+    public IEnumerable<Message> Messages => _messages;
+
+    private Lifeform()
+    {
+
+    }
+
+    public Lifeform(int id)
+    {
+        _id = id;
+        _messages = new();
+    }
+}

@@ -13,6 +13,7 @@ internal class ByLikedMessageId : ISpecification<User>
 
     public bool IsSatisfiedBy(User candidate)
     {
-        return candidate.Likes.Any(x => x.MessageId == _messageId);
+        throw new NotImplementedException();
+        //return candidate.Likes.Any(x => x.MessageId == _messageId);
     }
 }

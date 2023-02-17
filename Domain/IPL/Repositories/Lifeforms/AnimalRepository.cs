@@ -3,7 +3,7 @@ using Domain.IPL.Repositories.Specifications.Animals;
 using Shared.CQRS.Queries;
 using Shared.RepositoryPattern;
 
-namespace Domain.IPL.Repositories;
+namespace Domain.IPL.Repositories.Lifeforms;
 public sealed class AnimalRepository : IAnimalRepository
 {
     private readonly IBaseRepository<Animalia, int> _repository;

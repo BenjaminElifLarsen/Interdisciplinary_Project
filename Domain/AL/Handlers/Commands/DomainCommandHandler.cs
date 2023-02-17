@@ -35,6 +35,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(PostMessage command)
     {
+        throw new NotImplementedException();
         var userIds = _unitOfWork.UserRepository.AllAsync(new UserIdQuery()).Result;
         var animalIds = _unitOfWork.AnimalRepository.AllAsync(new AnimalIdQuery()).Result;
         var plantIds = _unitOfWork.PlantRepository.AllAsync(new PlantIdQuery()).Result;
@@ -48,7 +49,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
             var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(command.UserId).Result;
             var entityEukaryote = _unitOfWork.PlantRepository.GetForOperationAsync(command.EukaryoteId).Result as Eukaryote ?? _unitOfWork.AnimalRepository.GetForOperationAsync(command.EukaryoteId).Result;
 
-            entityUser.AddMessage(result.Data.Id);
+            //entityUser.AddMessage(result.Data.Id);
             entityEukaryote.AddMessage(result.Data.Id);
             _unitOfWork.UserRepository.UpdateUser(entityUser);
             _unitOfWork.LifeformRepository.UpdateLifeform(entityEukaryote);
@@ -60,6 +61,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(LikeMessage command)
     {
+        throw new NotImplementedException();
         var entityMessage = _unitOfWork.MessageRepository.GetForOperationAsync(command.MessageId).Result;
         if (entityMessage is null)
         {
@@ -71,7 +73,7 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
             return new InvalidNoDataResult("User not found.");
         }
         entityMessage.AddLike(command.UserId);
-        entityUser.AddLike(command.MessageId);
+        //entityUser.AddLike(command.MessageId);
         _unitOfWork.MessageRepository.UpdateMessage(entityMessage);
         _unitOfWork.UserRepository.UpdateUser(entityUser);
         _unitOfWork.Save();
@@ -180,22 +182,23 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
 
     public Result Handle(HideMessage command)
     {
+        throw new NotImplementedException();
         var entity = _unitOfWork.MessageRepository.GetForOperationAsync(command.MessageId).Result;
         if(entity is not null)
         {
             _unitOfWork.MessageRepository.DeleteMessage(entity);
 
-            var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(entity.Author.AuthorUserId).Result;
-            entityUser.RemoveMessage(command.MessageId);
+            var entityUser = _unitOfWork.UserRepository.GetForOperationAsync(entity.Author.Id).Result;
+            //entityUser.RemoveMessage(command.MessageId);
             _unitOfWork.UserRepository.UpdateUser(entityUser);
-            var entityLifeform = _unitOfWork.AnimalRepository.GetForOperationAsync(entity.Eukaryote.EukaryoteEukaryoteId).Result as Eukaryote ?? _unitOfWork.PlantRepository.GetForOperationAsync(entity.Eukaryote.EukaryoteEukaryoteId).Result;
+            var entityLifeform = _unitOfWork.AnimalRepository.GetForOperationAsync(entity.Eukaryote.Id).Result as Eukaryote ?? _unitOfWork.PlantRepository.GetForOperationAsync(entity.Eukaryote.Id).Result;
             entityLifeform.RemoveMessage(command.MessageId);
             _unitOfWork.LifeformRepository.UpdateLifeform(entityLifeform);
 
             var entityUsers = _unitOfWork.UserRepository.GetUsersThatHaveLikedAMessageForOperation(command.MessageId).Result.ToArray();
             for(int i = 0; i < entityUsers.Count(); i++) //in proper ddd the message would know of all its likes, so user ids would have been known, thus meaning it would not be required to check all users
             {
-                entityUsers[i].RemoveLike(command.MessageId);
+                //entityUsers[i].RemoveLike(command.MessageId);
                 _unitOfWork.UserRepository.UpdateUser(entityUsers[i]);
             }
 

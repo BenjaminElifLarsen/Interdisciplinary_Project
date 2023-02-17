@@ -1,7 +1,7 @@
 ﻿using Domain.DL.Models.LifeformModels;
 using Shared.CQRS.Queries;
 
-namespace Domain.IPL.Repositories;
+namespace Domain.IPL.Repositories.Lifeforms;
 public interface IPlantRepository
 {
     public Task<bool> IsSpeciesInUseAsync(string species);

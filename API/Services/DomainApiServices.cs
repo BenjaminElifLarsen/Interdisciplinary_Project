@@ -8,12 +8,16 @@ using Domain.DL.Models.LifeformModels;
 using Domain.DL.Models.MessageModels;
 using Domain.DL.Models.UserModels;
 using Domain.IPL.Context;
-using Domain.IPL.Repositories;
+using Domain.IPL.Repositories.Lifeforms;
+using Domain.IPL.Repositories.Messages;
+using Domain.IPL.Repositories.Users;
 using Domain.IPL.Services;
 using Microsoft.EntityFrameworkCore;
 using Shared.RepositoryPattern;
 using Shared.Routing;
 using SharedImplementation.RepositoryPattern;
+using Eukaryote = Domain.DL.Models.LifeformModels.Eukaryote;
+
 namespace API.Services;
 
 public class DomainApiServices
@@ -65,6 +69,12 @@ public class DomainApiServices
         services.AddScoped<IMessageRepository, MessageRepository>();
         services.AddScoped<IAnimalRepository, AnimalRepository>();
         services.AddScoped<IPlantRepository, PlantRepository>();
+
+
+        services.AddScoped<IBaseRepository<Lifeform, int>, BaseRepository<Lifeform, int, MessageContext>>();
+        services.AddScoped<IBaseRepository<Author, int>, BaseRepository<Author, int, MessageContext>>();
+        services.AddScoped<IMessageLifeformRepository, MessageLifeformRepository>();
+        services.AddScoped<IMessageAuthorRepository, MessageAuthorRepository>();
     }
 
     private static void Handlers(IServiceCollection services)

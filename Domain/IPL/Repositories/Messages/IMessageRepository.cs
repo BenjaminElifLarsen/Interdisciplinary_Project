@@ -1,7 +1,7 @@
 ﻿using Domain.DL.Models.MessageModels;
 using Shared.CQRS.Queries;
 
-namespace Domain.IPL.Repositories;
+namespace Domain.IPL.Repositories.Messages;
 public interface IMessageRepository
 {
     public void AddMessage(Message entity);

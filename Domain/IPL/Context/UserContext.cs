@@ -17,10 +17,6 @@ public sealed class UserContext : DbContext
         // Value objects
         modelBuilder.Entity<User>()
             .OwnsOne(e => e.Name);
-        modelBuilder.Entity<User>()
-            .OwnsMany(e => e.Likes, e => { e.ToTable("User_Likes"); });
-        modelBuilder.Entity<User>()
-            .OwnsMany(e => e.Messages, e => { e.ToTable("User_Messages"); });
         // Indexes
     }
 }

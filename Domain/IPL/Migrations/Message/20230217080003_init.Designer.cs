@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.IPL.Migrations.Message
 {
     [DbContext(typeof(MessageContext))]
-    [Migration("20230215074627_init")]
+    [Migration("20230217080003_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -25,6 +25,36 @@ namespace Domain.IPL.Migrations.Message
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.DL.Models.MessageModels.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Authors");
+                });
+
+            modelBuilder.Entity("Domain.DL.Models.MessageModels.Eukaryote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Eukaryotes");
+                });
+
             modelBuilder.Entity("Domain.DL.Models.MessageModels.Message", b =>
                 {
                     b.Property<int>("Id")
@@ -32,6 +62,12 @@ namespace Domain.IPL.Migrations.Message
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EukaryoteId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -43,44 +79,58 @@ namespace Domain.IPL.Migrations.Message
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("EukaryoteId");
+
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("Domain.DL.Models.MessageModels.Author", b =>
+                {
+                    b.OwnsMany("Domain.DL.Models.MessageModels.ValueObjects.AuthorLike", "Likes", b1 =>
+                        {
+                            b1.Property<int>("AuthorId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
+
+                            b1.Property<int>("MessageId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("UserId")
+                                .HasColumnType("int");
+
+                            b1.HasKey("AuthorId", "Id");
+
+                            b1.ToTable("AuthorLike");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AuthorId");
+                        });
+
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("Domain.DL.Models.MessageModels.Message", b =>
                 {
-                    b.OwnsOne("Domain.DL.Models.MessageModels.ValueObjects.Author", "Author", b1 =>
-                        {
-                            b1.Property<int>("MessageId")
-                                .HasColumnType("int");
+                    b.HasOne("Domain.DL.Models.MessageModels.Author", "Author")
+                        .WithMany("Messages")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                            b1.Property<int>("AuthorUserId")
-                                .HasColumnType("int");
+                    b.HasOne("Domain.DL.Models.MessageModels.Eukaryote", "Eukaryote")
+                        .WithMany("Messages")
+                        .HasForeignKey("EukaryoteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                            b1.HasKey("MessageId");
-
-                            b1.ToTable("Messages");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MessageId");
-                        });
-
-                    b.OwnsOne("Domain.DL.Models.MessageModels.ValueObjects.Eukaryote", "Eukaryote", b1 =>
-                        {
-                            b1.Property<int>("MessageId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("EukaryoteEukaryoteId")
-                                .HasColumnType("int");
-
-                            b1.HasKey("MessageId");
-
-                            b1.ToTable("Messages");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MessageId");
-                        });
-
-                    b.OwnsMany("Domain.DL.Models.MessageModels.ValueObjects.Like", "Likes", b1 =>
+                    b.OwnsMany("Domain.DL.Models.MessageModels.ValueObjects.MessageLike", "Likes", b1 =>
                         {
                             b1.Property<int>("MessageId")
                                 .HasColumnType("int");
@@ -98,10 +148,8 @@ namespace Domain.IPL.Migrations.Message
 
                             b1.ToTable("Message_Likes", (string)null);
 
-                            b1.WithOwner("Message")
+                            b1.WithOwner()
                                 .HasForeignKey("MessageId");
-
-                            b1.Navigation("Message");
                         });
 
                     b.OwnsOne("Domain.DL.Models.MessageModels.ValueObjects.ObservationTimeAndLocation", "Data", b1 =>
@@ -126,16 +174,24 @@ namespace Domain.IPL.Migrations.Message
                                 .HasForeignKey("MessageId");
                         });
 
-                    b.Navigation("Author")
-                        .IsRequired();
+                    b.Navigation("Author");
 
                     b.Navigation("Data")
                         .IsRequired();
 
-                    b.Navigation("Eukaryote")
-                        .IsRequired();
+                    b.Navigation("Eukaryote");
 
                     b.Navigation("Likes");
+                });
+
+            modelBuilder.Entity("Domain.DL.Models.MessageModels.Author", b =>
+                {
+                    b.Navigation("Messages");
+                });
+
+            modelBuilder.Entity("Domain.DL.Models.MessageModels.Eukaryote", b =>
+                {
+                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

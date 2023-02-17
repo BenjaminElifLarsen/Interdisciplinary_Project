@@ -1,7 +1,7 @@
 ﻿using Domain.DL.Models.UserModels;
 using Shared.CQRS.Queries;
 
-namespace Domain.IPL.Repositories;
+namespace Domain.IPL.Repositories.Users;
 public interface IUserRepository
 {
     public void AddUser(User entity);

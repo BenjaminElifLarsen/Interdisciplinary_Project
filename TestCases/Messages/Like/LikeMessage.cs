@@ -27,12 +27,13 @@ public class LikeMessage
     [Fact]
     public void SuccessUserLikeTest()
     {
-        Domain.DL.Models.UserModels.User user = new(new("Test", "Er"), "Tester", "TotallyHashedPassword");
-        user.AddLike(2);
-        Assert.True(user.Likes.Count() == 1);
-        user.AddLike(2);
-        Assert.True(user.Likes.Count() == 1);
-        user.AddLike(3);
-        Assert.True(user.Likes.Count() == 2);
+        throw new NotImplementedException();
+        //Domain.DL.Models.UserModels.User user = new(new("Test", "Er"), "Tester", "TotallyHashedPassword");
+        //user.AddLike(2);
+        //Assert.True(user.Likes.Count() == 1);
+        //user.AddLike(2);
+        //Assert.True(user.Likes.Count() == 1);
+        //user.AddLike(3);
+        //Assert.True(user.Likes.Count() == 2);
     }
 }

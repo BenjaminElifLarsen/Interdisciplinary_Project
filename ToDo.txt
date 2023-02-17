@@ -6,7 +6,12 @@ Implement Endpoints
 
 Implement Password hasher and salter - needs testing
 
-Implement relationship between User and Message, Message and Eukaryote 
+Create Message.Eukaryote repo
+Create Message.AUthor repo
+Add to the api service
+Add to unit of work
+Update all creation and deletion method to add/remove data to/from these repos
+Update all handlers that used the other boundary models to use these new ones
 
 Test, test, and more test
 

@@ -1,7 +1,7 @@
 ﻿using Domain.DL.Models.LifeformModels;
 using Shared.CQRS.Queries;
 
-namespace Domain.IPL.Repositories;
+namespace Domain.IPL.Repositories.Lifeforms;
 public interface IAnimalRepository //no add, remove, and update here
 {
     public Task<IEnumerable<TMapping>> AllAsync<TMapping>(BaseQuery<Animalia, TMapping> query) where TMapping : BaseReadModel;
