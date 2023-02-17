@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:lifeform_watcher/models/messages/message_details_author.dart';
 import 'package:lifeform_watcher/models/messages/message_list_item.dart';
 import 'package:lifeform_watcher/models/messages/request/message_like.dart';
 import 'package:lifeform_watcher/models/messages/request/message_post.dart';
@@ -17,6 +18,12 @@ Future<MessageDetails> fetchMessage(int id) async {
       "https://localhost:7107/Message/Details?id=$id")); //catch the cases the body is empty
   print(response);
   return _parseMessageDetails(response.body);
+}
+
+Future<MessageDetailsAuthor> fetchAuthorForMessage(int id) async {
+  final response = await http.get(
+      Uri.parse('https://localhost:7107/Message/Author/MessageDetails?id=$id'));
+  return _parseMessageDetailsAuthor(response.body);
 }
 
 Future<bool> postLike(MessageLike request) async {
@@ -71,4 +78,8 @@ List<MessageListItem> _parseMessageList(String responseBody) {
 
 MessageDetails _parseMessageDetails(String responseBody) {
   return MessageDetails.fromJson(jsonDecode(responseBody));
+}
+
+MessageDetailsAuthor _parseMessageDetailsAuthor(String responseBody) {
+  return MessageDetailsAuthor.fromJson(jsonDecode(responseBody));
 }

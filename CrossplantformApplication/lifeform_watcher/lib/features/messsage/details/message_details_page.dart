@@ -24,6 +24,12 @@ class _MessageDetailsPageState extends State<MessageDetailsPage> {
       //if Center instead of Scaffold the background is black, yet this does not fix the placement problem
       body: Center(
         child: Column(children: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Message Overview")),
+          (futureLike == null) ? likePost() : buildFutureBuilder(),
           FutureBuilder<MessageDetails>(
             future: fetchMessage(widget.id),
             builder: (context, snapshot) {
@@ -40,12 +46,6 @@ class _MessageDetailsPageState extends State<MessageDetailsPage> {
               }
             },
           ),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text("Message Overview")),
-          (futureLike == null) ? likePost() : buildFutureBuilder(),
         ]),
       ),
     );
@@ -87,12 +87,34 @@ class Details extends StatelessWidget {
   Widget build(BuildContext context) {
     double long = message.longtitude;
     double lati = message.latitude;
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(message.title),
-        Text(message.text),
-        Text(message.time.toString()),
-        Text("Latitude: $lati, longtitude: $long"),
+        Column(
+          children: [
+            Text(message.title),
+            Text(message.text),
+            Text(message.time.toString()),
+            Text("Latitude: $lati, longtitude: $long"),
+          ],
+        ),
+        Column(children: [
+          FutureBuilder(
+              future: fetchAuthorForMessage(message.user),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return const Center(
+                    child: Text("Error"),
+                  );
+                } else if (snapshot.hasData) {
+                  return Text(snapshot.data!.username);
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              })
+        ]),
       ],
     );
   }
