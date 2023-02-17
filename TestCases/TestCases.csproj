@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Messages\Like\" />
     <Folder Include="Messages\GetAll\" />
     <Folder Include="Messages\GetSingle\" />
     <Folder Include="Messages\Post\" />

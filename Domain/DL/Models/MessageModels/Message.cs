@@ -37,15 +37,16 @@ public sealed class Message : IAggregateRoot<int> //could add soft delete to thi
         _eukaryote = new(eukaryoteId);
         _title = title;
         _text = text;
+        _likes = new();
     }
 
-    internal void AddLike(int userId)
+    public void AddLike(int userId)
     {
         if(userId != _author.AuthorUserId && !_likes.Any(x => x.UserId == userId))
             _likes.Add(new(userId, _id));
     }
 
-    internal void RemoveLike(int userId) => _likes.Remove(new(userId, _id));
+    public void RemoveLike(int userId) => _likes.Remove(new(userId, _id));
 
     internal string GetShortenText(int maxLength)
     {
