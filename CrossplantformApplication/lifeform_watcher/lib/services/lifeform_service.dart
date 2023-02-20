@@ -5,6 +5,48 @@ import 'package:lifeform_watcher/models/lifeforms/animal_details.dart';
 
 import 'package:lifeform_watcher/models/lifeforms/lifeform_list_item.dart';
 import 'package:lifeform_watcher/models/lifeforms/plant_details.dart';
+import 'package:lifeform_watcher/models/lifeforms/request/animal_post.dart';
+import 'package:lifeform_watcher/models/lifeforms/request/plant_post.dart';
+
+Future<bool> postPlant(PlantPost request) async {
+  final response = await http.post(
+    Uri.parse('https://localhost:7107/Lifeform/Plant'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'species': request.species,
+      'possibleMaximumHeight': request.possibleMaximumHeight.toString(),
+    }),
+  );
+  if (response.statusCode == 201 || response.statusCode == 200) {
+    return true;
+  } else {
+    print(response.body);
+    return false;
+  }
+}
+
+Future<bool> postAnimal(AnimalPost request) async {
+  final response = await http.post(
+    Uri.parse('https://localhost:7107/Lifeform/Animal'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'species': request.species,
+      'isBird': request.isBird.toString(),
+      'maxAmountOfOffspring': request.maxAmountOfOffspring.toString(),
+      'minAmountOfOffspring': request.minAmountOfOffspring.toString(),
+    }),
+  );
+  if (response.statusCode == 201 || response.statusCode == 200) {
+    return true;
+  } else {
+    print(response.body);
+    return false;
+  }
+}
 
 Future<List<LifeformListItem>> fetchPlants() async {
   final response =

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lifeform_watcher/features/lifeforms/animal/recognise_animal_page.dart';
 import 'package:lifeform_watcher/features/lifeforms/lifeform_feed_page.dart';
+import 'package:lifeform_watcher/features/lifeforms/plant/recognise_plant_page.dart';
 import 'package:lifeform_watcher/features/observation/observation.dart';
 import 'package:lifeform_watcher/features/overview/overview.dart';
 import 'package:lifeform_watcher/models/messages/request/message_post.dart';
@@ -75,10 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
         page = LifeformFeedPage();
         break;
       case 3:
-        page = Placeholder();
+        page = RecogniseAnimalPage();
         break;
       case 4:
-        page = Placeholder();
+        page = RecognisePlantPage();
         break;
       default:
         throw UnimplementedError("$selectedIndex");
