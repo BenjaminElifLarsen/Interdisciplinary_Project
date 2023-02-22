@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:lifeform_watcher/models/messages/message_details.dart';
 import 'package:lifeform_watcher/models/messages/request/message_like.dart';
+import 'package:lifeform_watcher/services/lifeform_service.dart';
 import 'package:lifeform_watcher/services/message_service.dart';
 
 class MessageDetailsPage extends StatefulWidget {
@@ -113,7 +114,22 @@ class Details extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 }
-              })
+              }),
+          FutureBuilder(
+              future: fetchLifeform(message.lifeformId),
+              builder: ((context, snapshot) {
+                if (snapshot.hasError) {
+                  return const Center(
+                    child: Text("Error"),
+                  );
+                } else if (snapshot.hasData) {
+                  return Text(snapshot.data!.species);
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              }))
         ]),
       ],
     );

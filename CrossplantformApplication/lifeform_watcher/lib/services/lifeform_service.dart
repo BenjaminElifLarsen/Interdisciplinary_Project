@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:lifeform_watcher/models/lifeforms/animal_details.dart';
+import 'package:lifeform_watcher/models/lifeforms/lifeform_details.dart';
 
 import 'package:lifeform_watcher/models/lifeforms/lifeform_list_item.dart';
 import 'package:lifeform_watcher/models/lifeforms/plant_details.dart';
@@ -72,6 +73,12 @@ Future<PlantDetails> fetchPlant(int id) async {
   return _parsePlantDetails(response.body);
 }
 
+Future<LifeformDetails> fetchLifeform(int id) async {
+  final response =
+      await http.get(Uri.parse("https://localhost:7107/Lifeform?id=$id"));
+  return _parseDetails(response.body);
+}
+
 List<LifeformListItem> _parseLifeformDetails(String responseBody) {
   final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
   return parsed
@@ -85,4 +92,8 @@ AnimalDetails _parseAnimalDetails(String responseBody) {
 
 PlantDetails _parsePlantDetails(String responseBody) {
   return PlantDetails.fromJson(jsonDecode(responseBody));
+}
+
+LifeformDetails _parseDetails(String responseBody) {
+  return LifeformDetails.fromJson(jsonDecode(responseBody));
 }
