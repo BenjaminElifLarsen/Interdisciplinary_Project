@@ -28,6 +28,5 @@ public sealed class User : IAggregateRoot<int>
         _userName = username;
         _hashedPassword = hashedPassword;
     }
-    //In a proper domain driven design there would be methods for adding and removing messages as there would be no direct relationship between the two models, they would only know of the ids of each other, nothing more.
 
 }

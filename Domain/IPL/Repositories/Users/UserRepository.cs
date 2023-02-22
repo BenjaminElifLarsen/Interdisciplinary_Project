@@ -43,7 +43,7 @@ public class UserRepository : IUserRepository
         char[] salt = user.HashedPassword[..44].Select(s => s).ToArray(); // Need more than the 32 byte in the salt since it is stored in base64
         string hashedPassword = PasswordEncryption.HashAndSalt(password, Convert.FromBase64String(new string(salt)));
         return await _repository.IsUniqueAsync(new IsLoginInformationCorrect(username, hashedPassword));
-    } // https://github.com/BenjaminElifLarsen/basic/blob/main/LoginRepository.cs
+    }
 
     public void UpdateUser(User entity)
     {

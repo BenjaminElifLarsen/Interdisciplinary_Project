@@ -6,26 +6,9 @@ Implement Endpoints
 
 Implement Password hasher and salter - needs testing
 
-Update all creation and deletion method to add/remove data to/from these repos
-Update all handlers that used the other boundary models to use these new ones
+add endpoint and lifeform repo method for getting a specific lifeform and mapping it, no matter if is a plant or animal
 
 Test, test, and more test
-
-remove the direct navigations between the subfolders in Models
-make them more similar to ddd (these down here will be value objects)
-	LifeformModels.Message
-	MessageModels.Eukaryote
-	UserModels.Message
-this will mean some big changes to some handlers 
-	let the handlers create need commands (in proper system this would be handled by a process manager)
-	e.g. a message creation will add its MessageModel.Eukaryote and send a command
-		to a handler that will create a LifeformModels.Message
-because of problems with ambiguous references consider multiple contexts
-
-For the report mention the problems with value objects and other than the owner model referencing them
-mention that because of the eukaryote tpc mapping that no navigation is mapped between Message and Eukaryote and the solution to fix this (see above system). 
-	if moving the field and property over to the specialed models and map with OwnsMany() it would only generate a table for the last one in the context model builder
-explain that in a proper ddd these 'lesser'-versions would have their own repositories and not be value objects (and why for this)
 
 
 ---- ---- ----

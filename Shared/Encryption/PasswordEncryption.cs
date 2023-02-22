@@ -13,7 +13,7 @@ public class PasswordEncryption
     {
         byte[] salt = RandomNumberGenerator.GetBytes(32);
         return Calculation(toEncode, salt);
-    } //based upon old code https://github.com/BenjaminElifLarsen/basic/blob/main/BasicAuth.cs
+    }
 
     /// <summary>
     /// Used for comparing password where the salt is already known
