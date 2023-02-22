@@ -1,4 +1,7 @@
 ﻿using Domain.DL.Models.LifeformModels;
+using Domain.IPL.Repositories.Specifications.Animals;
+using Domain.IPL.Repositories.Specifications.Plants;
+using Shared.CQRS.Queries;
 using Shared.RepositoryPattern;
 
 namespace Domain.IPL.Repositories.Lifeforms;
@@ -23,6 +26,21 @@ public class LifeformRepository : ILifeformRepository
         {
             _plantRepository.Create(entity as Plantae);
         }
+    }
+
+    public async Task<TMapping> GetSingleAsync<TMapping>(int id, BaseQuery<Eukaryote, TMapping> query) where TMapping : BaseReadModel
+    {
+        Eukaryote entity = null;
+        entity = await _animalRepository.FindByPredicateForOperationAsync(new ByAnimaliaId(id));
+        if(entity is null)
+        {
+            entity = await _plantRepository.FindByPredicateForOperationAsync(new ByPlantId(id));
+        }
+        if( entity is null)
+        {
+            return null;
+        }
+        return new List<Eukaryote>() { entity }.AsQueryable().Select(query.Map()).Single();
     }
 
     public void RemoveLifeform(Eukaryote entity)

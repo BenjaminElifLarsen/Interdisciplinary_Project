@@ -1,5 +1,6 @@
 ﻿using Domain.AL.Services.Lifeforms.Queries.GetAllAnimals;
 using Domain.AL.Services.Lifeforms.Queries.GetAllPlants;
+using Domain.AL.Services.Lifeforms.Queries.GetSingle;
 using Domain.AL.Services.Lifeforms.Queries.GetSingleAnimal;
 using Domain.AL.Services.Lifeforms.Queries.GetSinglePlant;
 using Domain.DL.CQRS.Commands.Lifeforms;
@@ -18,4 +19,5 @@ public interface ILifeformService
     public Task<Result<IEnumerable<AnimalListItem>>> AllAnimalsAsync();
     public Task<Result<PlantDetails>> GetPlantAsync(int id);
     public Task<Result<AnimalDetails>> GetAnimalAsync(int id);
+    public Task<Result<LifeformDetails>> GetAsync(int id);
 }

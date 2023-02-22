@@ -88,4 +88,8 @@ public class LifeformController : ControllerBase
     {
         return this.FromResult(await _lifeformService.UpdatePlantAsync(request));
     }
+
+    [AllowAnonymous]
+    [HttpGet]
+    public async Task<IActionResult> Get([FromQuery] int id) => this.FromResult(await _lifeformService.GetAsync(id));
 }

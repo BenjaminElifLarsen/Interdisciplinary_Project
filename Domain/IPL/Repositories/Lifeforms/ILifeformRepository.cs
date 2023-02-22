@@ -1,4 +1,5 @@
 ﻿using Domain.DL.Models.LifeformModels;
+using Shared.CQRS.Queries;
 
 namespace Domain.IPL.Repositories.Lifeforms;
 /// <summary>
@@ -9,4 +10,5 @@ public interface ILifeformRepository
     public void AddLifeform(Eukaryote entity);
     public void RemoveLifeform(Eukaryote entity);
     public void UpdateLifeform(Eukaryote entity);
+    public Task<TMapping> GetSingleAsync<TMapping>(int id, BaseQuery<Eukaryote, TMapping> query) where TMapping : BaseReadModel;
 }
