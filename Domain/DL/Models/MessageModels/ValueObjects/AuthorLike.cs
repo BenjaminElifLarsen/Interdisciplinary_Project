@@ -26,5 +26,5 @@ public sealed record AuthorLike : ValueObject
         _messageId = messageId;
     }
 
-    internal bool GotSpecificUserID(int userId) => _userId == userId;
+    //internal bool GotSpecificUserID(int userId) => _userId == userId;
 }

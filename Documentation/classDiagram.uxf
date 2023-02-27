@@ -1,0 +1,86 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>130</w><h>60</h></coordinates><panel_attributes>template=&lt;T&gt;
+IAggregateRoot
+--
++ getId(void) : T</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>180</y><w>280</w><h>290</h></coordinates><panel_attributes>Message
+--
++ getLatitude(void): double
++ getLongtitude(void): double
++ ObservationMoment(void): DateTime
++ getText(void): string
+- setText(string): void
++ getTitle(void): string
+- setTitle(string): void
++ getEukaryoteId(void): int
+- setEukaryoteId(int): void
++ getAuthorId(void): int
++ setAuthorId(int): void
++ getLikes(void): IEnumerable&lt;MessageLike&gt;
++ getData(void): ObservationTimeAndLocation
++ setData(ObservationTimeAndLocation): void
+--
++ AddLike(int): void
++ RemoveLike(int): void
++ GetShortenText(int) : string
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>50</y><w>820</w><h>60</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;10;40;800;40</additional_attributes></element><element><id>Relation</id><coordinates><x>70</x><y>80</y><w>100</w><h>120</h></coordinates><panel_attributes>lt=.
+m2=&lt;&lt;bind&gt;&gt; &lt;int&gt;
+</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>490</y><w>180</w><h>90</h></coordinates><panel_attributes>MessageLike
+--
++ getUserId(void): int
+- setUserId(int): void
++ getMessageId(void): int
+- setMessageId(int): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>600</y><w>190</w><h>120</h></coordinates><panel_attributes>ObservationTimeAndLocation
+--
++ getTime(void): DateTime
+- setTime(DateTime): void
++ getLatitude(void): double
+- setLatitude(double): void
++ getLongtitude(void): double
++ setLongtitude(double): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>730</y><w>180</w><h>90</h></coordinates><panel_attributes>AuthorLike
+--
++ getUserId(void): int
+- setUserId(int): void
++ getMessageId(void): int
+- setMessageId(int): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>210</x><y>490</y><w>100</w><h>30</h></coordinates><panel_attributes>ValueObject
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>510</y><w>30</w><h>300</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;280</additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>550</y><w>100</w><h>30</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>650</y><w>90</w><h>30</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>70;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>780</y><w>100</w><h>30</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>180</y><w>200</w><h>80</h></coordinates><panel_attributes>/Eukaryote/
+--
++ getSpecies(void): string
+- setSpecies(string): void
+--
++ ChangeSpecies(string): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>80</y><w>100</w><h>120</h></coordinates><panel_attributes>lt=.
+m2=&lt;&lt;bind&gt;&gt; &lt;int&gt;
+</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>420</y><w>220</w><h>80</h></coordinates><panel_attributes>Plantae
+--
++ getMaximumHeight(void): double
+- setMaximumHeight(double): void
+--
++ NewMaximumHeight(double): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>420</y><w>300</w><h>170</h></coordinates><panel_attributes>Animalia
+--
++ getMaximumOffspringsPerMating(void): byte
+- setMaximumOffspringsPerMating(byte): void
++ getMinimumOffspringsPerMating(void): byte
+- setMinimumOffspringsPerMating(byte): void
++ getIsBird(void): boolean
+- setIsbird(boolean): void
+--
++ ChangeBirdStatus(boolean): void
++ AlterMaximumOffspringPerMating(byte): void
++ AlterMinimumOffspringPerMating(byte): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>250</y><w>120</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;-
+m1=Type of kingdom</panel_attributes><additional_attributes>10;10;10;100;50;100;50;170</additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>330</y><w>310</w><h>110</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;290;20;290;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>180</y><w>210</w><h>130</h></coordinates><panel_attributes>Author
+--
++ getUsername(void): string
+- setUsername(string): void
+--
++ AddLike(int): void
++ RemoveLike(int): void
++ AddMessage(Message): void
++ RemoveMessage(Message): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>730</x><y>180</y><w>210</w><h>60</h></coordinates><panel_attributes>Lifeform
+--
++ AddMessage(Message): void
++ RemoveMessage(Message): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>80</y><w>100</w><h>120</h></coordinates><panel_attributes>lt=.
+m2=&lt;&lt;bind&gt;&gt; &lt;int&gt;
+</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>80</y><w>100</w><h>120</h></coordinates><panel_attributes>lt=.
+m2=&lt;&lt;bind&gt;&gt; &lt;int&gt;
+</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element></diagram>
