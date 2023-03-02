@@ -49,6 +49,12 @@ Future<bool> postAnimal(AnimalPost request) async {
   }
 }
 
+Future<List<LifeformDetails>> fetchAll() async {
+  final response =
+      await http.get(Uri.parse("https://localhost:7107/Lifeform/All"));
+  return _parseLifeformDetailsList(response.body);
+}
+
 Future<List<LifeformListItem>> fetchPlants() async {
   final response =
       await http.get(Uri.parse('https://localhost:7107/Lifeform/AllPlants'));
@@ -83,6 +89,13 @@ List<LifeformListItem> _parseLifeformDetails(String responseBody) {
   final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
   return parsed
       .map<LifeformListItem>((json) => LifeformListItem.fromJson(json))
+      .toList();
+}
+
+List<LifeformDetails> _parseLifeformDetailsList(String responseBody) {
+  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
+  return parsed
+      .map<LifeformDetails>((json) => LifeformDetails.fromJson(json))
       .toList();
 }
 

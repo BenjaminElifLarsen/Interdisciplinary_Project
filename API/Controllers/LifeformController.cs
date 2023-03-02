@@ -92,4 +92,8 @@ public class LifeformController : ControllerBase
     [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] int id) => this.FromResult(await _lifeformService.GetAsync(id));
+
+    [AllowAnonymous]
+    [HttpGet("All")]
+    public async Task<IActionResult> All() => this.FromResult(await _lifeformService.AllAsync());
 }

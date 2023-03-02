@@ -16,6 +16,7 @@ public interface IBaseRepository<TEntity, TId> where TEntity : class, IAggregate
     public Task<bool> IsUniqueAsync(ISpecification<TEntity> predicate);
     public Task<TEntity> FindByPredicateForOperationAsync(ISpecification<TEntity> predicate, params Expression<Func<TEntity, object>>[] includes);
     public Task<IEnumerable<TEntity>> AllByPredicateForOperationAsync(ISpecification<TEntity> predicate, params Expression<Func<TEntity, object>>[] includes);
+    public Task<IEnumerable<TEntity>> AllForOperationAsync();
     //public Task<IEnumerable<TEntity>> AllByPredicateForOperationAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes);
 } //consider if this pattern can be combined with the specification pattern used for data validation
   //even when using composite specifications the type is still ISpecification<T> 

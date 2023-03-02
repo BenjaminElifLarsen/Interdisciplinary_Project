@@ -35,6 +35,11 @@ public class BaseRepository<TEntity, TId, TContext> : IBaseRepository<TEntity, T
         return (await query.ToArrayAsync()).Where(x => predicate.IsSatisfiedBy(x));
     }
 
+    public async Task<IEnumerable<TEntity>> AllForOperationAsync()
+    {
+        return await _entities.ToArrayAsync();
+    }
+
     public void Create(TEntity entity)
     {
         _entities.Add(entity);

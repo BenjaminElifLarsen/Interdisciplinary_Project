@@ -17,6 +17,7 @@ public interface ILifeformService
 
     public Task<Result<IEnumerable<PlantListItem>>> AllPlantsAsync();
     public Task<Result<IEnumerable<AnimalListItem>>> AllAnimalsAsync();
+    public Task<Result<IEnumerable<LifeformDetails>>> AllAsync();
     public Task<Result<PlantDetails>> GetPlantAsync(int id);
     public Task<Result<AnimalDetails>> GetAnimalAsync(int id);
     public Task<Result<LifeformDetails>> GetAsync(int id);

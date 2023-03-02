@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lifeform_watcher/models/lifeforms/lifeform_details.dart';
 import 'package:lifeform_watcher/models/messages/request/message_post.dart';
+import 'package:lifeform_watcher/services/lifeform_service.dart';
 import 'package:lifeform_watcher/services/message_service.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -43,8 +45,9 @@ class _ObservationPageState extends State<ObservationPage> {
           (servicestatus == false)
               ? getLocationFromUser()
               : getLocationFromGPS(),
-          if (request != null)
-            displayMessageData(request!) //move this out of the button
+          //if (request != null)
+          //displayMessageData(request!), //move this out of the button
+          LifeformList()
         ],
       ),
     );
@@ -114,7 +117,7 @@ class _ObservationPageState extends State<ObservationPage> {
                 setState(() {});
               }
             },
-            child: Text("Test"),
+            child: Text("Ready"),
           )
         ],
       ),
@@ -212,5 +215,61 @@ class _ObservationPageState extends State<ObservationPage> {
       longtitude = position!.longitude;
       print(position);
     }
+  }
+}
+
+class LifeformList extends StatelessWidget {
+  const LifeformList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text("Livsformer"),
+        FutureBuilder<List<LifeformDetails>>(
+          future: fetchAll(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return const Center(
+                child: Text("Error"),
+              );
+            } else if (snapshot.hasData) {
+              return LifeformInfo(list: snapshot.data!);
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        )
+      ],
+    );
+  }
+}
+
+class LifeformInfo extends StatelessWidget {
+  const LifeformInfo({super.key, required this.list});
+  final List<LifeformDetails> list;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [for (var lifeform in list) Details(info: lifeform)],
+    );
+  }
+}
+
+class Details extends StatelessWidget {
+  const Details({super.key, required this.info});
+
+  final LifeformDetails info;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [Text(info.id.toString()), Text(info.species)],
+    );
   }
 }

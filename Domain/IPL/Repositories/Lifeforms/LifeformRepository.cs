@@ -28,6 +28,14 @@ public class LifeformRepository : ILifeformRepository
         }
     }
 
+    public async Task<IEnumerable<TMapping>> AllAsync<TMapping>(BaseQuery<Eukaryote, TMapping> query) where TMapping : BaseReadModel
+    {
+        List<Eukaryote> list = new();
+        list.AddRange(await _animalRepository.AllForOperationAsync());
+        list.AddRange(await _plantRepository.AllForOperationAsync());
+        return list.AsQueryable().Select(query.Map());
+    }
+
     public async Task<TMapping> GetSingleAsync<TMapping>(int id, BaseQuery<Eukaryote, TMapping> query) where TMapping : BaseReadModel
     {
         Eukaryote entity = null;

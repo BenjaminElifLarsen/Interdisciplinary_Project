@@ -30,7 +30,6 @@ class _MessageDetailsPageState extends State<MessageDetailsPage> {
                 Navigator.pop(context);
               },
               child: Text("Message Overview")),
-          (futureLike == null) ? likePost() : buildFutureBuilder(),
           FutureBuilder<MessageDetails>(
             future: fetchMessage(widget.id),
             builder: (context, snapshot) {
@@ -47,6 +46,7 @@ class _MessageDetailsPageState extends State<MessageDetailsPage> {
               }
             },
           ),
+          (futureLike == null) ? likePost() : buildFutureBuilder(),
         ]),
       ),
     );
