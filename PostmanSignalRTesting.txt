@@ -12,4 +12,5 @@
 	The message '{"type":1,"target":"MessagePosted","arguments":[]}' is the response transmitted to all clients. 
 		If the message does not like the above it indicates that the transmitted responnse has been updated, since the writting of this text.
 	If the message is invalid something like this message '{"type":1,"target":"MessageErr","arguments":[["The user id is invalid.","The lifeform id is invalid.","The title is invalid."]]}{"type":3,"invocationId":"0","result":null}' will be received
-
+	The "target" value, "Post", in the message is the method that is calling in the hub.
+	
