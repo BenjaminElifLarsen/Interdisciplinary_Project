@@ -1,4 +1,5 @@
 ﻿using Domain.DL.Factories;
+using Domain.DL.Models.MessageModels;
 using System.Diagnostics;
 
 namespace TestCases.Messages.Like;
@@ -27,13 +28,12 @@ public class LikeMessage
     [Fact]
     public void SuccessUserLikeTest()
     {
-        throw new NotImplementedException();
-        //Domain.DL.Models.UserModels.User user = new(new("Test", "Er"), "Tester", "TotallyHashedPassword");
-        //user.AddLike(2);
-        //Assert.True(user.Likes.Count() == 1);
-        //user.AddLike(2);
-        //Assert.True(user.Likes.Count() == 1);
-        //user.AddLike(3);
-        //Assert.True(user.Likes.Count() == 2);
+        Author user = new(1, "Tester");
+        user.AddLike(2);
+        Assert.True(user.Likes.Count() == 1);
+        user.AddLike(2);
+        Assert.True(user.Likes.Count() == 1);
+        user.AddLike(3);
+        Assert.True(user.Likes.Count() == 2);
     }
 }
