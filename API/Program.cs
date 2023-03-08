@@ -1,3 +1,4 @@
+using API.Hubs;
 using API.Middlewares;
 using API.Services;
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddSignalR();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -29,5 +31,6 @@ app.UseAuthorization();
 app.UseMiddleware<RoutingMiddleware>();
 
 app.MapControllers();
+app.MapHub<MessageHub>("/MessageHub");
 
 app.Run();
