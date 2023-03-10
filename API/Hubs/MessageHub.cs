@@ -43,6 +43,7 @@ public class MessageHub : Hub
         }
         else
         {
+            await Clients.Others.SendAsync("ClassTesting2", "Incoming test");
             await Clients.All.SendAsync("ClassTesting", new { coolId = test.id, lameName = test.name });
         }
     }
