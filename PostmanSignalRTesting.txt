@@ -8,9 +8,9 @@
 	After this the 'Messages' section will start to receive '{"type":6}'. This is a ping from the server to check if the client is still there
 6) Post the following message {"arguments":[{ "userId": 1, "eukaryoteId": 1, "moment": "2023-03-08T11:12:21.850", "latitude": 20, "longtitude":21, "title": "hub", "text": "transmitted from postman"}],"invocationId":"0","target":"Post","type":1}
 	If it is valid (after validation rules in the API), a response is send to all connected clients else just the client who send the message who receives a string array
-	The following, if valid, will be recived '{"type":1,"target":"MessagePosted","arguments":[]}' and '{"type":3,"invocationId":"0","result":null}'.
+	The following, if valid, will be recived '{"type":1,"target":"MessagePosted","arguments":[]}' followed by '{"type":3,"invocationId":"0","result":null}'.
 	The message '{"type":1,"target":"MessagePosted","arguments":[]}' is the response transmitted to all clients. 
-		If the message does not like the above it indicates that the transmitted responnse has been updated, since the writting of this text.
-	If the message is invalid something like this message '{"type":1,"target":"MessageErr","arguments":[["The user id is invalid.","The lifeform id is invalid.","The title is invalid."]]}{"type":3,"invocationId":"0","result":null}' will be received
+		If the message does not look like the above it indicates that the transmitted responnse has been updated, since the writting of this text.
+	If the message is invalid something like this message '{"type":1,"target":"MessageErr","arguments":[["The user id is invalid.","The lifeform id is invalid.","The title is invalid."]]} followered by {"type":3,"invocationId":"0","result":null}' will be received
 	The "target" value, "Post", in the message is the method that is calling in the hub.
 	
