@@ -4,7 +4,7 @@ using Shared.ResultPattern.Success;
 
 namespace TestCases.Eukaryote.Recognise.Animal;
 
-public class RecogniseAnima
+public class RecogniseAnimal
 {
     [Fact]
     public void SuccessRecogniseAnimalTest()

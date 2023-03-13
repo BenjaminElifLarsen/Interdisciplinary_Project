@@ -27,7 +27,7 @@ public sealed class MessageDetails : BaseReadModel
     }
 }
 
-internal sealed class MessageDetailsQuery : BaseQuery<Message, MessageDetails>
+public sealed class MessageDetailsQuery : BaseQuery<Message, MessageDetails>
 {
     public override Expression<Func<Message, MessageDetails>> Map()
     {

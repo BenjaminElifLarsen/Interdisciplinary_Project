@@ -19,7 +19,7 @@ public sealed class MessageListItem : BaseReadModel
     }
 }
 
-internal sealed class MessageListQuery : BaseQuery<Message, MessageListItem>
+public sealed class MessageListQuery : BaseQuery<Message, MessageListItem>
 {
     public override Expression<Func<Message, MessageListItem>> Map()
     {

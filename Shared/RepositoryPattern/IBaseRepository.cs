@@ -17,9 +17,4 @@ public interface IBaseRepository<TEntity, TId> where TEntity : class, IAggregate
     public Task<TEntity> FindByPredicateForOperationAsync(ISpecification<TEntity> predicate, params Expression<Func<TEntity, object>>[] includes);
     public Task<IEnumerable<TEntity>> AllByPredicateForOperationAsync(ISpecification<TEntity> predicate, params Expression<Func<TEntity, object>>[] includes);
     public Task<IEnumerable<TEntity>> AllForOperationAsync();
-    //public Task<IEnumerable<TEntity>> AllByPredicateForOperationAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes);
-} //consider if this pattern can be combined with the specification pattern used for data validation
-  //even when using composite specifications the type is still ISpecification<T> 
-  //so ISpecification<TEntity> predicate and params ISpecification<TEntity>[] predicates
-  //so specifcication used for data validation in factory and for repo. pattern, neat
-  //however, this might require moving the sql queries from the sql database to the backend. Explain this in the report and display a line of code of the two versions
+} 

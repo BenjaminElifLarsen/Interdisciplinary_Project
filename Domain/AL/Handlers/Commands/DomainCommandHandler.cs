@@ -16,7 +16,6 @@ using User = Domain.DL.Models.UserModels.User;
 namespace Domain.AL.Handlers.Commands;
 public sealed class DomainCommandHandler : IDomainCommandHandler
 {
-    //need factories and unit of work
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMessageFactory _messageFactory;
     private readonly IUserFactory _userFactory;
@@ -40,11 +39,8 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         if (result is SuccessResult<Message>)
         {
             _unitOfWork.MessageRepository.AddMessage(result.Data);
-            //_unitOfWork.Save();
-
             var entityUser = _unitOfWork.MessageAuthorRepository.GetForOperationAsync(command.UserId).Result;
-            var entityEukaryote = _unitOfWork.MessageLifeformRepository.GetForOperationAsync(command.EukaryoteId).Result ;
-
+            var entityEukaryote = _unitOfWork.MessageLifeformRepository.GetForOperationAsync(command.EukaryoteId).Result;
             entityUser.AddMessage(result.Data);
             entityEukaryote.AddMessage(result.Data);
             _unitOfWork.MessageAuthorRepository.Update(entityUser);
@@ -132,8 +128,8 @@ public sealed class DomainCommandHandler : IDomainCommandHandler
         {
             return new SuccessNoDataResult();
         }
-        //if Eukaryote message count is not zero it should be unable to remove it.
         var lifeformEntity = _unitOfWork.MessageLifeformRepository.GetForOperationAsync(command.Id).Result;
+        //if Eukaryote message count is not zero it should be unable to remove it.
         if (lifeformEntity.Messages.Any())
         {
             return new InvalidNoDataResult("Cannot remove lifeform with observation");
