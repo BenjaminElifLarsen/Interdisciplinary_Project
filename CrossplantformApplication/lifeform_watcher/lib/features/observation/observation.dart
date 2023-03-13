@@ -125,7 +125,7 @@ class _ObservationPageState extends State<ObservationPage> {
   }
 
   Text getLocationFromUser() => Text(
-      "GPS ikke slået til."); //have a form to enter longtitude and latitude
+      "GPS ikke slået til."); //have a form to enter longtitude and latitude, which user knows their location
 
   Text getLocationFromGPS() {
     return Text("GPS er slået til");

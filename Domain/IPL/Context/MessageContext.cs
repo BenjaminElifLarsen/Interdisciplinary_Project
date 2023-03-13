@@ -26,12 +26,12 @@ public sealed class MessageContext : DbContext
         modelBuilder.Entity<Author>()
             .OwnsMany(e => e.Likes);
 
+        // Primary Key
         modelBuilder.Entity<Author>()
             .Property(e => e.Id)
             .ValueGeneratedNever();
         modelBuilder.Entity<Lifeform>()
             .Property(e => e.Id)
             .ValueGeneratedNever();
-        // Indexes
     }
 }

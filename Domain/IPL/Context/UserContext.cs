@@ -17,6 +17,5 @@ public sealed class UserContext : DbContext
         // Value objects
         modelBuilder.Entity<User>()
             .OwnsOne(e => e.Name);
-        // Indexes
     }
 }

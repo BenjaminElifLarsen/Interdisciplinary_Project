@@ -15,10 +15,5 @@ public sealed class LifeformContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Eukaryote>().UseTpcMappingStrategy();
-        //modelBuilder.Entity<Plantae>().UseTpcMappingStrategy();
-
-        // Value objects
-
-        // Indexes
     }
 }
