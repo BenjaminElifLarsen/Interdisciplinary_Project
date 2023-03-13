@@ -1,15 +1,4 @@
 Implement User Service
-Implement Message Service
-	-- need update (consider what to do with updates regarding likes [what should happen to likes when an update happens])
-
-Implement Endpoints
-
-Implement Password hasher and salter - needs testing
-
-add endpoint and lifeform repo method for getting a specific lifeform and mapping it, no matter if is a plant or animal
-
-Test, test, and more test
-
 
 ---- ---- ----
 
