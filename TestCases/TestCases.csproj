@@ -23,8 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Messages\Post\" />
-    <Folder Include="TestSoftware\Context\" />
-    <Folder Include="TestSoftware\Repository\" />
   </ItemGroup>
 
   <ItemGroup>
