@@ -3,7 +3,7 @@ using Shared.DDD;
 using System.Text;
 
 namespace Domain.DL.Models.MessageModels;
-public sealed class Message : IAggregateRoot<int> //could add soft delete to this model, just let the save check if a model is getting deleted, if it is set it to unmodfieid and then modify the soft delete value to true
+public sealed class Message : IAggregateRoot<int>//could add soft delete to this model, just let the save check if a model is getting deleted, if it is set it to unmodfieid and then modify the soft delete value to true
 {
     private int _id;
     private Lifeform _eukaryote;
@@ -62,5 +62,10 @@ public sealed class Message : IAggregateRoot<int> //could add soft delete to thi
         if(shouldShorten)
             sb.Append("...");
         return sb.ToString();
+    }
+
+    public void SetTestId(int id)
+    {
+        _id = id;
     }
 }

@@ -32,4 +32,8 @@ public sealed record Lifeform : IAggregateRoot<int>
         _messages.Remove(message);
     }
 
+    public void SetTestId(int id)
+    {
+        _id = id;
+    }
 }

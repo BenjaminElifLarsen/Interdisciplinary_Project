@@ -53,4 +53,9 @@ public sealed record Author : IAggregateRoot<int>
     {
         _messages.Remove(message);
     }
+
+    public void SetTestId(int id)
+    {
+        _id = id;
+    }
 }

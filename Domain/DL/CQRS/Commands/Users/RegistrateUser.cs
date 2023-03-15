@@ -27,4 +27,6 @@ public sealed class RegistrateUser : ICommand
         ConfirmPassword = password;
         Username = username;
     }
+
+    public static RegistrateUser CreateTestObject(string firstName, string lastName, string passsword, string username) => new(firstName, lastName, passsword, username);
 }

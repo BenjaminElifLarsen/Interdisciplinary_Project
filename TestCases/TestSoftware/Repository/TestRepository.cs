@@ -10,11 +10,13 @@ internal class TestRepository<TEntity> : IBaseRepository<TEntity, int> where TEn
 {
     private readonly ITestContext _context;
     private readonly IEnumerable<TEntity> _data;
+    private int _idNumber;
 
     public TestRepository(ITestContext context)
     {
         _context = context;
         _data = _context.Set<TEntity>();
+        _idNumber = 0;
     }
 
     public async Task<IEnumerable<TMapping>> AllAsync<TMapping>(BaseQuery<TEntity, TMapping> query) where TMapping : BaseReadModel
@@ -39,6 +41,7 @@ internal class TestRepository<TEntity> : IBaseRepository<TEntity, int> where TEn
 
     public void Create(TEntity entity)
     {
+        entity.SetTestId(++_idNumber);
         _context.Add(entity);
     }
 

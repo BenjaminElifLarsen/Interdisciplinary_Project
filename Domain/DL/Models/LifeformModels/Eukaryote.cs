@@ -24,4 +24,9 @@ public abstract class Eukaryote : IAggregateRoot<int>
     {
         _speciesName = species;
     }
+
+    public void SetTestId(int id)
+    {
+        _id = id;
+    }
 }

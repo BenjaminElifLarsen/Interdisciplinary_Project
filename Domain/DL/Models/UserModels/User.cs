@@ -29,4 +29,8 @@ public sealed class User : IAggregateRoot<int>
         _hashedPassword = hashedPassword;
     }
 
+    public void SetTestId(int id)
+    {
+        _id = id;
+    }
 }
