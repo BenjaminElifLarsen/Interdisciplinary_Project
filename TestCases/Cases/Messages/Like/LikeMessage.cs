@@ -2,7 +2,7 @@
 using Domain.DL.Models.MessageModels;
 using System.Diagnostics;
 
-namespace TestCases.Messages.Like;
+namespace TestCases.Cases.Messages.Like;
 
 public class LikeMessage
 {
@@ -21,7 +21,7 @@ public class LikeMessage
         Assert.True(message.Likes.Count() == 1);
         message.AddLike(userId);
         Assert.True(message.Likes.Count() == 1);
-        message.AddLike(userId+1);
+        message.AddLike(userId + 1);
         Assert.True(message.Likes.Count() == 2);
     }
 

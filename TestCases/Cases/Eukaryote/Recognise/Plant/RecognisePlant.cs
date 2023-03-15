@@ -2,7 +2,7 @@
 using Shared.ResultPattern.Invalid;
 using Shared.ResultPattern.Success;
 
-namespace TestCases.Eukaryote.Recognise.Plant;
+namespace TestCases.Cases.Eukaryote.Recognise.Plant;
 
 public class RecognisePlant
 {

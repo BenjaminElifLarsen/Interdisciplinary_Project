@@ -1,7 +1,7 @@
 ﻿using Domain.AL.Services.Messages.Queries.GetAll;
 using Domain.DL.Models.MessageModels;
 
-namespace TestCases.Messages.GetAll;
+namespace TestCases.Cases.Messages.GetAll;
 public class GetAllMessages
 {
     [Fact]

@@ -1,7 +1,7 @@
 ﻿using Domain.AL.Services.Messages.Queries.GetSingle;
 using Domain.DL.Models.MessageModels;
 
-namespace TestCases.Messages.GetSingle;
+namespace TestCases.Cases.Messages.GetSingle;
 public class GetSingleMessage
 {
     [Fact]

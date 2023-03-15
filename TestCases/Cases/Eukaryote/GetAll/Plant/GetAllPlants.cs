@@ -1,7 +1,7 @@
 ﻿using Domain.DL.Models.LifeformModels;
 using Domain.DL.Validation.ReadModels;
 
-namespace TestCases.Eukaryote.GetAll.Plant;
+namespace TestCases.Cases.Eukaryote.GetAll.Plant;
 
 public class GetAllPlants
 {

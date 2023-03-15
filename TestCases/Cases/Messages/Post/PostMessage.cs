@@ -2,7 +2,7 @@
 using Shared.ResultPattern.Invalid;
 using Shared.ResultPattern.Success;
 
-namespace TestCases.Messages.Post;
+namespace TestCases.Cases.Messages.Post;
 
 public class PostMessage
 {
@@ -23,7 +23,7 @@ public class PostMessage
     {
         IMessageFactory factory = new MessageFactory();
         var request = Domain.DL.CQRS.Commands.Messages.PostMessage.CreateTestObject(1, 1, DateTime.Now, 12.1, 12.2, "Title", "Text");
-        var userIds = new int[] {  2, 3, 4 };
+        var userIds = new int[] { 2, 3, 4 };
         var lifeformIds = new int[] { 1, 2, 3, 4, 5 };
         var validationData = Domain.DL.Validation.MessageValidationData.CreateTestObject(userIds, lifeformIds);
         var result = factory.CreateMessage(request, validationData);
@@ -49,7 +49,7 @@ public class PostMessage
     {
         IMessageFactory factory = new MessageFactory();
         var request = Domain.DL.CQRS.Commands.Messages.PostMessage.CreateTestObject(1, 1, DateTime.Now, 12.1, 12.2, "", "Text");
-        var userIds = new int[] {1, 2, 3, 4 };
+        var userIds = new int[] { 1, 2, 3, 4 };
         var lifeformIds = new int[] { 1, 2, 3, 4, 5 };
         var validationData = Domain.DL.Validation.MessageValidationData.CreateTestObject(userIds, lifeformIds);
         var result = factory.CreateMessage(request, validationData);
