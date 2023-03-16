@@ -1,9 +1,10 @@
 ﻿using Domain.DL.Models.MessageModels.ValueObjects;
 using Shared.DDD;
+using Shared.Test;
 using System.Text;
 
 namespace Domain.DL.Models.MessageModels;
-public sealed class Message : IAggregateRoot<int>//could add soft delete to this model, just let the save check if a model is getting deleted, if it is set it to unmodfieid and then modify the soft delete value to true
+public sealed class Message : IAggregateRoot<int>, ITestSetId<int>//could add soft delete to this model, just let the save check if a model is getting deleted, if it is set it to unmodfieid and then modify the soft delete value to true
 {
     private int _id;
     private Lifeform _eukaryote;

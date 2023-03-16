@@ -1,8 +1,9 @@
 ﻿using Domain.DL.Models.UserModels.ValueObjects;
 using Shared.DDD;
+using Shared.Test;
 
 namespace Domain.DL.Models.UserModels;
-public sealed class User : IAggregateRoot<int>
+public sealed class User : IAggregateRoot<int>, ITestSetId<int>
 {
     private int _id;
     private Name _name;

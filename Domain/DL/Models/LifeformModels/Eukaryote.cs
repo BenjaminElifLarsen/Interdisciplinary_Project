@@ -1,7 +1,8 @@
 ﻿using Shared.DDD;
+using Shared.Test;
 
 namespace Domain.DL.Models.LifeformModels;
-public abstract class Eukaryote : IAggregateRoot<int>
+public abstract class Eukaryote : IAggregateRoot<int>, ITestSetId<int>
 {
     private int _id;
     private string _speciesName; //value object with species and language, e.g. Danish or Latin

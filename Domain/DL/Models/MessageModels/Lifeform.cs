@@ -1,7 +1,8 @@
 ﻿using Shared.DDD;
+using Shared.Test;
 
 namespace Domain.DL.Models.MessageModels;
-public sealed record Lifeform : IAggregateRoot<int>
+public sealed record Lifeform : IAggregateRoot<int>, ITestSetId<int>
 { //should be an aggregate root in a real ddd system
     private int _id;
 
