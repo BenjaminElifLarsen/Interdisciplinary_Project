@@ -65,6 +65,8 @@ class _RecognisePlantPageState extends State<RecognisePlantPage> {
               var valCasted = double.tryParse(value!);
               if (valCasted == null) {
                 return 'Please enter a valid number';
+              } else if (valCasted <= 0) {
+                return 'Please enter a valid number';
               }
               return null;
             },
@@ -100,6 +102,12 @@ class _RecognisePlantPageState extends State<RecognisePlantPage> {
         child: Icon(Icons.message));
   }
 
+  Card displayText(String text) => Card(
+          child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Text(text),
+      ));
+
   FutureBuilder<bool> buildFutureBuilder() {
     return FutureBuilder<bool>(
         future: futurePost,
@@ -111,7 +119,7 @@ class _RecognisePlantPageState extends State<RecognisePlantPage> {
             });
             return Text("Errored");
           } else if (snapshot.hasData) {
-            return Text("Posted");
+            return displayText("Posted");
           } else {
             return const CircularProgressIndicator();
           }

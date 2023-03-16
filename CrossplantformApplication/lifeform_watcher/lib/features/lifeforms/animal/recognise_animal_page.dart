@@ -63,6 +63,8 @@ class _RecogniseAnimalPageState extends State<RecogniseAnimalPage> {
               var valCasted = int.tryParse(value!);
               if (valCasted == null) {
                 return 'Please enter a valid number';
+              } else if (valCasted <= 0 || valCasted > 255) {
+                return 'Please enter a valid number';
               }
               return null;
             },
@@ -79,6 +81,8 @@ class _RecogniseAnimalPageState extends State<RecogniseAnimalPage> {
               }
               var valCasted = int.tryParse(value!);
               if (valCasted == null) {
+                return 'Please enter a valid number';
+              } else if (valCasted <= 0 || valCasted > 255) {
                 return 'Please enter a valid number';
               }
               return null;
@@ -118,6 +122,12 @@ class _RecogniseAnimalPageState extends State<RecogniseAnimalPage> {
     );
   }
 
+  Card displayText(String text) => Card(
+          child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Text(text),
+      ));
+
   ElevatedButton post() {
     request = AnimalPost(
         species: species,
@@ -147,7 +157,7 @@ class _RecogniseAnimalPageState extends State<RecogniseAnimalPage> {
             });
             return Text("Errored");
           } else if (snapshot.hasData) {
-            return Text("Posted");
+            return displayText("Posted");
           } else {
             return const CircularProgressIndicator();
           }
