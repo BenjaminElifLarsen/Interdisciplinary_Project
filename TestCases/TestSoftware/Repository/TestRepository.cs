@@ -2,11 +2,12 @@
 using Shared.DDD;
 using Shared.RepositoryPattern;
 using Shared.SpecificationPattern;
+using Shared.Test;
 using System.Linq.Expressions;
 using TestCases.TestSoftware.Context;
 
 namespace TestCases.TestSoftware.Repository;
-internal class TestRepository<TEntity> : IBaseRepository<TEntity, int> where TEntity : class, IAggregateRoot<int>
+internal class TestRepository<TEntity> : IBaseRepository<TEntity, int> where TEntity : class, IAggregateRoot<int>, ITestSetId<int>
 {
     private readonly ITestContext _context;
     private readonly IEnumerable<TEntity> _data;

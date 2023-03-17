@@ -1,7 +1,7 @@
 ﻿using Shared.Test;
 
 namespace Shared.DDD;
-public interface IAggregateRoot<T> : ITestSetId<T>
+public interface IAggregateRoot<T>
 {
     public T Id { get; }
 }

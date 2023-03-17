@@ -1,5 +1,4 @@
 ﻿using Shared.DDD;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace TestCases.TestSoftware.Context;
 internal class TestContext : ITestContext

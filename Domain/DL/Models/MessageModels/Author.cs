@@ -1,8 +1,9 @@
 ﻿using Domain.DL.Models.MessageModels.ValueObjects;
 using Shared.DDD;
+using Shared.Test;
 
 namespace Domain.DL.Models.MessageModels;
-public sealed record Author : IAggregateRoot<int>
+public sealed record Author : IAggregateRoot<int>, ITestSetId<int>
 { //should be a aggregate root in a real ddd system
     private int _id;
     private string _username;
